@@ -41,24 +41,23 @@ tags: Unity
 (1)首先创建一个名字为"AirControl.cs"的脚本,将此脚本挂载到飞机模型上.
 
 ```cs
-using UnityEnaine:
-using System. Collections;
+using UnityEngine;
+using System.Collections;
 public class AirControl : MonoBehaviour 
 {
-    private transform m transformi
-    public float speed= 600f;
-    private float rotationz-0.of:
-    public float rotatespeed Axisz - 45f,
-    public float rotatespeed AxisY-20f;
-    private Vector2 touchPosition;
-    private float screenWeight;
+    private transform m_transform; //保存Transform实例
+    public float speed = 600f; //飞机的飞行速度
+    private float rotationz = 0.0f; //绕2轴的旋转量
+    public float rotatespeed Axisz = 45f; // 烧2轴的旋转速度
+    public float rotatespeed AxisY = 20f; //绕丫轴的旋转速度
+    private Vector2 touchPosition; //触摸点坐标
+    private float screenWeight; //屏幕宽度
 
     void Update()
     {
     
     }
-//保存Transform实例//飞机的飞行速度//绕2轴的旋转量烧2轴的旋转速度//绕丫轴的旋转速度/触摸点坐标
-//屏幕宽度
+}
 ```
 
 口第1-2行为导入系统包。
