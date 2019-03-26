@@ -277,7 +277,7 @@ back2top:
   # Back to top in sidebar.
   sidebar: false
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
 # A button to open designated chat widget in sidebar.
 # Firstly, you need enable the chat service you want to activate its sidebar button.
@@ -803,13 +803,13 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: TDgTCXP2rngf8zUC896rCpmS-gzGzoHsz
+  app_key: d5MB2CpSwBuOW96xVBurzPX5
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: true
+  security: false
   betterPerformance: false
 
 # Another tool to show number of visitors to each article.
@@ -983,7 +983,7 @@ lazyload: false
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 # pace-theme-big-counter | pace-theme-bounce | pace-theme-barber-shop | pace-theme-center-atom
 # pace-theme-center-circle | pace-theme-center-radar | pace-theme-center-simple | pace-theme-corner-indicator
@@ -1210,3 +1210,7 @@ vendors:
 css: css
 js: js
 images: images
+
+recent_posts_title: 近期文章
+recent_posts_layout: block
+recent_posts: true
