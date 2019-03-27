@@ -2,7 +2,8 @@
 layout: title
 title: UGUI游戏界面
 date: 2019-01-31 15:28:36
-tags: Unity
+categories: Unity
+tags: Unity3D游戏开发第2版-宣雨松
 ---
 UGUI提供的基础元素包括文本、图片、按钮、滑动条和滚动组件等，配合UI还提供了强大的EventSystem事件系统来管理UI元素。从Unity2017开始还引入了图集的概念，让UGUI的功能更加全面，用起来更灵活。UGUI在自适应处理上显然下了功夫，提供了锚点、布局、对齐方式和Canvas，专门用来解决分辨率不同所带来的自适应屏幕问题。
 <!--more-->

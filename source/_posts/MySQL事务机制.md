@@ -1,7 +1,7 @@
 ---
 title: MySQL事务机制
 date: 2018-11-26 20:10:15
-tags:
+tags: MySQL
 ---
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/monokai-sublime.min.css">

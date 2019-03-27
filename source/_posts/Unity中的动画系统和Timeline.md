@@ -2,7 +2,8 @@
 layout: title
 title: Unity中的动画系统和Timeline
 date: 2019-02-17 18:18:56
-tags: Unity
+categories: Unity
+tags: Siki
 ---
 
 # 普通动画
