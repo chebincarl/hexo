@@ -2,7 +2,8 @@
 layout: title
 title: SmoothDamp方法：模拟阻尼运动
 date: 2019-03-12 07:51:25
-tags: Unity
+categories: Unity
+tags: Unity API解析
 ---
 
 

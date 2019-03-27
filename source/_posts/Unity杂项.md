@@ -156,6 +156,8 @@ Unity能够处理的单场景的多边形的数量取决于你运行游戏的硬
 Hierarchy视图里的都是对象。
 Project视图里的都是文件。
 
+物体使用Transform移动。需要物理引擎的使用Rigidbody移动。主角使用Character Controller移动。
+
 # 英语
 cast是投射的意思。
 gizmo 可视化辅助工具。
@@ -168,3 +170,8 @@ tint 着色
 delta 增量
 Axis 轴
 Magnitude 大小
+mapped 映射 
+Conventional 常规 
+arrow keys 方向键 
+linear 线性
+

@@ -2,7 +2,8 @@
 layout: title
 title: Unity脚本
 date: 2019-02-28 21:49:47
-tags: Unity
+categories: Unity
+tags: Unity5.X游戏开发指南
 ---
 Unity的编程工作都是在脚本里编写的，脚本通过添加到游戏对象的方式运行。如果说模型美术资源是游戏的皮肤，那么脚本系统就是它的心脏，决定着一款游戏能否健康稳定地运行。
 
