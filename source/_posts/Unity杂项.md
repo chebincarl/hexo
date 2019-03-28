@@ -174,4 +174,9 @@ mapped 映射
 Conventional 常规 
 arrow keys 方向键 
 linear 线性
-
+Additive 添加物
+Vertex 顶点
+duration 持续时间
+Lerp 线性插值
+Frustum 视锥体
+cutscene 过场动画

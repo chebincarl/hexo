@@ -6,6 +6,9 @@ categories: Unity
 tags: Unity
 ---
 public static float GetAxis(string axisName); static 类名.方法名
+
+<!--more-->
+
 Description
 Returns the value of the virtual axis identified by axisName.
 
