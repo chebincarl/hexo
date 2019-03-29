@@ -180,3 +180,4 @@ duration 持续时间
 Lerp 线性插值
 Frustum 视锥体
 cutscene 过场动画
+obligation  义务
