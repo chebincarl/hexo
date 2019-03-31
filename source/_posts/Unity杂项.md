@@ -182,3 +182,5 @@ Frustum 视锥体
 cutscene 过场动画
 obligation  义务
 PostProcessing 后期处理
+tiling 平铺
+unlit 无灯光的

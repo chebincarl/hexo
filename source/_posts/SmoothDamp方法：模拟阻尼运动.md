@@ -20,7 +20,6 @@ tags: Unity API解析
 功能说明
 此方法的功能是模拟平滑阻尼运动，并返回模拟插值。smoothTime:float，预计平滑时间，物体越靠近目标，加速度的绝对值越小。实际到达目标的时间往往要比预计时间大很多，建议smoothTime的取值范围为(0.0f, 1.0f)，若想控制物体到达目标的时间可以通过控制maxSpeed来达到目的。maxSpeed:float = Mathf.Infinity，每帧返回值的最大值，默认值为Mathf.Infinity。
 
-
 提示
 可以观察实例演示中maxSpeed取默认值和取较小值时当前速度随时间变化的示意图。
 
