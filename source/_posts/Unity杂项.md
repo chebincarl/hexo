@@ -184,3 +184,7 @@ obligation  义务
 PostProcessing 后期处理
 tiling 平铺
 unlit 无灯光的
+elapsed  过去
+Slerp 球面线性插值
+rect 矩形
+Projectile 抛射体
