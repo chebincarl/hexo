@@ -225,6 +225,8 @@ UI事件依赖于Graphic（图解的） Raycaster组件，如下图所示，它�
 * IDropHandler - OnDrop：落下时调用。  
 * IScrollHandler - OnScroll：鼠标滚轮持续时调用。
 
+
+
 ## UI事件管理
 ## UnityAction和UnityEvent
 ## RaycastTarget优化
