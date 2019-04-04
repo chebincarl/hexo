@@ -181,35 +181,3 @@ Project视图里的都是文件。
 
 物体使用Transform移动。需要物理引擎的使用Rigidbody移动。主角使用Character Controller移动。
 
-# 英语
-cast是投射的意思。
-gizmo 可视化辅助工具。
-trigger是触发的意思。
-overlap 重叠
-culling 剔除
-Threshold 阈值
-entry 条目 可以用来命名List变量，如logEntries
-tint 着色
-delta 增量
-Axis 轴
-Magnitude 大小
-mapped 映射 
-Conventional 常规 
-arrow keys 方向键 
-linear 线性
-Additive 添加物
-Vertex 顶点
-duration 持续时间
-Lerp 线性插值
-Frustum 视锥体
-cutscene 过场动画
-obligation  义务
-PostProcessing 后期处理
-tiling 平铺
-unlit 无灯光的
-elapsed  过去
-Slerp 球面线性插值
-rect 矩形
-Projectile 抛射体
-formula 公式，方案，方法
-host 托管

@@ -1,10 +1,9 @@
 ---
 layout: title
-title: Colliders
+title: Colliders-1
 date: 2019-04-03 14:32:51
-tags: 
+tags: Unity官方
 ---
-Colliders
 Collider components define the shape of an object for the purposes of physical collisions.
 
 <!--more-->
@@ -12,8 +11,7 @@ Collider components define the shape of an object for the purposes of physical c
 A collider, which is invisible, need not be the exact same shape as the object’s mesh and in fact, a rough approximation is often more efficient and indistinguishable in gameplay.
 
 The simplest (and least processor-intensive) colliders are the so-called primitive collider types. In 3D, these are the Box Collider
-, Sphere Collider
- and Capsule Collider
+, Sphere Collider and Capsule Collider
 . In 2D, you can use the Box Collider 2D and Circle Collider 2D. Any number of these can be added to a single object to create compound colliders.
 
 With careful positioning and sizing, compound colliders can often approximate the shape of an object quite well while keeping a low processor overhead. Further flexibility can be gained by having additional colliders on child objects (eg, boxes can be rotated relative to the local axes of the parent object). When creating a compound collider like this, there should only be one Rigidbody
