@@ -2,7 +2,8 @@
 layout: title
 title: Unity灯光与渲染
 date: 2019-03-19 22:08:28
-tags: Unity
+categories: Unity
+tags: Siki
 ---
 基于Unity 2017。
 
