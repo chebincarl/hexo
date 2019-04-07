@@ -13,6 +13,7 @@ gizmo 可视化辅助工具。
 trigger 触发
 overlap 重叠
 culling 剔除
+mask 面具，遮罩
 Threshold 阈值
 entry 条目 可以用来命名List变量，如logEntries
 tint 着色
@@ -42,3 +43,5 @@ host 托管
 compound 复合，合成
 polygon 多边形
 Portals 入口
+stretch 伸展
+solid color 纯色
