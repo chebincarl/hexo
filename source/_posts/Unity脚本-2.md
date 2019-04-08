@@ -9,6 +9,8 @@ tags: Unity5.X游戏开发指南
 * 工具类
 * 输入控制
 
+<!--more-->
+
 # 工具类
 
 Unity为开发者提供了很多实用的工具类，极大地方便了开发。它们是由系统封装的一些功能与方法，不需要开发者去实现类似功能。
@@ -34,15 +36,13 @@ public class TimeDemo : MonoBehavlour
 
 }
 ```
-
-* Time.time：从游戏开始时计时，截止到目前共运行的游戏时间，受Time.timeScale影响，游戏暂停时该时间不增加
-。
+* Time.time：从游戏开始时计时，截止到目前共运行的游戏时间，受Time.timeScale影响，游戏暂停时该时间不增加。
 
 * Time.timeScale：时间流逝的速度。当该值设置为1时表示和现实中的时间流逝一致；当该值设置为0.5时，表示真实时间逝去1秒时，游戏时间仅逝去0.5秒；当设置该值为2表示真实时间逝去1秒时，游戏时间逝去2秒。
 
 * Time.deltaTime：上一帧所消耗的时间。
 
-* Time.fixedTime：每一次执行FixedUpdate()函数的时间间隔。可通过导航菜单栏“Edit->Project Settings-> Time”菜单项设置。
+* Time.fixedTime：每一次执行FixedUpdate()函数的时间间隔。可通过导航菜单栏“Edit->Project Settings->Time”菜单项设置。
 
 * Time.fixedDeltaTime：固定更新上一帧所消耗的时间。
 
@@ -77,11 +77,11 @@ Unity提供了一个数学类Mathf，该类位于UnityEngine命名空间下。�
 
 * Mathf.Abs(a)：返回a的绝对值，参数为整数或者浮点数。
 * Mathf.Clamp(a, min, max)：将a限制在min和max之间，参数为整数或者浮点数。 
-* Mathf.Lerp(from, to, a)：插入值，返回值=from + to(1-a)。
+* Mathf.Lerp(from, to, a)：插入值，返回值=from+to(1-a)。
 * Mathf.Min(a, b, c)：返回两个或n个数的最小值，参数为整数或者浮点数。
 * Mathf.Max(a, b, c)：返回两个或n个数的最大值，参数为整数或者浮点数。 
 * Mathf.Pow(a, b)：a的b次方。
-* Mathf. Deg2Rad：常量浮点数，0.0174532924f，用于角度转换弧度。
+* Mathf.Deg2Rad：常量浮点数，0.0174532924f，用于角度转换弧度。
 * Mathf.Rad2Deg：常量浮点数，57.29578f，用于弧度转换角度。
 * Mathf.Pi：常量浮点数表示圆周率3.141592653...。
 * Mathf.Sin(a)：返回弧度a的正弦值。
