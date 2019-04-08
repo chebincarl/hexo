@@ -45,3 +45,5 @@ polygon 多边形
 Portals 入口
 stretch 伸展
 solid color 纯色
+Rotate和rotation是两种东西
+Obstacle 障碍
