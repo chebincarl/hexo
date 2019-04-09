@@ -35,7 +35,7 @@ Unity的编程工作都是在脚本里编写的，脚本通过添加到游戏对
 
 所有继承自MonoBehaviour的脚本都有一个名为enabled的bool值开关，enabled对应脚本名称左侧的勾。<span style="color:red;">enabled决定生命周期的函数是否会被调用。当enabled为true时，生命周期各个阶段对应的函数将会被调用，否则不调用。</span>当enabled变为true时脚本执行OnEnable()，当enabled变为false时脚本执行OnDisable()。
 
-<span style="color:red;">enabled只与生命周期的函数有关，与其他函数和所有变量都没有关系。</span>如果脚本中不包含任何生命周期函数，enabled将没有任何意义，此时在Inspector窗口中，脚本名左侧将不再有勾选框，如下图所示。同理，不管是没有任何生命周期函数还是enabled为false，都不影响其他脚本调用此脚本的变量或者非生命周期函数。
+<span style="color:red;">enabled只与生命周期的函数有关，与其他函数和所有变量都没有关系。</span>如果脚本中不包含任何生命周期函数，enabled将没有任何意义，此时在Inspector窗口中，脚本名左侧将不再有勾选框，如下图所示。同理，<span style="color:red;">不管是没有任何生命周期函数还是enabled为false，都不影响其他脚本调用此脚本的变量或者非生命周期函数。</span>
 
 {% asset_img 2.png %}
 
@@ -47,7 +47,7 @@ Unity的编程工作都是在脚本里编写的，脚本通过添加到游戏对
 
 # UnityGUI
 
-UnityGUI曾经是官方的UI实现方式，但后来由于效率和可视化程度低等原因，逐渐被NGUI等第三方UI插件替代，一般用UnityGUI作为测试UI。
+由于效率和可视化程度低等原因，一般用UnityGUI作为测试UI。
 
 UnityGUI使用一个特殊的OnGUI()函数，在该函数中加入实现UI的脚本。
 
@@ -62,10 +62,7 @@ UnityGUI使用一个特殊的OnGUI()函数，在该函数中加入实现UI的脚
 string str="";
 str = GUILayout.TextField(str);
 ```
-
-下面我们就用一个实例来说明如何使用OnGUI()实现UnityGUI界面。
-
-新建一个场景，将场景里的对象全部删除。再新建一个空的游戏对象，重命名对象为Manager。然后新建一个脚本，并命名为GUIDemo.cs。内容如下代码所示。运行场景，画面如下图所示。
+新建一个场景，将场景里的对象全部删除。再新建一个空的游戏对象，重命名对象为Manager。然后新建一个脚本GUIDemo.cs。
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -104,9 +101,6 @@ public class GUIDemo : MonoBehaviour
 * Debug.LogError：向控制台输出错误信息（红色）。
 
 需要注意的是，Unity本身在运行场景时会向控制台输出警告信息和错误信息，但不会输出普通信息，所以一般情况下我们输出普通信息即可。
-
-将场景GUI另存为Log，并将Manager对象的脚本替换为LogDemo，如代码清单所示。
-
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -121,7 +115,7 @@ public class LogDemo : MonoBehaviour
 	}
 }
 ```
-运行场景后，点击导航菜单栏->Window>Console，在打开的控制台窗口中可以看到输出的信息，如下图所示。
+运行场景后，在控制台窗口中可以看到输出的信息，如下图所示。
 
 {% asset_img 6.png %}
 
@@ -131,7 +125,9 @@ Unity中的所有实体都属于游戏对象，比如Unity自带的立方体、�
 
 ## 创建游戏对象
 
-创建游戏对象的方式有以下两种。第一种为将导入工程后的模型放入Hierarchy视图或者Scene视图中，好处是完全可视化的操作。第二种则是在代码里动态地创建和删除游戏对象，这种处理方式灵活性比较高。
+创建游戏对象的方式有以下两种：
+* 第一种为将导入工程后的模型放入Hierarchy视图或者Scene视图中，好处是完全可视化的操作。
+* 第二种则是在代码里动态地创建和删除游戏对象，这种处理方式灵活性比较高。
 
 本例在游戏视图中添加了两个按钮：“创建立方体”和“创建球体”。点击其中一个按钮，将在游戏中动态添加立方体对象或者球体对象。为了让创建的立方体对象与球体对象具有物理属性，比如质量、重力和碰撞等，我们需要为其添加刚体组件（Rigidbody）。
 
@@ -186,11 +182,13 @@ public class ObjDemo : MonoBehaviour
 
 ## 获取游戏对象
 
-在脚本中获取游戏对象的方式一共有两种：第一种为在代码里声明对象，在Inspector属性栏里指定游戏对象；第二种是通过对象名称获取对象。
+在脚本中获取游戏对象的方式一共有两种：
+* 第一种为在代码里声明对象，在Inspector属性栏里指定游戏对象；
+* 第二种是通过对象名称获取对象。
 
 ### 通过指定
 
-主要是通过在代码里声明一个公开的游戏对象，如代码所示，然后在Inspector属性栏里指定游戏对象。这种方法获取的游戏对象一般是预制体或者是场景中已经存在的对象。
+主要是通过在代码里声明一个公开的游戏对象，然后在Inspector属性栏里指定游戏对象。这种方法获取的游戏对象一般是预制体或者是场景中已经存在的对象。
 
 ```cs
 using UnityEngine;
@@ -224,9 +222,11 @@ public class GetObjByName : MonoBehaviour
 
 ## 添加组件与修改组件
 
-新创建的游戏对象本身不具备任何属性，自然没有功能作用。为了让它具备一些功能，就必须给它添加游戏组件。组件的种类非常之多，常用的组件有物理类、网格类、粒子类等。添加游戏组件时，需要使用AddComponent()方法。而删除组件的时候需要使用Object.Destroy()方法，参数为需要删除的游戏对象或游戏组件。如果删除的是某一游戏对象，对象中所有的组件都会被一并删除。
+新创建的游戏对象本身不具备任何属性，自然没有功能作用。为了让它具备一些功能，就必须给它添加游戏组件。常用的组件有物理类、网格类、粒子类等。
 
-本例中，我们首先在Scene视图中创建一个空的立方体对象，然后为其添加渲染组件。运行游戏后，在Game视图中点击“添加颜色”按钮或者“添加贴图”按钮将为该立方体对象添加颜色或贴图，参见代码。
+添加游戏组件时，需要使用AddComponent()方法。而删除组件的时候需要使用Object.Destroy()方法，参数为需要删除的游戏对象或游戏组件。如果删除的是某一游戏对象，对象中所有的组件都会被一并删除。
+
+本例中，我们首先在Scene视图中创建一个空的立方体对象，然后为其添加渲染组件。运行游戏后，在Game视图中点击“添加颜色”按钮或者“添加贴图”按钮将为该立方体对象添加颜色或贴图。
 
 ```cs
 using UnityEngine;
@@ -308,7 +308,7 @@ public class ReceiveDemo : MonoBehaviour
 
 ## 克隆游戏对象
 
-克隆游戏对象与创建游戏对象不同，创建游戏对象是创建一个全新的游戏对象，需要另外添加组件来赋予功能。而克隆游戏对象通常是克隆具有一定功能的现成的对象。如果这个现成对象已经保存为文件的话，则称之为预制体。<span style="color:red;">一般来说，克隆的执行效率较高。</span>比如游戏中发射的子弹，每颗子弹对象是一样的，所以每次发射子弹直接克隆一个子弹，然后赋予新的位置速度等信息即可。在代码中，需要使用Instantiate()函数克隆游戏对象，具体步骤如下。
+克隆游戏对象与创建游戏对象不同，创建游戏对象是创建一个全新的游戏对象，需要另外添加组件来赋予功能。而克隆游戏对象通常是克隆具有一定功能的现成的对象。如果这个现成对象已经保存为文件的话，则称之为预制体。<span style="color:red;">一般来说，克隆的执行效率较高。</span>比如游戏中发射的子弹，每颗子弹对象是一样的，所以每次发射子弹直接克隆一个子弹，然后赋予新的位置速度等信息即可。在代码中，<span style="color:red;">需要使用Instantiate()函数克隆游戏对象。</span>
 	
 首先创建一个Cube立方体，然后添加Rigidbody组件。下一步，将Cube立方体从Hierarchy视图拖曳至Project视图。一个预制体就创建好了。对着预制体点击鼠标右键“Show in Explorer”，会在文件夹中显示该文件，名称是“Cube.prefab”。prefab就是Unity中所有预制体的后缀名。我们已经创建好了预制体，接着选中Scene场景视图中的Cube对象，右键“Delete”将其删除。
 
@@ -335,82 +335,3 @@ public class CloneDemo : MonoBehaviour
 添加后，在Inspector窗口里CloneDemo栏目下可以看到Prefab指定条，将之前创建好的Cube预制体拖曳上去。
 
 运行游戏，在屏幕中间出现我们通过代码克隆出的Cube游戏对象。Cube对象因为添加了刚体而向下自由落体。
-
-# 移动、旋转和缩放游戏对象
-
-在3D世界中，任何一个游戏对象在创建的时候都会附带Transform组件，并且该组件是无法删除的。
-
-Transform面板中一共包含3个属性：Position（位置），Rotation（旋转）和Scale（缩放）。既可在场景中使用移动工具来拖动和旋转模型，也可以直接在Inspector窗口下的Transform面板中手动填写对象的位置、旋转和缩放的数值。
-
-## 游戏对象的位置
-
-在3D世界中，任何一个模型的三维坐标都保存在Vector3容器中，该容器将记录物体在x轴、y轴和z轴方向的坐标。一旦在程序中修改该游戏对象的坐标，那么Scene视图中游戏对象的位置将发生改变。
-
-## 移动游戏对象
-
-游戏对象在原有位置的基础上继续移动，在代码中可以使用transform.Translate()函数实现，此函数的唯一参数为位移的数值：
-transform.Translate(Vector3 offset);
-该函数相当于transform.position = transform.position + offset。
-
-## 缩放游戏对象
-
-在Unity中，可以通过代码动态缩放游戏中的游戏对象。
-transform.localScale = new Vector3(x,y,z);
-其中Vector3的x为x轴向的缩放，y为y轴向的缩放，z为z轴向的缩放。也可以通过下面的代码格式快速整体缩放：
-```cs
-transform.localScale *= 1.2f; // 对象整体放大1.2倍
-```
-
-## 旋转游戏对象
-
-游戏对象的旋转方式分为两种：第一种是自转；第二种是围绕旋转，也就是围绕一个点或者一个游戏对象来旋转。
-
-* transform.Rotate()：该函数用于设置游戏对象自转。
-* transform.RotateAround()：该函数用于设置游戏对象围绕某一个点旋转。
-* Time.deltatime：上一帧所消耗的时间，这里用作模型旋转的速度系数。
-* Vector3.right：x轴正方向。
-* Vector3.up：y轴正方向。
-* vector3.forward：z轴正方向。
-
-## 实例
-
-在本实例中，我们会通过点击按钮对游戏对象进行对应的移动缩放旋转操作，如代码所示。
-```cs
-using UnityEngine;
-using System.Collections;
-
-public class testDemo : MonoBehaviour 
-{
-	public GameObject cube;
-	public GameObject cylinder;
-	
-	void OnGUI()
-	{
-		if(GUILayout.Button("向左移动物体"))
-		{
-			cube.transform.Translate(new Vector3(-0.5f, 0f, 0f));
-		}
-		if(GUILayout.Button("向右移动物体"))
-		{
-			cube.transform.position = cube.transform.position + new Vector3(0.5f, 0f, 0f);
-		}
-		if (GUILayout.Button("放大物体"))
-		{
-			cube.transform.localScale *= 1.2f;
-		}
-		
-		if(GUILayout.Button("缩小物体"))
-		{
-			cube.transform.localScale = 0.8f;
-		}
-		if (GUILayout.Button("旋转物体"))
-		{
-			cube.transform.Rotate(new Vector3(0, 10, 0));
-		}
-		if(GUILayout.Button("围绕圆柱体旋转物体")
-		{
-			cube.transform.RotateAround(cylinder.transform.position, Vector3.up, 10);
-		}
-	}
-}
-```
