@@ -11,7 +11,7 @@ Unity的编程工作都是在脚本里编写的，脚本通过添加到游戏对
 
 # MonoBehaviour
 
-继承自MonoBehaviour的脚本从唤醒到销毁有着完整的生命周期。
+所有创建的用于添加到游戏对象上的脚本都必须继承自MonoBehaviour（不添加到游戏对象上就无需继承MonoBehavior），继承自MonoBehaviour的脚本从唤醒到销毁有着完整的生命周期。
 
 * Awake()，脚本唤醒函数。当游戏对象被创建的时候，游戏对象绑定的脚本会在该帧（frame）内执行Awake()函数，无论脚本是否处于激活（enable）状态。
 
