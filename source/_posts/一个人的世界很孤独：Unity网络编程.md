@@ -153,7 +153,7 @@ Photon Cloud运行于Photon Server之上，Photon Realtime、Photon Chat是运�
 
 ## PUN、PUN+与UNET
 
-首先要说明一下，PUN是Photon Unity Networking的英文缩写。Unity提供了内置的网络系统--UNET，那么为什么此处笔者选择PUN呢？PUN相对于UNET的优势在何处呢？
+首先要说明一下，PUN是Photon Unity Networking的缩写。Unity提供了内置的网络系统--UNET，那么为什么此处笔者选择PUN呢？PUN相对于UNET的优势在何处呢？
 
 (1)房间模式  
 

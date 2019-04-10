@@ -48,3 +48,4 @@ solid color 纯色
 Rotate和rotation是两种东西
 Obstacle 障碍
 Agent 代理
+mute 静音
