@@ -49,6 +49,6 @@ Rotate和rotation是两种东西
 Obstacle 障碍
 Agent 代理
 mute 静音
-embedded
+embedded 嵌入的，内含的
 
-嵌入的，内含的
+cascade 级联
