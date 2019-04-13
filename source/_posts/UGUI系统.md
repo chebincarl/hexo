@@ -437,7 +437,8 @@ Unity自带的布局组分为3种，分别为水平布局、垂直布局和网�
 
 {% asset_img 33.png %}
 
-1.Horizontal Layout Group（水平布局）
+** 1.Horizontal Layout Group（水平布局） **
+
 选中UIMain空对象，选择Add Component->Layout->Horizontal Layout Group，即可为该游戏对象添加一个水平布局管理组件。顾名思义，在该组件的作用下，UIMain的子对象将按照一定的要求进行水平排列。该组件如下图所示，组件包含的参数如下表所示。
 
 {% asset_img 34.png %}
@@ -454,14 +455,16 @@ Unity自带的布局组分为3种，分别为水平布局、垂直布局和网�
 
 {% asset_img 35.png %}
 
-2.Vertical Layout Group（垂直布局）
+** 2.Vertical Layout Group（垂直布局） **
+
 选中UIMain游戏对象，选择Add Component->Layout->Vertical Layout Group，即可给该游戏对象添加一个垂直布局管理组件。如下图所示。该组件的功能是将UI元素按照一定的规则进行整齐的垂直排列，其内部参数和Horizontal Layout Group的参数基本一样。
 
 {% asset_img 36.png %}
 
 {% asset_img 37.png %}
 
-3.Grid Layout Group（网格布局）
+** 3.Grid Layout Group（网格布局） **
+
 Grid Layout Group是网格布局管理器组件，该组件会将其管理下的UI元素进行自动的网格型的排列，如下图所示。此外，它还实现了自动换行等功能。该组件常见于各个游戏中的背包内部的储物格。Grid Layout Group组件包含的参数如下表所示。
 
 {% asset_img 39.png %}
@@ -497,7 +500,8 @@ public class UGUILayout : MonoBehaviour
 ```
 在Start方法中新实例化出了一个items预制件，将其设置为挂载有布局管理器组件的UIMain的子对象，然后观察场景，就会发现新实例化的预制件已经被自动排列好了。这在游戏开发中非常方便，可以随时实例化UI元素而不用再三考虑排列布局问题。
 
-4.Layout Element（布局元素）
+** 4.Layout Element（布局元素） **
+
 Layout Element是布局元素组件，该组件常用于管理带有布局组对象的子物体。选择Add Component->Layout->Layout Element，即可给该游戏对象添加一个布局元素组件，如下图所示。Layout Element组件包含的参数如下表所示。
 
 {% asset_img 40.png %}
