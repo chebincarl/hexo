@@ -24,7 +24,7 @@ tags: Unity游戏开发技术详解与典型案例
 
 (1)通过菜单创建一个prefab。执行“Assets->Create->Prefab”命令，即可在项目资源列表中创建一个prefab，然后将其名字改为“BallPrefab”。
 
-(2)在场景中创建一个球体。执行Create->3D Object->Sphere命令，即可在游戏组成列表中创建一个Sphere，然后将其改名为“Ball”。
+(2)在场景中创建一个球体并改名为“Ball”。
 
 (3)向项目中导入一个球面纹理图片资源。执行“Assets->Import New Asset...”命令，会立刻弹出一个Import New Assets对话框，在对话框中选中需要的球面纹理图片，单击“Import”按钮完成导入。
 
@@ -42,7 +42,7 @@ tags: Unity游戏开发技术详解与典型案例
 
 1.以上面的BallPrefab为例，在此有关prefab的具体创建过程就不再进行讲解。
 
-2.编写脚本，实例化篮球，执行“Assets->Create->C# Script”命令，在项目中创建一个C#脚本，在此将脚本的名字改为“BallPrefabScript”，然后双击脚本进入脚本编辑器。对脚本进行编辑。
+2.编写脚本，实例化篮球。在项目中创建一个“BallPrefabScript”脚本。
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -86,13 +86,11 @@ public class BallPrefabScript : MonoBehaviour
 
 在游戏的开发过程中，时常需要获取用户的输入情况，类似于手机或平板中的触控行为，计算机端的键盘鼠标操作行为等，在其他的开发平台中，要获取这些操控参数往往需要通过开发人员编写不少代码来实现，而Unity 3D引擎在设计时就封装好了这些常用的方法与参数。
 
-针对用户的输入，引肇专门为开发人员提供了两个输入对象--Touch与Input。开发人员通过Touch与Input输入对象中的方法以及参数可以非常方便地获取用户输入的各种参数，包括触控的位置、相位、手指按下位移，以及用户鼠标键盘的输入等。
-
-<!--more-->
+针对用户的输入，引擎专门为开发人员提供了两个输入对象\-\-Touch与Input。开发人员通过Touch与Input输入对象中的方法以及参数可以非常方便地获取用户输入的各种参数，包括触控的位置、相位、手指按下位移，以及用户鼠标键盘的输入等。
 
 ## Touch输入对象
 
-Touch输入对象中提供了非常详细的参数以及方法，通过使用该对象可以获取如Android、IOS等移动平台中的详细的触摸操控信息，读者可以将分析Touch的代码写在对应的脚本中，然后挂载到对应的游戏对象上，就可以轻松地获取到Touch的信息了。 Touch事件变量如下表所示。
+Touch输入对象中提供了非常详细的参数以及方法，通过使用该对象可以获取如Android、IOS等移动平台中的详细的触摸操控信息，读者可以将分析Touch的代码写在对应的脚本中，然后挂载到对应的游戏对象上，就可以轻松地获取到Touch的信息了。Touch事件变量如下表所示。
 
 | 变量名  | 含义  |
 | :------------ | :------------ |
@@ -103,11 +101,11 @@ Touch输入对象中提供了非常详细的参数以及方法，通过使用该
 |  tapCount | 点击次数  |
 |  phase |  触摸相位 |
 
-Touch触摸输入对象的各个参数在开发的过程中一般都是相互配合使用的，只有这样才能符合开发的需要。接下来将给出一个解析玩家手势操控的案例，希望读者可以通过该案例与学习的内容进行相互印证以加深理解。
+Touch触摸输入对象的各个参数在开发的过程中一般都是相互配合使用的，只有这样才能符合开发的需要。
 
-1.首先搭建所需的游戏场景。新建一个场景并将其命名为“TouchTest”，在其中创建一个平行光Direction Light，然后执行“GameObject->3D Object->Sphere”命令，创建一个小球并赋予其纹理图。调整小球的大小与位置以及摄像机的位置,如下图所示。
+1.首先新建一个场景并将其命名为“TouchTest”，创建一个小球并赋予其纹理图。调整小球的大小与位置以及摄像机的位置，如下图所示。
 
-2.简单地搭建好场景后接下来进行脚本的开发。新建一个名为“TouchTest.cs”的C#脚本，将其挂载到主摄像机MainCamera上。脚本代码如下：
+2.新建一个名为“TouchTest.cs”的C#脚本，将其挂载到主摄像机MainCamera上。脚本代码如下：
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -138,10 +136,13 @@ public class TouchTest : MonoBehaviour
 			} elseif (t1.phase == TouchPhase.Moved && t2.phase == TouchPhase.Moved) // 两个手指都在移动
 			{ 
 				float dis = Vector2.Distance(t1.position, t2.position); // 计算手指位置
-				if (Mathf.Abs(dis -lastDis) > 1)  // 若是手指距离>1
+				if (Mathf.Abs(dis -lastDis) > 1)
+				{  
+					// 若是手指距离>1
 					cameraDis += (dis - lastDis) * ScaleDump;  // 设置摄像机到物体的距离
 					cameraDis = Mathf.Clamp(cameraDis, -40, -5); // 限制摄像机到物体的距离
 					lastDis = dis;  // 备份本次触摸结果
+				}
 			}
 		}
 	}
@@ -165,18 +166,291 @@ public class TouchTest : MonoBehaviour
 }
 ```
 
-口第1-7行的主要功能为命名空间的引用以及声明变量。在声明变量的部分中声明了场景中的Sphere游戏对象的引用Ball，方便下面对其进行旋转等变换；同时还声明了一些数据全局变量，用途将在下面的讲解中进行介绍。
-口第8-14行代码是在Update方法中对单指操控行为进行解析。当发生触控并且用户的手指在移动状态，就可以通过Input.GetAxis("Mouse XY")获取用户的手指位移，然后将其转换为旋转角对ball进行旋转。运行时就可以看到，当用户滑动手指时，场景中的小球根据滑动方向进行旋转。
+首先引用命名空间以及声明变量。在声明变量的部分中声明了场景中的Sphere游戏对象的引用Ball，方便下面对其进行旋转等变换；同时还声明了一些数据全局变量。
 
-口第15-27行是解析用户多点操控的行为，当手指数目大于1时,计算两个手指问的距离，并与上一次计算出的距离进行比较，若是距离变大就将摄像机向近推产生放大的效果，反之摄像机向后推就可以得到缩小的效果。这里还在第25行对摄像机的位置进行了限制，使其不能无限放大或者缩小。最后备份下这一帧中手指间的距离用于下一帧中和新的距离进行比较。
+在Update方法中对单指操控行为进行解析。当发生触控并且用户的手指在移动状态，就可以通过Input.GetAxis("Mouse X/Y")获取用户的手指位移，然后将其转换为旋转角对ball进行旋转。运行时就可以看到，当用户滑动手指时，场景中的小球根据滑动方向进行旋转。
 
-口第28-30行为对LateUpdate方法的重写，这个方法在Update方法回调完后进行回调。在这部分中根据上一步算出来的cameraDis对摄像机进行前推或者后拉，产生放大或者缩小的效果。
+接着解析用户多点操控的行为，当手指数目大于1时，计算两个手指间的距离，并与上一次计算出的距离进行比较，若是距离变大就将摄像机向近推产生放大的效果，反之摄像机向后推就可以得到缩小的效果。这里还对摄像机的位置进行了限制，使其不能无限放大或者缩小。最后备份下这一帧中手指间的距离用于下一帧中和新的距离进行比较。
 
-口第31-39行代码与触控的检测没有什么关系，主要是使用Text控件对触控的信息进行打印，使其在真机上也可以看到，方便学习与调试，最后还设置了一个退出按钮，单击该按钮后程序结束运行。
+对LateUpdate方法进行重写，这个方法在Update方法回调完后进行回调。在这部分中根据上一步算出来的cameraDis对摄像机进行前推或者后拉，产生放大或者缩小的效果。
 
-在第12,13行中使用了Input.GetAxis("Mouse XY")来获取用户手指的位移而没有使用Touch. deltaPosition，这是因为手机屏幕的不同Touch. deltaPosition的返回值是不同的，所以使用起来比较不方便；而Input.GetAxis("Mouse X/Y")也可以实现相应的效果，并且在iOs平台中也可以使用该方法。具体使用哪个，读者可以根据开发需要自行选择。
+OnGUI函数与触控的检测没有什么关系，主要是使用Text控件对触控的信息进行打印，使其在真机上也可以看到，方便学习与调试，最后还设置了一个退出按钮，单击该按钮后程序结束运行。
 
-(3)将案例导入手机中运行，就可以看到小球根据玩家的手指滑动或两指放大收缩而发生旋转或缩放了。需要注意的是,与Touch有关的项目都需要在真机上进行测试。
+使用了Input.GetAxis("Mouse X/Y")来获取用户手指的位移而没有使用Touch.deltaPosition，这是因为手机屏幕的不同Touch.deltaPosition的返回值是不同的，所以使用起来比较不方便；而Input.GetAxis("Mouse X/Y")也可以实现相应的效果，并且在iOs平台中也可以使用该方法。具体使用哪个，读者可以根据开发需要自行选择。
+
+(3)将案例导入手机中运行，就可以看到小球根据玩家的手指滑动或两指放大收缩而发生旋转或缩放了。需要注意的是，与Touch有关的项目都需要在真机上进行测试。
 
 ## Input输入对象
-如果说Touch输入对象可以用于获取用户的触摸操作信息，那么Input对象就可以获取用户其他所有行为的输入，如鼠标、键盘、加速度、陀螺仪、按钮等,所以掌握Input输入对象就可以在外部输入信息和系统之间架立一座桥梁，因此显得其尤为重要。Input对象的主要变量如下表所示。
+
+如果说Touch输入对象可以用于获取用户的触摸操作信息，那么Input对象就可以获取用户其他所有行为的输入，如鼠标、键盘、加速度、陀螺仪、按钮等，所以掌握Input输入对象就可以在外部输入信息和系统之间架立一座桥梁，因此显得其尤为重要。Input对象的主要变量如下表所示。
+
+
+> Input对象的主要变量
+
+| 变量名  | 含义  |
+| :------------ | :------------ |
+| mousePosition  | 当前鼠标的像素坐标  |
+| anyKeyDown  | 用户点击任何键或鼠标按钮，第一帧返回true    |
+| acceleration  | 加速度传感器的值  |
+| anyKey  | 当前是否有按键按住，若有返回true  |
+| inputString  | 返回键盘输入的字符串  |
+| touches  | 返回当前所有触摸（Touch）列表  |
+
+1.mousePosition变量
+ 
+变量mousePosition是一个三维的坐标，用于获取当前鼠标的像素坐标。像素坐标是以屏幕左下角为（0,0），屏幕右上角坐标为（Screen.width, Screen.height）计算的。具体获取方式可以参看下面的代码片段。
+```cs
+void Update()
+{
+    if(Input.GetButtonDown("Fire1")) // 鼠标左键点下  
+    {
+        Debug.Log(Input.mousePosition);  // 打印鼠标位置
+    }
+}
+```
+
+2.anyKey变量与anyKeyDown变量
+
+变量anyKey用于显示当前是否有任何按键按下，若是有，就始终返回True。将下面的代码添加到脚本中，将脚本挂载到摄像机上，当按下任何按键时就会不停地显示打印信息。
+```cs
+void Update()
+{
+    if(Input.anyKey) // 有按钮按下
+    {
+        // 打印信息
+        Debug.Log("A key or mouse click has been detected");
+    }
+}
+```
+变量anyKeyDown和变量anyKey有些许差别，前者只有按下按钮后的第一帧返回True。将上面的代码片段稍做修改后运行场景即可发现，只要有按钮按下，就会打印一次信息；若是按钮持续处于按下状态，也仅仅打印第一次。
+```cs
+void Update()
+{
+    if (Input.anyKeyDown) // 按钮按下
+    {
+        // 打印信息
+        Debug.Log("A key or mouse click has been detected");
+    }  
+}
+```
+
+3.inputString变量
+
+变量InputString返回键盘在这一帧中输入的字符串。注意，在返回的字符串中只包含ASCII码中的字符，若是本次没有输入字符串就会返回一个空串，如下面的代码片段所示。
+```cs
+void Update()
+{
+    if (Input.inputString != "") // 若当前输入字符串不为空
+    {
+        Debug.Log(Input.inputString); // 打印输入字符串
+    }
+}
+```
+
+4.acceleration变量
+
+变量acceleration可以获取设备在当前三维空间中的线性加速度，常见于3D游戏中的重力感应操控模式。当用户倾斜设备时，若设备上有加速度传感器，就会回传一个代表设备倾斜加速度的三维向量，使用Input.acceleration变量就可以获取该参数。具体实现代码如下。
+
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class example : MonoBehaviour
+{
+    public float speed = 10.0f; // 移动速度
+
+    void Update()
+    {
+        Vector3 dir = vector3. zero; // 新建一个三维向量
+        dir.x = -Input.acceleration.y; // 获取重力感应y轴参数
+        dir.z = Input.acceleration.x; // 获取重力感应x轴参数
+
+        if (dir.sgrMagnitude >1) // 若是获取的三维向量不是标准向量
+            dir.Normalize(); // 规格化向量
+        
+        dir *= Time.deltaTime; // 将方向向量转换为速度
+        transform.Translate(dir * speed); // 平移物体
+    }
+}
+```
+将该脚本挂载在一个游戏对象上，导入支持重力传感器的设备中运行后就可以看到，游戏对象会根据用户倾斜手机的方向进行相应方向的移动。当然，这段代码需要设备支持重力感应，否则就会一直返回Vector3.Zero。
+
+5.touches变量
+
+上一节中介绍过Touch输入对象，与之相对应地，通过Input.touches变量可以获取到当前在屏幕上的所有触控的引用（Touech[]]类型），开发人员就可以根据索引轻易地获取各个触控点的信息，所以该变量也会经常被使用到，具体使用方法可以参考下面的代码片段。
+
+```cs
+void Update()
+{
+    int fingerCount = 0; // 手指数目计数器
+    foreach (Touch touch in Input.touches) // 遍历每个触控点
+    {
+        if (touch.phase != TouchPhase. Ended && touch.phase != TouchPhase.Canceled) // 当前触控点不是结束状态且当前触控不是取消状态
+        {
+            fingerCount++; // 触摸计数器自加
+        }
+
+        if (fingerCount > 0) // 有触摸
+        {
+            // 打印信息
+            print("User has " + fingerCount + "finger(s) touching the screen");
+        }
+    }
+}
+```
+
+该代码片段的作用为，每当触控发生时就通过Input.touches获取到每个触控的引用，然后遍历触控列表。若触控的相位不是结束状态或取消状态，就将手指数目计数器fingerCount加1，最后打印出当前在屏幕上的有效触控手指的数目。
+
+Input输入对象中不仅包括了丰富的变量，而且还提供了大量的实用方法。下面将对Input输入对象中封装好的常用方法进行进行详细的介绍。
+
+> Input输入对象中的主要方法
+
+| 方法名  | 含义  |
+| :------------ | :------------ |
+| GetAxis  | 返回被表示的虚拟轴的值  |
+| GetButton  | 若虚拟按钮被按下返同true  |
+| GetButtonUp  | 虚拟按钮抬起的一帧返回true  |
+| GetKeyDown  | 按下指定按钮的一帧返回true   |
+| GetMouseButton  | 指定的鼠标按键按下时返回true  |
+| GetMouseButtontUp  | 指定鼠标按键抬起的一帧返回true  |
+| GetAxisRaw  | 返回没有经过平滑处理的虚拟轴的值  |
+| GetButtonDown  | 虚拟按钮被按下的一帧返回true  |
+| GetKey  | 按下指定按钮时返回true  |
+| GetKeyUp  | 抬起指定按钮的一帧返回true  |
+| GetMouseButtonDown  | 指定的鼠标按键按下的一帧返回true  |
+| GetTouch  | 根据索引返回当前触控（Touch类型）  |
+
+
+6.GetAxis方法和GetAxisRaw方法
+
+GetAxis方法和GetAxisRaw方法都是获取虚拟轴的值的方法。在游戏的开发过程中，经常会在屏幕中添加一些2D的虚拟轴，可以通过触控或者鼠标事件改变虚拟轴的值来控制场景中的游戏对象。具体使用方法如下面的代码片段所示。
+```cs
+using unityEngine;
+using Systen.Collections;
+
+public class InputTest : MonoBehaviour 
+{
+    private float speed = 0.1f; // 移动速度 
+     
+    void Update()
+    {
+        float movex = Input. GetAxis ("Horizontal");  // 获取水平轴的值
+        float mover = Input.GetAxis ("Vertical");  // 获取垂直轴的值
+        this.transform.Translate(new Vector3(movex, moveY, 0) *speed); //移动物体
+    }
+}
+```
+将上面的脚本挂载到场景中的游戏对象上，使用键盘的方向键就可以控制游戏对象的移动了。这时若是把movex的值打印出来就会发现，当按下方向键时，其值是从-1~ 1之间平滑过渡的。接下来运行下面的代码片段。
+
+```cs
+void Update()
+{
+    float moveX = Input.GetAxisRaw("Horizontal"); / /获取水平轴的值
+    Debug.Log(moveX);
+}
+```
+这段代码使用了GetAxisRaw方法，运行后按下方向键就会观察到moveX的值只会有-1、0、1三种变化，没有中间的过渡值。这是因为GetAxisRaw方法没有使用平滑滤波器。在需要自定义差值的情况下可以使用GetAxisRaw方法。
+
+7.GetButton方法、GetButtonDown方法与GetButtonUp方法
+
+这3种方法用于监听虚拟按钮的按下状态，包括按钮按下时、按钮按下中、按钮抬起时3个状态。开发人员需要在Update方法中回调这些方法来判断按钮的状态。其中的区别可以参看下面的功能代码片段。
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class InputTest : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.GetButton("Fire1")) // 使用GetButton监听“Fire1”按键
+        {
+            Debug.Log("Fire GetButton");
+        }
+
+        if(Input.GetButtonDown("Fire1")) // 使用GetButtonDown监听“Fire1”按键
+        {
+            Debug.Log("Fire GetButtonDown");
+        }
+        
+        if (Input.GetButtonUp("Fire1")) // 使用GetButtonUp监听“Fire1”按键
+        {
+            Debug.Log("Fire GetButtonUp");
+        }
+    }
+}
+```
+
+将上述脚本挂载到主摄像机上，按住鼠标左键不放，就会发现第6行的打印始终在被回调，而第8行的打印代码仅在按下时回调了两次。当松开鼠标左键时，才会发现第12行代码被回调。通过这个简单的脚本，读者应该已经可以区分这3种方法的区别了。
+
+8.Getkey方法、GetKeyDown方法与GetKeyUp方法
+
+这3种方法用于监听键盘上的按键的状态，开发人员需要在Update方法中调用这些方法，并传入想要监听的键名或键码。每个按钮的状态也分为按下、抬起、按住3种，使用者可以根据需要进行选用，使用方法如下面的代码片段所示。
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class InputTest : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.Getkey("up")) //使用GetKey监听."按键
+        {
+            Debug.Log ("up arrow Getkey");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))  //使用GetKeyDown监听.."按键
+        {
+            Debug.Log("up arrow GetKeyDown");
+        }
+        
+        if (Input.GetKeyUp(KeyCode.UpArrow))  //使用GetKeyUp监听.1.按键
+        {
+            Debug.Log("up arrow GetKeyUp");
+        }
+    }    
+}
+```
+第5行和第8行分别使用了键名和键码两种方式来监听方向上键，其效果是相同的。将上面的脚本挂载到摄像机上运行场景，点击“方向上键”就会看到相应的打印信息，可见GetKey是按住时始终回调的，GetKeyDown和GetKeyUp分别只有按下和抬起时的一帧调用。
+    
+9.GetMouseButton方法、GetMouseButtonDown方法和GetMouseButtonUp方法
+
+当开发计算机端的游戏时，肯定需要监听鼠标的操控。Input输入对象中包含了GeMouseButton、GetMouseButtonbDown和GetMouseButtonUp三种方法，用它们来监听鼠标按键。在使用时只要在Update方法中传入鼠标按键的索引，就可以对鼠标进行监听了。与前面介绍的方法类似，这3种方法也分别监听了鼠标按键的3个状态。使用方法见如下代码。
+
+```cs
+void Update()
+{
+    if (Input.GetMouseButton(0)) // GetMouseButton监听鼠标左键
+    {
+        Debug.Log("left mouseButton GetMouseButton"); // 打印信息
+    } 
+    
+    if (Input.GetMouseButtonDown(0)) // GetMouseButtonDown监听鼠标左键
+    {
+        Debug.Log("left mouseButton GetMouseButtonDown"); // 打印信息
+    }  
+    
+    if (Input.GetMouseButtonUp (0)) // GetMouseButtonUp监听鼠标左健 
+    {
+        Debug.Log("left mouseButton GetMouseButtonUp"); // 打印信息
+    }
+}
+```
+
+这三种方法的参数是一个int类型的索引。常用的鼠标按键索引为0，1，2，分别监听了鼠标的左键、右键、中键。需要使用的时候传入相应的索引就可以监听对应的按键了。
+
+10.GetTouch方法
+
+前面已经介绍过了Touch输入对象，使用其参数时需要获取一个Touch类型的变量。InputJetTouch方法就是用于获取Touch输入对象的引用，在使用时应传入一个索引值代表要获取的触控索引，使用方式见如下代码片段。
+```cs
+void Update()
+{
+    if (Input.touchCount != 0) // 当前发生触控
+    {
+        Vector3 touchPOS = Input.GetTouch(0).position; // 记录下触控点的位置
+    }
+}
+```
+上面的代码片段获取了发生触控时的首个触控点，并将其位置记录了下来。注意这个方法只有在支持触摸的移动设备上运行才会生效。
+
+# 与销毁相关的方法
+
