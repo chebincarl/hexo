@@ -2,9 +2,9 @@
 layout: title
 title: Unity脚本程序开发
 date: 2019-03-12 07:43:41
-tags: Unity
+categories: Unity
+tags: Unity游戏开发技术详解与典型案例
 ---
-
 Unity中的脚本程序如果要起作用，主要途径为将脚本附加到特定的游戏对象上。这样，脚本中不同的方法在特定的情况下会被回调，实现特定的功能。下面给出几个最常用的回调方法。
 
 <!--more-->
