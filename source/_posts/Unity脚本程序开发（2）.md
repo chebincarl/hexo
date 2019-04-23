@@ -12,11 +12,15 @@ tags: Unity游戏开发技术详解与典型案例
 
 <!--more-->
 
+思考并回答以下问题：
+1.鼠标有几个输入来源？如何得到？
+2.键盘这么多的按键怎么得到？
+3.如何得到不同的操作状态，比如按下，按住，抬起？
+
+
 # 预制体（prefab）资源的应用
 
 在一个项目的开发过程中经常会应用到预制件（prefab）资源。在场景的开发中会同时创建多个完全相同的游戏对象，如果一一创建会耗费大量的时间，并且也会耗费游戏资源，在管理上也会有一定的难度。这时就需要实例化预制件（prefab）来实现。
-
-<!--more-->
 
 ## 预制件（prefab）资源的创建
 
@@ -59,11 +63,11 @@ public class BallPrefabScript : MonoBehaviour
 	public float k = 2.0f;
 	public int n = 4;  // 声明实例化球的行数
 	int count = 0;  // 声明一个计数器
-	public Rigidbody[] BP; // 声明刚体数姐
+	public Rigidbody[] BP; // 声明刚体数组
 
-	void Start() // 声明start方法 
+	void Start()
 	{
-		Bp = new Rigidbody[10];  // 初始化刚体组数
+		Bp = new Rigidbody[10];  // 初始化刚体数组
 		count = 0; // 计数器置0
 		for (i = 0; i <= n; i++) // 对变量i进行循环
 		{
@@ -176,7 +180,7 @@ public class TouchTest : MonoBehaviour
 
 OnGUI函数与触控的检测没有什么关系，主要是使用Text控件对触控的信息进行打印，使其在真机上也可以看到，方便学习与调试，最后还设置了一个退出按钮，单击该按钮后程序结束运行。
 
-使用了Input.GetAxis("Mouse X/Y")来获取用户手指的位移而没有使用Touch.deltaPosition，这是因为手机屏幕的不同Touch.deltaPosition的返回值是不同的，所以使用起来比较不方便；而Input.GetAxis("Mouse X/Y")也可以实现相应的效果，并且在iOs平台中也可以使用该方法。具体使用哪个，读者可以根据开发需要自行选择。
+使用了Input.GetAxis("Mouse X/Y")来获取用户手指的位移而没有使用Touch.deltaPosition，这是因为手机屏幕的不同Touch.deltaPosition的返回值是不同的，所以使用起来比较不方便；而Input.GetAxis("Mouse X/Y")也可以实现相应的效果，并且在iOS平台中也可以使用该方法。具体使用哪个，读者可以根据开发需要自行选择。
 
 (3)将案例导入手机中运行，就可以看到小球根据玩家的手指滑动或两指放大收缩而发生旋转或缩放了。需要注意的是，与Touch有关的项目都需要在真机上进行测试。
 
@@ -198,7 +202,7 @@ OnGUI函数与触控的检测没有什么关系，主要是使用Text控件对�
 
 1.mousePosition变量
  
-变量mousePosition是一个三维的坐标，用于获取当前鼠标的像素坐标。像素坐标是以屏幕左下角为（0,0），屏幕右上角坐标为（Screen.width, Screen.height）计算的。具体获取方式可以参看下面的代码片段。
+变量mousePosition是一个三维的坐标，用于获取当前鼠标的像素坐标。像素坐标是以屏幕左下角为（0,0），屏幕右上角坐标为（Screen.width, Screen.height）计算的。
 ```cs
 void Update()
 {
@@ -236,7 +240,7 @@ void Update()
 
 3.inputString变量
 
-变量InputString返回键盘在这一帧中输入的字符串。注意，在返回的字符串中只包含ASCII码中的字符，若是本次没有输入字符串就会返回一个空串，如下面的代码片段所示。
+变量inputString返回键盘在这一帧中输入的字符串。注意，在返回的字符串中只包含ASCII码中的字符，若是本次没有输入字符串就会返回一个空串，如下面的代码片段所示。
 ```cs
 void Update()
 {
@@ -261,7 +265,7 @@ public class example : MonoBehaviour
 
     void Update()
     {
-        Vector3 dir = vector3. zero; // 新建一个三维向量
+        Vector3 dir = Vector3.zero; // 新建一个三维向量
         dir.x = -Input.acceleration.y; // 获取重力感应y轴参数
         dir.z = Input.acceleration.x; // 获取重力感应x轴参数
 
@@ -277,8 +281,7 @@ public class example : MonoBehaviour
 
 5.touches变量
 
-上一节中介绍过Touch输入对象，与之相对应地，通过Input.touches变量可以获取到当前在屏幕上的所有触控的引用（Touech[]]类型），开发人员就可以根据索引轻易地获取各个触控点的信息，所以该变量也会经常被使用到，具体使用方法可以参考下面的代码片段。
-
+上一节中介绍过Touch输入对象，与之相对应地，通过Input.touches变量可以获取到当前在屏幕上的所有触控的引用（Touch[]类型），开发人员就可以根据索引轻易地获取各个触控点的信息，所以该变量也会经常被使用到。
 ```cs
 void Update()
 {
@@ -325,8 +328,8 @@ Input输入对象中不仅包括了丰富的变量，而且还提供了大量的
 
 GetAxis方法和GetAxisRaw方法都是获取虚拟轴的值的方法。在游戏的开发过程中，经常会在屏幕中添加一些2D的虚拟轴，可以通过触控或者鼠标事件改变虚拟轴的值来控制场景中的游戏对象。具体使用方法如下面的代码片段所示。
 ```cs
-using unityEngine;
-using Systen.Collections;
+using UnityEngine;
+using System.Collections;
 
 public class InputTest : MonoBehaviour 
 {
@@ -334,18 +337,18 @@ public class InputTest : MonoBehaviour
      
     void Update()
     {
-        float movex = Input. GetAxis ("Horizontal");  // 获取水平轴的值
-        float mover = Input.GetAxis ("Vertical");  // 获取垂直轴的值
-        this.transform.Translate(new Vector3(movex, moveY, 0) *speed); //移动物体
+        float moveX = Input.GetAxis("Horizontal");  // 获取水平轴的值
+        float moveY = Input.GetAxis("Vertical");  // 获取垂直轴的值
+        this.transform.Translate(new Vector3(moveX, moveY, 0) *speed); //移动物体
     }
 }
 ```
-将上面的脚本挂载到场景中的游戏对象上，使用键盘的方向键就可以控制游戏对象的移动了。这时若是把movex的值打印出来就会发现，当按下方向键时，其值是从-1~ 1之间平滑过渡的。接下来运行下面的代码片段。
+将上面的脚本挂载到场景中的游戏对象上，使用键盘的方向键就可以控制游戏对象的移动了。这时若是把moveX的值打印出来就会发现，当按下方向键时，其值是从-1~ 1之间平滑过渡的。接下来运行下面的代码片段。
 
 ```cs
 void Update()
 {
-    float moveX = Input.GetAxisRaw("Horizontal"); / /获取水平轴的值
+    float moveX = Input.GetAxisRaw("Horizontal"); // 获取水平轴的值
     Debug.Log(moveX);
 }
 ```
@@ -379,10 +382,9 @@ public class InputTest : MonoBehaviour
     }
 }
 ```
-
 将上述脚本挂载到主摄像机上，按住鼠标左键不放，就会发现第6行的打印始终在被回调，而第8行的打印代码仅在按下时回调了两次。当松开鼠标左键时，才会发现第12行代码被回调。通过这个简单的脚本，读者应该已经可以区分这3种方法的区别了。
 
-8.Getkey方法、GetKeyDown方法与GetKeyUp方法
+8.GetKey方法、GetKeyDown方法与GetKeyUp方法
 
 这3种方法用于监听键盘上的按键的状态，开发人员需要在Update方法中调用这些方法，并传入想要监听的键名或键码。每个按钮的状态也分为按下、抬起、按住3种，使用者可以根据需要进行选用，使用方法如下面的代码片段所示。
 ```cs
@@ -393,17 +395,17 @@ public class InputTest : MonoBehaviour
 {
     void Update()
     {
-        if (Input.Getkey("up")) //使用GetKey监听."按键
+        if (Input.Getkey("up")) // 使用GetKey监听“↑”按键
         {
-            Debug.Log ("up arrow Getkey");
+            Debug.Log("up arrow Getkey");
         }
         
-        if (Input.GetKeyDown(KeyCode.UpArrow))  //使用GetKeyDown监听.."按键
+        if (Input.GetKeyDown(KeyCode.UpArrow))  // 使用GetKeyDown监听“↑”按键
         {
             Debug.Log("up arrow GetKeyDown");
         }
         
-        if (Input.GetKeyUp(KeyCode.UpArrow))  //使用GetKeyUp监听.1.按键
+        if (Input.GetKeyUp(KeyCode.UpArrow))  // 使用GetKeyUp监听“↑”按键
         {
             Debug.Log("up arrow GetKeyUp");
         }
@@ -429,7 +431,7 @@ void Update()
         Debug.Log("left mouseButton GetMouseButtonDown"); // 打印信息
     }  
     
-    if (Input.GetMouseButtonUp (0)) // GetMouseButtonUp监听鼠标左健 
+    if (Input.GetMouseButtonUp(0)) // GetMouseButtonUp监听鼠标左键
     {
         Debug.Log("left mouseButton GetMouseButtonUp"); // 打印信息
     }
@@ -440,7 +442,7 @@ void Update()
 
 10.GetTouch方法
 
-前面已经介绍过了Touch输入对象，使用其参数时需要获取一个Touch类型的变量。InputJetTouch方法就是用于获取Touch输入对象的引用，在使用时应传入一个索引值代表要获取的触控索引，使用方式见如下代码片段。
+前面已经介绍过了Touch输入对象，使用其参数时需要获取一个Touch类型的变量。Input.GetTouch方法就是用于获取Touch输入对象的引用，在使用时应传入一个索引值代表要获取的触控索引，使用方式见如下代码片段。
 ```cs
 void Update()
 {
@@ -454,3 +456,105 @@ void Update()
 
 # 与销毁相关的方法
 
+在游戏的开发过程中，经常会遇到对象、组件、资源等在使用完毕后就失去了作用的情况，放任其不管的话轻则影响项目运行效率，重则可能影响到项目的正常运行。所以必须有一类方法来管理（删除）这些没有用的资源。在本节中将要介绍Unity中的各类删除方法。
+
+Unity中有很多Destroy方法，不同功能的Destroy方法用于销毁不同类型的资源，下面将主要讲解常用的各个类型的Destroy方法的区别以及使用，不同功能的Destroy方法如下表所示。
+
+| 函数  | 功能  |
+| :------------ | :------------ |
+| Object.Destroy  | 删除游戏对象、组件或资源  |
+| NetWork.Destroy  | 销毁网络对象  |
+| MonoBehavior.OnDestroy  | 脚本被销毁时间  |
+
+
+## Object.Destroy方法
+
+Object.Destroy方法可以将对象立即销毁，也可以设置时间后销毁。如果删除的对象是一个组件，则该组件会被移除。下面将通过一个具体的代码片段来说明Object.Destroy的使用方式。
+```cs
+void Start()
+{
+    Destroy(ball.GetComponent<Rigidbody>());
+    Destroy(ball, 5);
+}
+```
+在这个代码片段中，ball是场景中的一个挂有Rigidbody组件的游戏对象。在Start方法中，首先删除掉ball上挂载的刚体组件，然后在5s后删除ball游戏对象。
+
+## NetWork.Destroy方法
+
+NetWork.Destroy方法可以销毁网络对象，该方法包含了如下两种重载方式。
+```cs
+static function Destroy(viewID : NetworkViewID) : void
+static function Destroy(gameObject : GameObject) : void
+```
+当使用第一种方法重载方式时，需要给出网络对象的viewID，然后系统会删除所有和该viewID相关的物体。需要注意的是，本地的和远端的物体都会被销毁。使用方法见如下代码片段。
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class example : MonoBehaviour
+{
+    //通过网络销毁拥有该脚本的物体，必须具备Networkview离性
+    public float timer= 0;
+    void Awake ()
+    {
+        timer = Time.time;
+    }
+    
+    // 计时器
+    // 记录下开始时间
+
+    void Update()
+    {
+        if (Time.time-timer>2) // 2s后
+        {
+            Network.Destroy(GetComponent<NetworkView>().viewID) ; // 删除具有NetworkView的物体
+        }  
+    }
+}
+```
+NetWork.Destroy方法还可以使用第二种重载方式来销毁网络上的游戏对象，下面将用一段代码片段来说明。
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class example : MonoBehaviour
+{
+    public float timer = 0; // 声明计时器
+
+    void Awake()
+    {
+        timer = Time.time; // 记录下开始时间
+        
+        void Update()
+        {
+            if (Time.time - timer >2) // 2s后
+            {
+                Network.Destroy(gameObject); // 删除gameObject
+            }
+        }
+    }
+}
+```
+这段代码的主要功能就是自脚本唤醒后2s删除游戏对象“gameObject”，其中Time.time代表游戏开始后的真实时间。
+
+## MonoBehaviour.OnDestroy方法
+
+MonoBehaviour.OnDestroy方法是MonoBehaviour中的销毁回调方法。类似于脚本中常见的Update()、Start()方法，该方法也由系统自动回调，这个方法的回调条件是当该脚本被移除时系统回调。具体实现方法如下面代码片段所示。
+```cs
+using UnityEngine;
+using System.Collections;
+
+public class DestroyTest : MonoBehaviour
+{
+    void Start()
+    {
+        Destroy(this.GetComponent<DestroyTest>(), 5); // 移除该脚本
+    }
+    
+    void OnDestroy()
+    {
+        Debug.Log("this script has been destroy"); //移除该脚本时回调
+    }
+}
+```
+将该脚本挂载到摄像机上后运行场景，在这段代码中首先在第5行指定5s后从摄像机上删除这个脚本，所以等到5后删除脚本时就会看到第8行的打印，这是因为OnDestroy()方法在移除该脚本时被自动回调了。
