@@ -55,3 +55,6 @@ Volume 体积，音量
 Portals 入口
 Visualization 可视化
 toraue 扭矩
+blend 混合
+Snapshot 快照
+Procedural 程序
