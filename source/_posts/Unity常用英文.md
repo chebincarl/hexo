@@ -58,3 +58,4 @@ toraue 扭矩
 blend 混合
 Snapshot 快照
 Procedural 程序
+Clockwise 顺时针

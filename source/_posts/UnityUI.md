@@ -125,18 +125,23 @@ Stretch模式下，如果将游戏视图从Unity IDE中分离并调整视图大�
 
 # anchoredPosition属性
 
-Rect Transform属性顶端的Pos X、 Pos Y, Pos Z以相应UI元素锚点为基准,显示UI元素当前位置,在Unity中称为anchoredPosition。图7-28的Panel的位置表示,以Anchor Point为基准时,x轴1+60的位置。
+RectTransform属性顶端的Pos X、Pos Y、Pos Z以相应UI元素锚点为基准，显示UI元素当前位置，在Unity中称为anchoredPosition。下图的Panel的位置表示，以Anchor Point为基准时，X轴方向-130、Y轴方向+60的位置。
 
-anchoredPosition的属性为Vector2类型,不涉及Z轴,所以Pos Z值为0.Width和Height属性则是相应UI元素的宽和高的值。Pos X、 Pos Y、Width, Height这些属性值表示当前UI元素的中心点相对锚点位置的偏移量,与NGUI相比,基于锚点的这套设置稍显复杂。
+> 设置锚点为middle、right时的anchoredPosition属性值
 
-图7-29是将锚点设置为左边排列与宽高自适应后的界面截图。因为选择了宽高自适应,所以UI元素的高度可以根据场景当前分辨率改变,故检视视图中的Pos Y值和Height值分别变为Top值和Bottom值,二者分别表示当前UI元素的顶端留空值(Top Margin )与下端留空值(Bottom Margin )。
+{% asset_img 13.png %}
+
+anchoredPosition的属性为Vector2类型，不涉及Z轴，所以Pos Z值为0。Width和Height属性则是相应UI元素的宽和高的值。Pos X、Pos Y、Width、Height这些属性值表示当前UI元素的中心点相对锚点位置的偏移量。
+
+下图是将锚点设置为左边排列与宽高自适应后的界面截图。因为选择了宽高自适应，所以UI元素的高度可以根据场景当前分辨率改变，故Inspector视图中的Pos Y值和Height值分别变为Top值和Bottom值，二者分别表示当前UI元素的顶端留空值（Top Margin）与下端留空值（Bottom Margin）。
 
 ** Anchor属性 **
-Unity UI用4个小箭头表示Anchor属性,通过它可设置并调整UI元素的大小和对齐方式。RectTransform组件的Anchor属性中的Min(X, Y)、Max(X, Y)值是锚点位置,取值范围均为0.0f ~ 1.0f,例如, 0.5f表示50%。
 
-U1元素四周均设置锚点后,该UI元素就只能在锚点设置的范围内调整大小。图7-31中,锚点的Min值设置为(0.2, 0.2), Max值设置为(0.8, 0.8 ),这样可以使Panel大小随画面分辨率的变化而变化。
+Unity UI用4个小箭头表示Anchor属性，通过它可设置并调整UI元素的大小和对齐方式。RectTransform组件的Anchor属性中的Min(X, Y)、Max(X, Y)值是锚点位置，取值范围均为0.0f ~ 1.0f，例如，0.5f表示50%。
 
-上面设置的锚点值表示从画面左边20%、画面下端20%到画面左边80%、画面下端80%的范围也就是说,画面按照比例分割为20%,60%,20%,如图7-32所示。
+UI元素四周均设置锚点后，该UI元素就只能在锚点设置的范围内调整大小。下图中，锚点的Min值设置为(0.2, 0.2)，Max值设置为(0.8, 0.8)，这样可以使Panel大小随画面分辨率的变化而变化。
+
+上面设置的锚点值表示从画面左边20%、画面下端20%到画面左边80%、画面下端80%的范围。也就是说，画面按照比例分割为20%，60%，20%，如下图所示。
 
 # Image组件
 
@@ -148,49 +153,57 @@ Image组件是制作游戏UI界面时最常用的UI元素，仔细观察其属�
 
 | 属性  | 功能  |
 | :------------ | :------------ |
-| Source Image  | Panel要使用的图像(仅允许Sprite格式的文件)  |
-| Color  | 指定图像的颜色(RGBA)  |
-| Material  | 渲染图像时使用的材质(使用法线贴图时可用)  |
-| Image Type  | 显示图像的方式有4种，Simple:不需要重复显示图像或需要使图像长宽比例固定,Sliced:调整图像大小也不会使其周围图像变形,Tiled:可以平铺图像；Filled:可以只显示部分图像  |
+| Source Image  | Panel要使用的图像（仅允许Sprite格式的文件）  |
+| Color  | 指定图像的颜色（RGBA）  |
+| Material  | 渲染图像时使用的材质（使用法线贴图时可用）  |
+| Image Type  | 显示图像的方式有4种。<br>Simple：不需要重复显示图像或需要使图像长宽比例固定；<br>Sliced：调整图像大小也不会使其周围图像变形；<br>Tiled：可以平铺图像；<br>Filled：可以只显示部分图像。  |
 
 下面讲解Image组件的Image Type属性提供的4种选项的不同之处。
 
 ## Simple
 
-用于固定图像长宽比例,主要适用于装饰画面的图片。选择Simple时,检视视图中会出现Preserve Aspet选项,勾选后,图像即可按照其原有长宽比例进行调整。通过Set Native Size按钮可设置原版图像大小。
+用于固定图像长宽比例，主要适用于装饰画面的图片。选择Simple时，Inspector视图中会出现Preserve Aspet选项，勾选后，图像即可按照其原有长宽比例进行调整。通过Set Native Size按钮可设置原版图像大小。
 
-提示
-按住Shift键后,可按照既有长宽比例对所有UI元素进行等比调整。
+按住Shift键后，可按照既有长宽比例对所有UI元素进行等比调整。
 
-7.4.2 Sliced
-将Panel中的Image组件的Image Type设置为Sliced后,即使调整图像大小,其边框外围部分的图像也不会变形,只有中间切片的图像才会随着调整的大小而缩放。要想使用Sliced选项设置图像,需要在Sprite Editor中事先设置要使用的图像的九宫格线。选择项目视图的04. Images/UI Textures/Textures andSprites/SF Window,点击检视视图的Sprite Editor按钮打开Sprite Editor视图,如图7-37所示。SFWindow图像是背景透明的白色图像,所以为了便于查看,点击控制栏的RGB/Alpha按钮选择Alpha.
+## Sliced
 
-调整4条绿色实线的位置,即可设置九宫格大小。
-按照边线将图像切分为9块后,即使调整整个图像的大小, 4条边附近的图像也不会变形,如图7-38所示。设置为Sliced类型的图像常用于制作登录对话框等窗口。
 
-选择Sliced选项后,检视视图会出现Fill Center属性。如果勾选,则显示原图像切片的九宫格中间图像;如果不勾选,则最终图像只显示中间轮廓。如图7-38所示,原始图像切片后的中间9号区域是透明的,没有图像。
+将Panel中的Image组件的Image Type设置为Sliced后，即使调整图像大小，其边框外围部分的图像也不会变形，只有中间切片的图像才会随着调整的大小而缩放。要想使用Sliced选项设置图像，需要在Sprite Editor中事先设置要使用的图像的九宫格线。选择项目视图的Images/UI Textures/Textures and Sprites/SF Window，点击Inspector视图的Sprite Editor按钮打开Sprite Editor视图，如下图所示。SF Window图像是背景透明的白色图像，所以为了便于查看，点击控制栏的RGB/Alpha按钮选择Alpha。
 
-7.4.3 Tiled
-Tiled选项可以使设置的图像不断重复,平铺整个画面,不受Image大小影响,如图7-39所示。
+调整4条绿色实线的位置，即可设置九宫格大小。
 
-7.4.4 Filed
-选择Filed选项可以使图像沿着特定方向逐渐显示,直至填满整个Panel。在Fill Method属性中设置填充方式, Fill Origin属性可以选择从哪个位置开始填充。
-表7-2 Fill Method属性
-选项
-HorizontalVerticalRadial90Radial180Radial360
-说明
-Clockwise属性无
-横向填满图像纵向填满图像图像以900填满图像以180"填满图像以3600填淇
-无|有有有
+按照边线将图像切分为9块后，即使调整整个图像的大小，4条边附近的图像也不会变形，如下图所示。设置为Sliced类型的图像常用于制作登录对话框等窗口。
 
-选择Radial90, Radial180或者Radial360选项时,可以继续设置Clockwise属性, Clockwise决定图像以顺时针方向还是逆时针方向进行填充。另外,设置填充比例的选项为Fill Amount,其取值范围是0.0f~ 1.0f,可以看出, Filed选项在游戏开发中可用于表现生命条或技能冷却时间。
+选择Sliced选项后，Inspector视图会出现Fill Center属性。如果勾选，则显示原图像切片的九宫格中间图像；如果不勾选，则最终图像只显示中间轮廓。如下图所示，原始图像切片后的中间9号区域是透明的，没有图像。
 
-7.5 Rawlmage组件
+## Tiled
 
-RawImage组件与Image组件相似,但其主要用于设置UI界面的静态背景。可以在Raw Image组件的Texture属性中设置纹理文件或者Sprite文件。
+Tiled选项可以使设置的图像不断重复，平铺整个画面，不受Image大小影响，如下图所示。
 
-选择层次视图的Canvas对象,点击鼠标右键后,在上下文菜单中选择RawImage,场景视图中会生成RawImage对象。将项目视图04. Images/SkyBox Volume 2/中用于Skybox的一个纹理设置到RawImage组件的Textuue属性,然后按住Shif键,利用鼠标拖曳等比调整RawImage,使其比场景视图的Canvas区域更大,如图7-41所示。
+## Filed
 
-UV Rect选项的x、Y属性可以设置图像位置的偏移量,而w,H属性设置其宽和高相对于原始大小的缩放比例。
+选择Filed选项可以使图像沿着特定方向逐渐显示，直至填满整个Panel。在Fill Method属性中设置填充方式，Fill Origin属性可以选择从哪个位置开始填充。
 
-如图7-41所示,之前添加的Panel的图像会被RawImage覆盖,所以需要调整。Unity UI系统各元素的Z-Order值由其各自在层次视图中的顺序决定,故将层次视图的排列选项更改为TransformSort.并将Panel对象拖曳至RawImage下方。这样, Panel的Z-Order值将比后者更高,从而使Panel能够在RawImage之上正常显示。
+> Fill Method属性
+
+| 选项  | 说明  | Clockwise属性  |
+| :------------ | :------------ | :------------ |
+| Horizontal  | 横向填满图像  | 无  |
+| Vertical  | 纵向填满图像  | 无  |
+| Radial90  | 图像以90°填满  | 有  |
+| Radial180  | 图像以180°填满  | 有  |
+| Radial360  | 图像以360°填满  | 有  |
+
+选择Radial90、Radial180或者Radial360选项时，可以继续设置Clockwise属性，Clockwise决定图像以顺时针方向还是逆时针方向进行填充。另外，设置填充比例的选项为Fill Amount，其取值范围是0.0f ~ 1.0f，可以看出，Filed选项在游戏开发中可用于表现生命条或技能冷却时间。
+
+# RawImage组件
+
+RawImage组件与Image组件相似，但其主要用于设置UI界面的静态背景。可以在Raw Image组件的Texture属性中设置纹理文件或者Sprite文件。
+
+选择Hierarchy视图的Canvas对象，点击鼠标右键后，在上下文菜单中选择RawImage，Scene视图中会生成RawImage对象。将Project视图Images/SkyBox Volume 2/中用于Skybox的一个纹理设置到RawImage组件的Textuue属性，然后按住Shift键，利用鼠标拖曳等比调整RawImage，使其比Scene视图的Canvas区域更大，如下图所示。
+
+UV Rect选项的X、Y属性可以设置图像位置的偏移量，而W，H属性设置其宽和高相对于原始大小的缩放比例。
+
+如下图所示，之前添加的Panel的图像会被RawImage覆盖，所以需要调整。Unity UI系统各元素的Z-Order值由其各自在Hierarchy视图中的顺序决定，故将Hierarchy视图的排列选项更改为TransformSort，并将Panel对象拖曳至RawImage下方。这样，Panel的Z-Order值将比后者更高，从而使Panel能够在RawImage之上正常显示。
+
