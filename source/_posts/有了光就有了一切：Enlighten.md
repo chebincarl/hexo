@@ -3,7 +3,7 @@ layout: title
 title: 有了光就有了一切：Enlighten
 date: 2019-03-10 18:45:30
 categories: Unity
-tags: Unity AR/VR开发\-\-从新手到专家
+tags: Unity AR/VR开发--从新手到专家
 ---
 本章涵盖：
 * Unity光照系统介绍 
@@ -14,13 +14,11 @@ tags: Unity AR/VR开发\-\-从新手到专家
 
 # Unity光照系统介绍
 
-本章将介绍游戏中至关重要的灯光系统，从一定层面上说，光照效果直接决定了游戏所表达的情绪。场景中明亮通透的灯光能给玩家舒缓放松的感觉，而阴暗低沉的灯光则能很好地营造出紧张阴郁的氛围。 
-
 Unity引擎中提供的光照系统叫做Enlighten，它作为引擎渲染功能的一部分，负责构建场景中的灯光。
 
 ## Light组件简介 
 
-Unity中的灯光系统并不复杂，各个不同类型的灯光组件实现不同类型的光效。Unity的灯光组件大致分为两个类别：光源组件和烘焙组件，光源组件应该非常容易理解，只有能自己发出光的物体，才能被称作光源。这一概念放到Unity中，也就是如下几种灯光：Directional Light、Point Light、Spot Light。
+Unity中的灯光系统并不复杂，各个不同类型的灯光组件实现不同类型的光效。<span style="color:red">Unity的灯光组件大致分为两个类别：光源组件和烘焙组件</span>，光源组件应该非常容易理解，只有能自己发出光的物体，才能被称作光源。这一概念放到Unity中，也就是如下几种灯光：Directional Light、Point Light、Spot Light。
 
 ## 常见的光源类型
 
