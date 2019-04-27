@@ -8,8 +8,9 @@ tags: Unity
 
 <!--more-->
 
+ray 射线
 cast 投射
-gizmo 可视化辅助工具。
+Gizmo 可视化辅助工具
 trigger 触发
 overlap 重叠
 culling 剔除
@@ -52,10 +53,10 @@ mute 静音
 embedded 嵌入的，内含的
 cascade 级联
 Volume 体积，音量
-Portals 入口
 Visualization 可视化
 toraue 扭矩
 blend 混合
 Snapshot 快照
 Procedural 程序
 Clockwise 顺时针
+intersect 相交，交集
