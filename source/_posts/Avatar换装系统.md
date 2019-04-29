@@ -29,7 +29,9 @@ tags: Unity 3D实战核心技术详解
 
 {% asset_img 4.png %}
 
-Source物件是作为来源资源使用的，实际在场景中不需要显示。Source中的各部位名称必须要有编号，例如，face-001。为了便于区分换装的各个Mesh部分，如果没有编号，请开发者自行加上编号，这些工作需要程序员和美工事先定义好，完成以上的准备工作，就要开始写程序了。程序员的主要工作是先将Source中每个物件的SkinnedMeshRenderer取出并储存在data表中，data的内容则是根据部位分类索引。接下来在Target中加入SkinnedMeshRenderer，然后在每个部位取出一个指定的Mesh，利用CombineInstance类及Mesh.CombineMeshes()将各部位模型合并，同时也要重新排列材质，依照取出的SkinnedMeshRenderer的bone的名称，找到与Target的Female_Bip01子物件内名称相对应的物件重建骨架列表。最后将这些重新组合建立的资源赋给Target的各个SkinnedMeshRenderer，如此就可完成换装的工作了。原理搞清楚了，下面开始实现具体代码。
+Source物件是作为来源资源使用的，实际在场景中不需要显示。Source中的各部位名称必须要有编号，例如，face-001。为了便于区分换装的各个Mesh部分，如果没有编号，请开发者自行加上编号，这些工作需要程序员和美工事先定义好，完成以上的准备工作，就要开始写程序了。
+
+程序员的主要工作是先将Source中每个物件的SkinnedMeshRenderer取出并储存在data表中，data的内容则是根据部位分类索引。接下来在Target中加入SkinnedMeshRenderer，然后在每个部位取出一个指定的Mesh，利用CombineInstance类及Mesh.CombineMeshes()将各部位模型合并，同时也要重新排列材质，依照取出的SkinnedMeshRenderer的bone的名称，找到与Target的Female_Bip01子物件内名称相对应的物件重建骨架列表。最后将这些重新组合建立的资源赋给Target的各个SkinnedMeshRenderer，如此就可完成换装的工作了。原理搞清楚了，下面开始实现具体代码。
 
 # 换装代码实现
 
@@ -232,7 +234,7 @@ void InstantiateAvatar()
 }
 ```
 
-更换的资源实例化后，需要将它们挂接到骨骼动画上，所以接下来需要实例化出Target目标模型——骨骼动画，也就是函数InstantiateSkeleton（float pos）要做的事情，代码如下所示。
+更换的资源实例化后，需要将它们挂接到骨骼动画上，所以接下来需要实例化出Target目标模型——骨骼动画，也就是函数InstantiateSkeleton(float pos)要做的事情，代码如下所示。
 ```cs
 // 实例化骨骼动画
 void InstantiateSkeleton(float pos)
@@ -242,7 +244,7 @@ void InstantiateSkeleton(float pos)
     target.transform.position = new Vector3(pos, 0.0f, 0.0f);
 }
 ```
-资源和骨骼动画实例化后就要考虑更换Mesh，也就是换装的操作。函数InstantiateAvatar（）只是把资源实例化出来，还没有把各个Mesh取到，这样还不能进行换装，在换装之前还要做的一项工作就是拿到各个部分的Mesh。函数LoadAvatarData（Transform source）就是做这个工作的，代码如下所示。
+资源和骨骼动画实例化后就要考虑更换Mesh，也就是换装的操作。函数InstantiateAvatar()只是把资源实例化出来，还没有把各个Mesh取到，这样还不能进行换装，在换装之前还要做的一项工作就是拿到各个部分的Mesh。函数LoadAvatarData(Transform source)就是做这个工作的，代码如下所示。
 ```cs
 // 加载Avatar数据
 void LoadAvatarData(Transform source)
@@ -397,7 +399,7 @@ public class Avatar_Btn : MonoBehaviour {
     }
 }
 ```
-该类实现了接口publicvoid OnClick（）。调用AvatarSys脚本中的ChangeMesh完成换装，将该脚本挂接到UI的每个Button上面，如下图所示。
+该类实现了接口publicvoid OnClick()。调用AvatarSys脚本中的ChangeMesh完成换装，将该脚本挂接到UI的每个Button上面，如下图所示。
 
 {% asset_img 8.png %}
 
@@ -405,7 +407,7 @@ public class Avatar_Btn : MonoBehaviour {
 
 {% asset_img 9.png %}
 
-角色在运动，单击头发按钮，角色的头发相比于图2-9已经被更换过了。
+角色在运动，单击头发按钮，角色的头发已经被更换过了。
 再单击裤子，裤子已经被更换过了。
 再看看换装后运行的资源效果，如下图所示。
 
