@@ -9,7 +9,7 @@ Collider components define the shape of an object for the purposes of physical c
 
 <!--more-->
 
-A collider, which is invisible, need not be the exact same shape as the object’s mesh and in fact, a rough approximation（近似） is often more efficient and indistinguishable（不易察觉的） in gameplay.
+A collider, which is invisible, need not be the exact same shape as the object’s mesh and in fact, a rough（粗糙） approximation（近似） is often more efficient and indistinguishable（不易察觉的） in gameplay.
 
 The simplest (and least processor-intensive（处理器密集型）) colliders are the so-called primitive collider types. In 3D, these are the Box Collider, Sphere Collider and Capsule Collider. In 2D, you can use the Box Collider 2D and Circle Collider 2D. Any number of these can be added to a single object to create compound colliders.
 
@@ -17,12 +17,7 @@ With careful positioning and sizing, compound colliders can often approximate th
 
 Note, that primitive colliders will not work correctly with shear transforms（剪切变换） - that means that if you use a combination of rotations and non-uniform（非均匀） scales in the Transform hierarchy so that the resulting shape would no longer match a primitive shape, the primitive collider will not be able to represent it correctly.
 
-There are some cases, however, where even compound colliders are not accurate（准确） enough. In 3D, you can use Mesh Colliders to match the shape of the object’s mesh exactly. In 2D, the Polygon Collider 2D will generally not match the shape of the sprite
- graphic perfectly but you can refine the shape to any level of detail
-
-
-
- you like. These colliders are much more processor-intensive than primitive types, however, so use them sparingly to maintain good performance. Also, a mesh collider will normally be unable to collide with another mesh collider (ie, nothing will happen when they make contact). You can get around this in some cases by marking the mesh collider as Convex in the inspector
+There are some cases, however, where even compound colliders are not accurate（准确） enough. In 3D, you can use Mesh Colliders to match the shape of the object’s mesh exactly. In 2D, the Polygon Collider 2D will generally not match the shape of the sprite graphic perfectly but you can refine the shape to any level of detail you like. These colliders are much more processor-intensive than primitive types, however, so use them sparingly to maintain good performance. Also, a mesh collider will normally be unable to collide with another mesh collider (ie, nothing will happen when they make contact). You can get around this in some cases by marking the mesh collider as Convex in the inspector
 . This will generate the collider shape as a “convex hull” which is like the original mesh but with any undercuts filled in. The benefit of this is that a convex mesh collider can collide with other mesh colliders so you may be able to use this feature when you have a moving character with a suitable shape. However, a good general rule is to use mesh colliders for scene
  geometry and approximate the shape of moving objects using compound primitive colliders.
 
@@ -71,5 +66,6 @@ A Rigidbody component can be switched between normal and kinematic behavior at a
 
 A common example of this is the “ragdoll” effect where a character normally moves under animation but is thrown physically by an explosion or a heavy collision. The character’s limbs can each be given their own Rigidbody component with IsKinematic enabled by default. The limbs will move normallly by animation until IsKinematic is switched off for all of them and they immediately behave as physics objects. At this point, a collision or explosion force will send the character flying with its limbs thrown in a convincing way.
 
-Collision action matrix
+** Collision action matrix **
+
 When two objects collide, a number of different script events can occur depending on the configurations of the colliding objects’ rigidbodies. The charts below give details of which event functions are called based on the components that are attached to the objects. Some of the combinations only cause one of the two objects to be affected by the collision, but the general rule is that physics will not be applied to an object that doesn’t have a Rigidbody component attached.
