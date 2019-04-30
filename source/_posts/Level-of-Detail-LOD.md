@@ -31,6 +31,8 @@ Image 1: Camera at LOD 0 shows a large number of small triangles in the Mesh
 Image 1: Camera at LOD 0 shows a large number of small triangles in the Mesh
 Image 1 shows the first level, LOD 0. This level is the closest to the Camera, and therefore the most detailed LOD level. For example, many first-level LODs are active when the GameObject’s height fills 50% or more of the screen’s height.
 
+{% asset_img 1.png %}
+
 Image 2: Camera at LOD 1 shows the Mesh with far fewer triangles and they are much larger in size
 Image 2: Camera at LOD 1 shows the Mesh with far fewer triangles and they are much larger in size
 Image 2 shows the next level, LOD 1. This level is farther away from the Camera, and therefore is a lower LOD level. For example, many LOD Groups use three levels, where LOD 1 is active when the GameObject fills between 25% and 49% of the screen height, and LOD 2 is active when the GameObject fills less than 25% of the screen height.
