@@ -3,7 +3,7 @@ layout: title
 title: Input.GetAxis
 date: 2019-03-27 17:16:35
 categories: Unity
-tags: Unity
+tags: 官方文档
 ---
 public static float GetAxis(string axisName); static 类名.方法名
 

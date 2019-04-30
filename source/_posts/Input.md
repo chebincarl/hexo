@@ -3,7 +3,7 @@ layout: title
 title: Input
 date: 2019-03-27 16:22:38
 categories: Unity
-tags: Unity
+tags: 官方文档
 ---
 class in UnityEngine/Implemented in:UnityEngine.CoreModule
 

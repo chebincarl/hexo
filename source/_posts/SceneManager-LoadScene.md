@@ -2,7 +2,8 @@
 layout: title
 title: SceneManager.LoadScene
 date: 2019-03-11 21:27:07
-tags: Unity
+categories: Unity
+tags: 官方文档
 ---
 public static void LoadScene(int sceneBuildIndex, SceneManagement.LoadSceneMode mode = LoadSceneMode.Single);
 

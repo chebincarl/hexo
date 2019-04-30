@@ -2,7 +2,8 @@
 layout: title
 title: DontDestroyOnLoad
 date: 2019-03-11 20:43:27
-tags: Unity
+categories: Unity
+tags: 官方文档
 ---
 
 官网的这个案例很好。

@@ -2,15 +2,23 @@
 layout: title
 title: Layers
 date: 2019-03-12 22:30:19
-tags: Unity
+categories: Unity
+tags: 官方文档
 ---
-Layers are most commonly used by Cameras to render only a part of the scene, and by Lights to illuminate（照亮） only parts of the scene. But they can also be used by raycasting（光线投射） to selectively（有选择地） ignore（忽略） colliders（碰撞器） or to create collisions（碰撞）.
+思考并回答以下问题：
+1.layers有几种用法？分别如何操作？
+2.位掩码如何使用？
+3.特殊的layers有哪些？
 
 <!--more-->
 
+** Layers **
+
+Layers are most commonly used by Cameras to render only a part of the scene, and by Lights to illuminate（照亮） only parts of the scene. But they can also be used by raycasting（光线投射） to selectively（有选择地） ignore（忽略） colliders（碰撞器） or to create collisions（碰撞）.
+
 ** Creating Layers **
 
-The first step is to create a new layer, which we can then assign to（分配给） a GameObject. To create a new layer, open the Edit menu and select Project Settings->Tags and Layers.
+The first step is to create a new layer, which we can then assign to（分配给） a GameObject. To create a new layer, open the Tags and Layers window (main menu: Edit > Project Settings, then select the Tags and Layers category).
 
 We create a new layer in one of the empty User Layers. We choose layer 8.
 
@@ -18,11 +26,11 @@ We create a new layer in one of the empty User Layers. We choose layer 8.
 
 ** Assigning（分配） Layers **
 
-Now that you have created a new layer, you have to（必须） assign the layer to one of the game objects.
+Now that you have created a new layer, you have to（必须） assign the layer to one of the GameObjects.
 
 {% asset_img 2.png %}
 
-In the tag manager we assigned the Player layer to be in layer 8.
+In the Tags and Layers window  assigned the Player layer to be in layer 8.
 
 ** Drawing only a part of the scene with the camera’s culling mask **
 
@@ -74,4 +82,5 @@ void Update ()
 }
 ```
 When you don’t pass a layerMask to the Raycast function, it will only ignore colliders that use the IgnoreRaycast layer. This is the easiest way to ignore some colliders when casting a ray.
+
 Note: Layer 31 is used internally（内部的） by the Editor’s Preview window mechanics. To prevent clashes（冲突）, do not use this layer.

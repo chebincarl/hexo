@@ -1,28 +1,23 @@
 ---
 layout: title
-title: Colliders-1
+title: Colliders
 date: 2019-04-03 14:32:51
-tags: Unity官方
+categories: Unity
+tags: 官方文档
 ---
 Collider components define the shape of an object for the purposes of physical collisions.
 
 <!--more-->
 
-A collider, which is invisible, need not be the exact same shape as the object’s mesh and in fact, a rough approximation is often more efficient and indistinguishable in gameplay.
+A collider, which is invisible, need not be the exact same shape as the object’s mesh and in fact, a rough approximation（近似） is often more efficient and indistinguishable（不易察觉的） in gameplay.
 
-The simplest (and least processor-intensive) colliders are the so-called primitive collider types. In 3D, these are the Box Collider
-, Sphere Collider and Capsule Collider
-. In 2D, you can use the Box Collider 2D and Circle Collider 2D. Any number of these can be added to a single object to create compound colliders.
+The simplest (and least processor-intensive（处理器密集型）) colliders are the so-called primitive collider types. In 3D, these are the Box Collider, Sphere Collider and Capsule Collider. In 2D, you can use the Box Collider 2D and Circle Collider 2D. Any number of these can be added to a single object to create compound colliders.
 
-With careful positioning and sizing, compound colliders can often approximate the shape of an object quite well while keeping a low processor overhead. Further flexibility can be gained by having additional colliders on child objects (eg, boxes can be rotated relative to the local axes of the parent object).
+With careful positioning and sizing, compound colliders can often approximate the shape of an object quite well while keeping a low processor overhead（额外开销）. Further flexibility can be gained by having additional colliders on child objects (eg, boxes can be rotated relative to the local axes of the parent object). When creating a compound collider like this, there should only be one Rigidbody component, placed on the root object in the hierarchy.
 
-When creating a compound collider like this, there should only be one Rigidbody
- component, placed on the root object in the hierarchy.
+Note, that primitive colliders will not work correctly with shear transforms（剪切变换） - that means that if you use a combination of rotations and non-uniform（非均匀） scales in the Transform hierarchy so that the resulting shape would no longer match a primitive shape, the primitive collider will not be able to represent it correctly.
 
-Note, that primitive colliders will not work correctly with shear transforms - that means that if you use a combination of rotations and non-uniform scales in the Transform hierarchy so that the resulting shape would no longer match a primitive shape, the primitive collider will not be able to represent it correctly.
-
-There are some cases, however, where even compound colliders are not accurate enough. In 3D, you can use Mesh Colliders
- to match the shape of the object’s mesh exactly. In 2D, the Polygon Collider 2D will generally not match the shape of the sprite
+There are some cases, however, where even compound colliders are not accurate（准确） enough. In 3D, you can use Mesh Colliders to match the shape of the object’s mesh exactly. In 2D, the Polygon Collider 2D will generally not match the shape of the sprite
  graphic perfectly but you can refine the shape to any level of detail
 
 

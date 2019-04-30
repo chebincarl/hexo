@@ -2,7 +2,8 @@
 layout: title
 title: Character Controller
 date: 2019-03-24 23:57:34
-tags: Unity
+categories: Unity
+tags: 官方文档
 ---
 The Character Controller is mainly used for third-person or first-person player control that does not make use of Rigidbody physics.
 角色控制器组件主要用于不使用刚体物理的第三人称或第一人称控制器。
