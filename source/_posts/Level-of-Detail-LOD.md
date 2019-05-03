@@ -17,15 +17,15 @@ As long as your GameObjects aren't all close to the Camera at the same time, LOD
 
 In Unity, you use the LOD Group component to set up LOD rendering for a GameObject. The images below demonstrate（演示） how the LOD levels change according to distance from the Camera.
 
-{% asset_img 1.png %}
+> Image 1: Camera at LOD 0 shows a large number of small triangles in the Mesh
 
-Image 1: Camera at LOD 0 shows a large number of small triangles in the Mesh
+{% asset_img 1.png %}
 
 Image 1 shows the first level, LOD 0. This level is the closest to the Camera, and therefore the most detailed LOD level. For example, many first-level LODs are active when the GameObject's height fills(填满) 50% or more of the screen’s height.
 
-{% asset_img 2.png %}
+> Image 2: Camera at LOD 1 shows the Mesh with far fewer triangles and they are much larger in size
 
-Image 2: Camera at LOD 1 shows the Mesh with far fewer triangles and they are much larger in size
+{% asset_img 2.png %}
 
 Image 2 shows the next level, LOD 1. This level is farther away from the Camera, and therefore is a lower LOD level. For example, many LOD Groups use three levels, where LOD 1 is active when the GameObject fills between 25% and 49% of the screen height, and LOD 2 is active when the GameObject fills less than 25% of the screen height.
 
@@ -34,7 +34,7 @@ Because the arrangement of LOD levels depends on the target platform and availab
 
 ** Naming convention（命名约定） for importing Meshes **
 
-When you import a set of LOD Meshes, Unity automatically creates an LOD group for the GameObject with appropriate settings if you follow this naming convention（导入网格的命名约定导入一组LOD网格时，如果遵循以下命名约定，Unity会自动为GameObject创建一个具有适当设置的LOD组：）:
+When you import a set of LOD Meshes, Unity automatically creates an LOD group for the GameObject with appropriate settings if you follow this naming convention（导入一组LOD网格时，如果遵循以下命名约定，Unity会自动为GameObject创建一个具有适当设置的LOD组）:
 
 * Your set of Meshes have file names ending in _LOD and a number ranging from 0 to the total number of LOD levels minus one. For example, if the base name for your Mesh is Player, name your files Player_LOD0, Player_LOD1 and Player_LOD2 to generate a Player GameObject with three LOD levels.
 * Name the most detailed Mesh file _LOD0.

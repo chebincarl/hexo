@@ -6,12 +6,12 @@ categories: Unity
 tags: 官方文档
 ---
 回答并思考以下问题：
-1.Cookie是什么？
+1.Cookies是什么？
 2.如何创建？
 
 <!--more-->
 
-In theatre and film, lighting effects have long been used to create an impression（印象） of objects that don’t really exist in the set. Jungle（丛林） explorers may appear to be covered in shadows from an imaginary（假想的） tree canopy（树冠）. A prison scene often shows the light coming through the barred window, even though the window and indeed the wall are not really part of the set（直接用灯光在地上打一个中间有栏杆的窗户的形状）. Though very atmospheric（虽然非常有气氛）, the shadows are created very simply by placing a shaped mask in between the light source and the action. The mask is known as a cucoloris or cookie for short. Unity lights allow you to add cookies in the form of textures（以纹理的形式添加cookie）; these provide an efficient way to add atmosphere to a scene.
+In theatre and film, lighting effects（效果） have long been used to create an impression（印象） of objects that don’t really exist in the set. Jungle（丛林） explorers may appear to be covered in shadows from an imaginary（假想的） tree canopy（树冠）. A prison scene often shows the light coming through the barred window, even though the window and indeed the wall are not really part of the set（直接用灯光在地上打一个中间有栏杆的窗户的形状）. Though very atmospheric（虽然非常有气氛）, the shadows are created very simply by placing a shaped mask in between the light source and the action. The mask is known as a cucoloris or cookie for short. Unity lights allow you to add cookies in the form of textures（以纹理的形式添加cookie）; these provide an efficient way to add atmosphere to a scene.
 
 > A directional light cookie simulating（模拟） light from a window
 
