@@ -1,21 +1,23 @@
 ---
 layout: title
-title: DontDestroyOnLoad
+title: Object.DontDestroyOnLoad
 date: 2019-03-11 20:43:27
 categories: Unity
 tags: 官方文档
 ---
+思考并回答以下问题：
+这个函数是什么意思？为什么要使用这个函数？如何使用？
 
-官网的这个案例很好。
+
+<!--more-->
 
 public static void DontDestroyOnLoad(Object target);
 
-<!--more-->
-Parameters：
+** Parameters： **  
 
-target	An Object not destroyed on Scene change.
+target：	An Object not destroyed on Scene change.
 
-Description：
+** Description： **
 
 Do not destroy the target Object when loading a new Scene.
 
@@ -27,7 +29,8 @@ The following example script uses Object.DontDestroyOnLoad. The example has scen
 
 To implement this example, create two new Scenes, named scene1 and scene2. Open scene1 and add the SceneSwap.cs script to an empty GameObject and name it Menu. Next, add DontDestroy.cs to a new GameObject and name it BackgroundMusic. Add an AudioSource to BackgroundMusic - Add Component->Audio->Audio Source - and import an AudioClip into your Project. Assign the AudioClip to the AudioSource's AudioClip field. Create a tag, call it music, and add it to BackgroundMusic. Switch to scene2. Again add SceneSwap.cs to a new GameObject and name it Menu. Save the Project. Return to scene1 and run the Project from the Editor.
 
-SceneSwap.cs script:
+> SceneSwap.cs script:
+
 ```cs
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,7 +79,7 @@ public class SceneSwap : MonoBehaviour
     }
 }
 ```
-DontDestroy.cs script:
+> DontDestroy.cs script:
 
 ```cs
 using System.Collections;
