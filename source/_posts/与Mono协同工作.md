@@ -60,7 +60,6 @@ public class Using_List: MonoBehaviour
 	}
 }
 ```
-
 当使用List类时，需要包含System.Collections.Generic命名空间。
 如果表数据类型声明为System.Serializable类，则该表可在Object Inspector中予以显示。
 在类的成员声明中，用户可通过一条语句声明并初始化新的表实例。
@@ -231,6 +230,7 @@ foreach (int Number in MyList)
 例如，在中世纪风格的RPG游戏场景中，居住着不同的邪恶法师角色采用Wizard类进行编码，这一类角色以随机地点和随机时间间隔出现于关卡中,并通过召唤法术、执行某些破坏任务对玩冢进行干扰。相应的随机生成结果可描述为:默认状态下,玩豕无法知晓某一时刻场景中的法师数量。尽管如此,这里依然需要获取法师的全部数量;或许,法师角色可能处于禁用、隐身、暂停或被销毁状态;抑或需要知晓其全部数量以防止其数量超出一定范围。因此,若不考虑法师的生成过程及其随机性,最终依然需要根据要求访问关卡中的全部法师角色。
 
 如前所述,第2章曾定义了一个可遍历的法师角色列表,如示例代码6-7所示。
+```cs
 // Get all wizards
 Wizard[] WizardsInScene = Object.FindObjectsOfType<Wizard>();
 
@@ -239,10 +239,10 @@ foreach (Wizard W in WizardsInScene )
 {
 // Access each wizard through W
 }
+```
 
+当频繁使用时，FindObjectsOfType函数的计算速度较慢，且性能较差。
 
-当频繁使用时, FindObjectsOfType函数的计算速度较慢,且性能较差。
-
-对此,可通过IEnumerable和IEnumerator实现类似的行为,以消除性能问题。当采用上述两个接口时,可使用foreach循环高效地遍历场景中的全部法师角色,即使此类角色位于数组中,如示例代码6-8所示。
+对此，可通过IEnumerable和IEnumerator实现类似的行为，以消除性能问题。当采用上述两个接口时，可使用foreach循环高效地遍历场景中的全部法师角色，即使此类角色位于数组中，如示例代码6-8所示。
 
 示例代码6-8
