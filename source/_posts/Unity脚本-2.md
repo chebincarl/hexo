@@ -31,7 +31,9 @@ transform.Translate(Vector3 offset);
 ## 缩放游戏对象
 
 在Unity中，可以通过代码动态缩放游戏中的游戏对象。
+```cs 
 transform.localScale = new Vector3(x,y,z);
+```
 其中Vector3的x为x轴向的缩放，y为y轴向的缩放，z为z轴向的缩放。也可以通过下面的代码格式快速整体缩放：
 ```cs
 transform.localScale *= 1.2f; // 对象整体放大1.2倍
@@ -257,19 +259,21 @@ public class DetectInput : MonoBehaviour
 | Axis  | 连接设备的轴将控制这个轴  |
 | Joy Num  | 连接操纵杆将控制这个轴  |
 
-可以发现很多键如Horizontal都出现了重复，这是因为所有键位键盘鼠标是单独的一套键而手柄则是另一套。例如"Fire1"开火键1分为键盘鼠标版和手柄版，无论哪种都能触发脚本中对应的逻辑。
-光看这些参数可能过于抽象，下面来看具体的示例。
+可以发现很多键如Horizontal都出现了重复，这是因为所有键位键盘鼠标是单独的一套键而手柄则是另一套。例如“Fire1”开火键1分为键盘鼠标版和手柄版，无论哪种都能触发脚本中对应的逻辑。
 
-1.按钮
+** 1.按钮 **
 
-这里以开火按钮为例,如图3-16所示我们可以检测开火按钮的按下、按住、抬起3个状态下面就来介绍如何实现按钮输人。
+这里以开火按钮为例，如图3-16所示我们可以检测开火按钮的按下、按住、抬起3个状态下面就来介绍如何实现按钮输入。
 
-口键盘鼠标。键盘鼠标实现按钮非常简单
-第一步:设置类型,首先将Type设置为Key or Mouse Button
-第二步:填写名字,这里Name填的是Firel.
-第三步:设置键位。因为是单一按钮,所以仅仅需要填写正向部分。 Positive Button填cft ctrl.Alt Positive Button填mouse 0,也就是键盘左侧的Control键或者鼠标左键都对应开火键
-口手柄。步骤和键盘鼠标完全一样,只是键位名称不一样而已,这里Positive Button填写的是joystick button 0。
-口脚本。当在Input Manager界面中设置好键位后,我们可以通过脚本监测输入。
+□ 键盘鼠标。键盘鼠标实现按钮非常简单。
+
+第一步：设置类型，首先将Type设置为Key or Mouse Button。
+第二步：填写名字，这里Name填的是Fire1。
+第三步：设置键位。因为是单一按钮，所以仅仅需要填写正向部分。Positive Button填left ctrl，Alt Positive Button填mouse 0，也就是键盘左侧的Control键或者鼠标左键都对应开火键。
+
+□ 手柄。步骤和键盘鼠标完全一样，只是键位名称不一样而已，这里Positive Button填写的是joystick button 0。
+
+□ 脚本。当在Input Manager界面中设置好键位后，我们可以通过脚本监测输入。
 
 ```cs 
 using UnityEngine;
@@ -288,15 +292,21 @@ public class DetectInput : MonoBehaviour
     }
 }
 ```
-2.方向轴
+** 2.方向轴 **
 
-方向轴常用于控制玩家角色的左右移动或上下移动。它的设置界面和按钮是完全一样的,但用法却不一样,方向轴有两个按钮分别对应正负两个方向。以Horizontal方向轴为例,如图3-1所示,按下键盘右箭头是正值,按下键盘左简头是负值。输出的范围是-1,1]的浮点数,我们可以用它来控制角色的左右移动。下面就来介绍如何实现,
-□ 键盘鼠标。前几步和按钮一样,只是需要额外设置Gravity. Dead, Sensitivity, Snap等参数。
-Gravity填写3表示当松开对应按钮后,输出值会以3/秒的速度迅速归零。 Dead填写0.001表示当输出在[-0.001.0.001之间时会被忽略不计,强制输出0, Sensitivity填写3表示当按钮
+方向轴常用于控制玩家角色的左右移动或上下移动。它的设置界面和按钮是完全一样的，但用法却不一样，方向轴有两个按钮分别对应正负两个方向。以Horizontal方向轴为例，如下图所示，按下键盘右箭头是正值，按下键盘左简头是负值。输出的范围是[-1,1]的浮点数，我们可以用它来控制角色的左右移动。下面就来介绍如何实现。
 
-对应按钮后,输出值会以3秒的速度变化,当按下的是正向按钮时会迅速到达1,当按下的是负向按钮时会迅速到达-1,
-□ 手柄。如图3-18所示,这里对应的不再是手柄的按钮而是手柄轴。第一步:设置类型,首先将Type设置为Joystick Axis.第二步:填写名字,这里Name填的是Horizontal,第三步:设置手柄. Joy Num栏如果填Get Motion from all Joysticks表示对应所有手柄,也可以填lystick I等手柄序号。
-第四步:设置轴, Axis栏这里填的是Xaxis,也就是手柄十字键的横向。
+□ 键盘鼠标。前几步和按钮一样，只是需要额外设置Gravity、Dead、Sensitivity、Snap等参数。
+
+Gravity填写3表示当松开对应按钮后，输出值会以3/秒的速度迅速归零。Dead填写0.001表示当输出在[-0.001,0.001]之间时会被忽略不计，强制输出0。Sensitivity填写3表示当按钮下对应按钮后，输出值会以3秒的速度变化，当按下的是正向按钮时会迅速到达1，当按下的是负向按钮时会迅速到达-1。
+
+□ 手柄。如下图所示，这里对应的不再是手柄的按钮而是手柄轴。
+
+第一步：设置类型。首先将Type设置为Joystick Axis。
+第二步：填写名字。这里Name填的是Horizontal,
+第三步：设置手柄。Joy Num栏如果填Get Motion from all Joysticks表示对应所有手柄，也可以填lystick I等手柄序号。
+第四步：设置轴，Axis栏这里填的是Xaxis，也就是手柄十字键的横向。
+
 □ 脚本。脚本中获得轴的代码非常简单。
 
 ```cs
@@ -317,16 +327,17 @@ public class AxisDemo : MonoBehaviour
 
 移动设备也就是手机、平板等通过手指点击屏幕操作的设备。Unity有专门的接口检测与屏幕互动的各个手指的位置状态等信息。
 
-与屏幕接触的手指的信息对应名为Touch类的对象,可以通过Input. Touches变量得到所有Touch，Touch常用的参数见下表。
+与屏幕接触的手指的信息对应名为Touch类的对象，可以通过Input.Touches变量得到所有Touch。Touch常用的参数见下表。
 
 | 参数  | 说明  |
 | :------------ | :------------ |
-| FingerId  | 手指的编号,整型  |
-| Phase  | 手指的阶段,枚举类型,分为这几个阶段: Began开始接触屏幕, Moved移动, Stationary 静止, Ended手指离开屏罪, Canceled系统关闭能松  |
-| Position  | 手指触碰屏幕的位置, Vetor2类型,坐标以解幕左下角为原点1像素对应一个单位,M如iPhanse ds的分辨率是960-640,所以如果应用是横屏的话,那么左下角的Position是(0.0),右上角的Positi是(960640)  |
+| FingerId  | 手指的编号，整型  |
+| Phase  | 手指的阶段，枚举类型。分为这几个阶段：<br>Began开始接触屏幕<br>Moved移动<br>Stationary静止<br>Ended手指离开屏幕<br>Canceled系统关闭触控  |
+| Position  | 手指触碰屏幕的位置，Vetor2类型。坐标以屏幕左下角为原点1像素对应一个单位，例如iPhone 4s的分辨率是960*640。所以如果应用是横屏的话，那么左下角的Position是(0,0)，右上角的Position是(960,640)  |
 
-1,实测
-如代码清单3-18所示,我们得到手指的信息并输出到屏幕,这里先进行基本的介绍,在后续章节还会有更多的用法介绍。
+** 1.实测 **
+
+如下代码所示，我们得到手指的信息并输出到屏幕。
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -344,11 +355,11 @@ public class MobileTouchDemo : MonoBehaviour
     }
 }
 ```
-2.重力感应
-Acceleration,即加速度传感或者重力感应,有很多著名的手机游戏的主要操作是基于重力感应的,例如Mega Jumpf和 Froggv.Jump等;在手机赛车游戏中重力感应也可用于控制赛车的转向。重力感应的原理是当手握移动设备晃动时,移动设备内的加速度计会计算设备在x. Y,Z这3个方向上的线性加速度变化,以设备为基准, x轴正向为设备向右的方向, Y轴正向为设备向上的方向, Z轴正向为设备向使用者的方向。在Unity中可以通过Input.acceleration得到重力感应的值,类型为vector3.每个轴向的值域是[-1.1])
+** 2.重力感应 **
 
-参考场號3.8.3.2,可以通过代码清单3-19中的代码将重力感应信息输出至屏幕。读者可以在设备上运行此场景,并观察设备以不同朝向转动时Input.acceleration值的变化。
+Acceleration，即加速度传感或者重力感应。有很多著名的手机游戏的主要操作是基于重力感应的；在手机赛车游戏中重力感应也可用于控制赛车的转向。重力感应的原理是当手握移动设备晃动时，移动设备内的加速度计会计算设备在X、 Y、Z这3个方向上的线性加速度变化。以设备为基准，X轴正向为设备向右的方向，Y轴正向为设备向上的方向，Z轴正向为设备向使用者的方向。在Unity中可以通过Input.acceleration得到重力感应的值，类型为vector3。每个轴向的值域是[-1, 1]。
 
+可以通过以下代码将重力感应信息输出至屏幕。可以在设备上运行此场景，并观察设备以不同朝向转动时Input.acceleration值的变化。
 ```cs
 using UnityEngine;
 using System.Collections;
@@ -363,11 +374,12 @@ public class AccelerationDemo : MonoBehaviour
     }
 }
 ```
-3.其他
+** 3.其他 **
+
 Input还有一些接口可以在设备运行游戏时得到关于设备输入的信息。
-□ 通过Input.deviceorientation可以得到当前游戏运行的朝向,
-□ 通过Input.touchSupported可以得到当前游戏是否支持手指触控操作。
-□ 通过Input.multiTouchEnabled可以设置游戏是否支持多点触控。
+* 通过Input.deviceOrientation可以得到当前游戏运行的朝向。
+* 通过Input.touchSupported可以得到当前游戏是否支持手指触控操作。
+* 通过Input.multiTouchEnabled可以设置游戏是否支持多点触控。
 
 # 习题
 
