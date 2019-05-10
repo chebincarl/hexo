@@ -5,9 +5,14 @@ date: 2019-04-30 11:51:40
 categories: Unity
 tags: 官方文档
 ---
-When a GameObject in the Scene is far away from the Camera, you can't see very much detail, compared to when the GameObject is close to the Camera. And even though you can't see the detail on a distant GameObject, Unity uses the same number of triangles to render it at both distances.
+思考并回答以下问题：
+1.LOD是什么？
+2.如何使用？
+3.命名约定是怎样的？
 
 <!--more-->
+
+When a GameObject in the Scene is far away from the Camera, you can't see very much detail, compared to when the GameObject is close to the Camera. And even though you can't see the detail on a distant GameObject, Unity uses the same number of triangles to render it at both distances.
 
 To optimize rendering, you can use the Level Of Detail (LOD) technique. It allows you to reduce the number of triangles rendered for a GameObject as its distance from the Camera increases. You use several Meshes and optionally a Billboard Asset, which all（它们都） represent the same GameObject with decreasing detail in the geometry（您可以使用多个网格和可选的Billboard Asset，它们都代表相同的GameObject，并且几何体中的细节不断减少）. Each of the Meshes contains a Mesh Renderer component and represents a ‘MeshLOD level’, while the Billboard Asset has a Billboard Renderer component and represents a ‘Billboard LOD level’.
 

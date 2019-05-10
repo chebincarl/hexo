@@ -5,22 +5,28 @@ date: 2019-03-12 07:51:25
 categories: Unity
 tags: Unity API解析
 ---
+思考并回答以下问题：
+1.SmoothDamp是干嘛用的？
+2.如何使用？
 
 
-基本语法
+<!--more-->
+
+** 基本语法 **
+
 (1) public static float SmoothDamp(float current, float target, ref float currentVelocity, float smoothTime);
 (2) public static float SmoothDamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed);
 (3) public static float SmoothDamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed, float deltaTime);
 
-<!--more-->
-
 对以上重载方法中涉及的参数进行说明：
 参数current为起始值；参数target为目标值；参数currentVelocity为当前帧速度，ref类型；参数smoothTime为预计平滑时间；参数maxSpeed为当前帧最大速度值，默认值为Mathf.Infinity（无穷）；参数deltaTime为平滑时间，值越大返回值也相对越大，一般用Time.deltaTime计算。
 
-功能说明
+** 功能说明 **
+
 此方法的功能是模拟平滑阻尼运动，并返回模拟插值。smoothTime:float，预计平滑时间，物体越靠近目标，加速度的绝对值越小。实际到达目标的时间往往要比预计时间大很多，建议smoothTime的取值范围为(0.0f, 1.0f)，若想控制物体到达目标的时间可以通过控制maxSpeed来达到目的。maxSpeed:float = Mathf.Infinity，每帧返回值的最大值，默认值为Mathf.Infinity。
 
-提示
+** 提示 **
+
 可以观察实例演示中maxSpeed取默认值和取较小值时当前速度随时间变化的示意图。
 
 实例演示 下面通过实例演示方法SmoothDamp的使用。
