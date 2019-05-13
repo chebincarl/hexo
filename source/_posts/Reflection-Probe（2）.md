@@ -1,16 +1,18 @@
 ---
 layout: title
-title: Reflection Probes（2）
+title: Reflection Probe（2）
 date: 2019-05-11 11:51:22
 categories: Unity
 tags: 官方文档
 ---
 思考并回答以下问题：
-1.
+1.如何使用Reflection Probe？
 
 <!--more-->
 
-You can add the Reflection Probe component to any object in a Scene but it’s standard to add each probe to a separate empty GameObject. The usual workflow is:
+You can add the Reflection Probe component to any object in a Scene but it’s standard to add each probe to a separate empty GameObject. 
+
+The usual workflow is:
 
 Create a new empty GameObject (menu: GameObject > Create Empty) and then add the Reflection Probe component to it (menu: Component > Rendering > Reflection Probe). Alternatively, if you already have a probe in the scene you will probably find it easier to duplicate that instead (menu: Edit > Duplicate).
 
@@ -34,7 +36,7 @@ Finally, the probes must be baked before the reflections become visible. If you 
 
 ** Positioning probes **
 
-The position of a probe is primarily determined by the position of its GameObject and so you can simply drag the object to the desired location. Having done this, you should set the probe’s zone of effect; this is an axis-aligned（对齐） box shape whose dimensions（尺寸） are set by the Box Size property. You can set the size values directly or enable the size editing mode in the inspector and drag the sides of the box in the Scene view(see the Reflection Probe component page for details). The zones of the full set of probes should collectively（共同地）  cover all areas of the scene where a reflective object might pass.
+The position of a probe is primarily（主要） determined by the position of its GameObject and so you can simply drag the object to the desired location. Having done this, you should set the probe’s zone of effect; this is an axis-aligned（对齐） box shape whose dimensions（尺寸） are set by the Box Size property. You can set the size values directly or enable the size editing mode in the inspector and drag the sides of the box in the Scene view(see the Reflection Probe component page for details). The zones of the full set of probes should collectively（共同地）  cover all areas of the scene where a reflective object might pass.
 
 You should place probes close to any large objects in the scene that would be reflected noticeably（明显地）. Areas around the centres and corners of walls are good candidate locations for probes. Smaller objects might require probes close by if they have a strong visual effect. For example, you would probably want the flames（火焰） of a campfire to be reflected even if the object itself is small and otherwise insignificant（微不足道）.
 
@@ -46,20 +48,20 @@ By default, a probe’s zone of effect is centred on its view point but this may
 
 It would be very difficult to position the zones of neighbouring reflection probes without them overlapping and fortunately, it is not necessary to do so. However, this leaves the issue of choosing which probe to use in the overlap areas. By default, Unity calculates the intersection between the reflective object’s bounding box and each of the overlapping probe zones; the zone which has the largest volume of intersection with the bounding box is the one that will be selected.
 
-> Probe A is selected since its intersection with the object is larger
+> Probe A is selected since its intersection（相交） with the object is larger
 
 {% asset_img ProbeZoneOverlap.svg  %}
 
-You can modify the calculation using the probes’ Importance properties. Probes with a higher importance value have priority over those of lower importance within overlap zones. This is useful, say, if you have a small probe zone that is contained completely inside a larger zone (ie, the intersection of the character’s bounding box with the enclosing zone might always be larger and so the small zone would never be used).
+You can modify the calculation using the probes’ Importance properties. Probes with a higher importance value have priority over those of lower importance within overlap zones. This is useful, say, if you have a small probe zone that is contained completely inside a larger zone (ie, the intersection of the character’s bounding box with the enclosing（封闭） zone might always be larger and so the small zone would never be used).
 
 ** Blending **
 
-To enable Reflection Probe blending, navigate to Graphic Settings > Tier settings. With blending enabled, Unity will gradually fade out one probe’s cubemap while fading in the other’s as the reflective object passes from one zone to the other. This gradual transition avoids the situation where a distinctive object suddenly “pops” into the reflection as an object crosses the zone boundary.
+To enable Reflection Probe blending, navigate to Graphic Settings > Tier（一级） settings. With blending enabled, Unity will gradually fade out one probe’s cubemap while fading in（渐渐消失） the other’s as the reflective object passes from one zone to the other. This gradual transition avoids the situation where a distinctive object suddenly “pops” into the reflection as an object crosses the zone boundary（边界）.
 
 Blending is controlled using the Reflection Probes property of the Mesh Renderer component. Four blending options are available:
 
-* Off - Reflection probe blending is disabled. Only the skyboxwill be used for reflection
-* Blend Probes - Blends only adjacent probes and ignores the skybox. You should use this for objects that are “indoors” or in covered parts of the scene (eg, caves and tunnels) since the sky is not visible from these place and so should never appear in the reflections.
+* Off - Reflection probe blending is disabled. Only the skybox will be used for reflection
+* Blend Probes - Blends only adjacent（邻近的） probes and ignores the skybox. You should use this for objects that are “indoors” or in covered parts of the scene (eg, caves and tunnels) since the sky is not visible from these place and so should never appear in the reflections.
 * Blend Probes and Skybox - Works like Blend Probes but also allows the skybox to be used in the blending. You should use this option for objects in the open air, where the sky would always be visible.
 * Simple - Disables blending between probes when there are two overlapping reflection probe volumes.
 When probes have equal Importance values, the blending weight for a given probe zone is calculated by dividing its intersection (volume) with the object’s bounding box by the sum of all probes’ intersections with the box. For example, if the box intersects probe A’s zone by 1.0 cubic units and intersects probe B’s zone by 2.0 cubic units then the blending values will be:

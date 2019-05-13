@@ -1,6 +1,6 @@
 ---
 layout: title
-title: Reflection Probes（3）
+title: Reflection Probe（3）
 date: 2019-05-11 11:51:27
 categories: Unity
 tags: 官方文档

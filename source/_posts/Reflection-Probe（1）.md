@@ -6,11 +6,11 @@ categories: Unity
 tags: 官方文档
 ---
 思考并回答以下问题：
-1.
+1.反射探针是干嘛用的？不使用可以吗？
 
 <!--more-->
 
-A Reflection Probe is rather like a camera that captures a spherical（球形） view of its surroundings in all directions. The captured image is then stored as a Cubemap that can be used by objects with reflective（反光） materials. Several reflection probes can be used in a given scene and objects can be set to use the cubemap produced by the nearest probe（可以在给定场景中使用多个反射探针，并且可以设置对象使用由最近探针生成的立方体贴图 ）. The result is that the reflections on the object can change convincingly according to its environment（结果是对象的反射可以根据其环境令人信服地改变）.
+A Reflection Probe is rather like a camera that captures a spherical（球形） view of its surroundings in all directions. The captured image is then stored as a Cubemap that can be used by objects with reflective（反射） materials. Several reflection probes can be used in a given scene and objects can be set to use the cubemap produced by the nearest probe（可以在给定场景中使用多个反射探针，并且可以设置对象使用由最近探针生成的立方体贴图 ）. The result is that the reflections on the object can change convincingly according to its environment（结果是对象的反射可以根据其环境令人信服地改变）.
 
 > A Reflection Probe showing reflections from a nearby object
 
@@ -23,34 +23,33 @@ A Reflection Probe is rather like a camera that captures a spherical（球形）
 | Property  | Function  |
 | :------------ | :------------ |
 | Type  | Choose whether the probe is for a Baked, Custom or Realtime setup?  |
-| Dynamic Objects  | (Custom type only) Forces objects not marked as Static to be baked in to the reflection.  |
+| Dynamic Objects  | (Custom type only) Forces objects not marked as Static to be baked in to the reflection.强制将未标记为静态的对象烘焙到反射中。  |
 | Cubemap  | (Custom type only) Sets a custom cubemap for the probe.  |
-| Refresh Mode  | (Realtime type only) Selects if and how the probe will refresh at runtime. The On Awake option renders the probe only once when it first becomes active. Every Frame renders the probe every frame update, optionally using Time Slicing (see below). The Via Scripting option refreshes the probe from a user script command rather than an automatic update.  |
-| Time Slicing  | (Realtime type only) How should the probe distribute its updates over time? The options are All Faces At Once (spreads update over nine frames), Individual Faces (updates over fourteen frames) and No Time Slicing (the update happens entirely within one frame). See below for further details.  |
+| Refresh Mode  | (Realtime type only) Selects if and how the probe will refresh at runtime. The On Awake option renders the probe only once when it first becomes active. Every Frame renders the probe every frame update, optionally using Time Slicing (see below). The Via（通过） Scripting option refreshes the probe from a user script command rather than an automatic update.  |
+| Time Slicing  | (Realtime type only) How should the probe distribute（分配） its updates over time? The options are All Faces At Once (spreads update over nine frames), Individual Faces (updates over fourteen frames) and No Time Slicing (the update happens entirely within one frame). See below for further details.  |
 | Runtime settings   |
-| Importance  | The degree of “importance” of this probe compared to its neighbours. Higher values indicate greater importance; more important probes will have priority over less important one in cases where an object is within range of two or more probes. This setting also affects the Blending, explained here.  |
-| Intensity  | The intensity modifier that is applied to the texture of this probe in its shader.  |
-| Box Projection  | Check this box to enable projection for reflection UV mappings.  |	
+| Importance  | The degree（程度） of “importance” of this probe compared to its neighbours. Higher values indicate（表明） greater importance; more important probes will have priority over less important one in cases where an object is within range of two or more probes. This setting also affects the Blending, explained here.  |
+| Intensity  | The intensity modifier（修改） that is applied to the texture of this probe in its shader.  |
+| Box Projection（投影）  | Check this box to enable projection for reflection UV mappings.  |	
 | Box Size  | The size of the box in which the reflection will be applied to the GameObject. The value is not affected by the Transform of the GameObject. Also used by Box Projection.  |	
 | Box Offset  | The center of the box in which the reflections will be applied to the GameObject. The value is relative to the position of the GameObject. Also used by Box Projection.  |
 | Cubemap capture settings   |
 | Resolution  | The resolution of the captured reflection image.  |
 | HDR  | Should High Dynamic Range rendering be enabled for the cubemap? This also determines whether probe data is saved in OpenEXR or PNG format.  |	
 | Shadow Distance  | Distance at which shadows are drawn when rendering the probe.  |
-| Clear Flags  | Option to specify how empty background areas of the cubemap will be filled. The options are Skybox and Solid Color.  |	
+| Clear Flags  | Option to specify how empty background areas of the cubemap will be filled（填满）. The options are Skybox and Solid Color.  |	
 | Background | Background colour to which the reflection cubemap is cleared before rendering.  |	
-| Culling Mask  | Allows objects on specified layers to be included or excluded in the reflection. See the section about the Camera’s culling mask on the Layers page.  |	
+| Culling Mask  | Allows objects on specified（指定的） layers to be included or excluded（排除） in the reflection. See the section about the Camera’s culling mask on the Layers page.  |	
 | Use Occlusion Culling  | Should occlusion culling be used when baking the probe?  |
 | Clipping Planes  | Near and far clipping planes of the probe’s “camera”.  |
 
-
 ** Details **
 
-There are two buttons at the top of the Reflection Probe Inspector window that are used for editing the Size and Probe Origin properties directly within the Scene. With the leftmost button (Size) selected, the probe’s zone of effect is shown in the scene as a yellow box shape with handles to adjust the box’s size.
+There are two buttons at the top of the Reflection Probe Inspector window that are used for editing the Size and Probe Origin properties directly within the Scene. With the leftmost（最左侧） button (Size) selected, the probe’s zone of effect is shown in the scene as a yellow box shape with handles to adjust the box’s size.
 
 {% asset_img RefProbeHandles.svg %}
 
-The other button (Origin) allows you to drag the probe’s origin relative to the box. Note that the origin handle resembles the Transform position handle but the two positions are not the same. Also, the rotation and scale operations are not available for the probe box.
+The other button (Origin) allows you to drag the probe’s origin relative to the box. Note that the origin handle resembles（酷似） the Transform position handle but the two positions are not the same. Also, the rotation and scale operations are not available for the probe box.
 
 {% asset_img RefProbeOrigin.svg %}
 
@@ -58,11 +57,11 @@ The probe’s Type property determines how the reflection data is created and up
 
 * Baked probes store a static reflection cubemap generated by baking in the editor.
 * Custom probes store a static cubemap which can either be generated by baking or set manually by the user.
-* Realtime probes update the cubemap at runtime and can therefore react to dynamic objects in the scene.
+* Realtime probes update the cubemap at runtime and can therefore react to（对...做出反应） dynamic objects in the scene.
 
 To make use of the reflection cubemap, an object must have the Reflection Probes option enabled on its Mesh Renderer and also be using a shader that supports reflection probes. When the object passes within the volume set by the probe’s Size and Probe Origin properties, the probe’s cubemap will be applied to the object.
 
-You can also manually set which reflection probe to use for a particular object using the settings on the object’s Mesh Renderer. To do this, select one of the options for the Mesh
+You can also manually set which reflection probe to use for a particular（特定的） object using the settings on the object’s Mesh Renderer. To do this, select one of the options for the Mesh
 Renderer’s Reflection Probes property (Simple, Blend Probes or Blend Probes and Skybox) and drag the chosen probe onto its Anchor Override property.
 
 See the Reflection Probes section in the manual for further details about principles and usage.
