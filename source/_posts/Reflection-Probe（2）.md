@@ -69,8 +69,8 @@ When probes have equal Importance values, the blending weight for a given probe 
 * Probe A: 1.0 / (1.0 + 2.0) = 0.33
 * Probe B: 2.0 / (1.0 + 2.0) = 0.67
 
-In other words, the blend will incorporate 33% of probe A’s reflection and 67% of probe B’s reflection.
+In other words, the blend will incorporate（包括） 33% of probe A’s reflection and 67% of probe B’s reflection.
 
-The calculation must be handled slightly differently in the case where one probe is entirely contained within the other, since the inner zone overlaps entirely with the outer. If the object’s bounding box is entirely within the inner zone then that zone’s blending weight is 1.0 (ie, the outer zone is not used at all). When the object is partially outside the inner zone, the intersection volume of its bounding box with the inner zone is divided by the total volume of the box. For example, if the intersection volume is 1.0 cubic units and the bounding box’s volume is 4.0 cubic units, then the blending weight of the inner probe will be 1.0 / 4.0 = 0.25. This value is then subtracted from 1.0 to get the weight for the outer probe which in this case will be 0.75.
+The calculation must be handled slightly（稍微） differently in the case where one probe is entirely contained within the other, since the inner zone overlaps entirely with the outer. If the object’s bounding（边界） box is entirely within the inner zone then that zone’s blending weight is 1.0 (ie, the outer zone is not used at all). When the object is partially outside the inner zone, the intersection volume of its bounding box with the inner zone is divided by the total volume of the box. For example, if the intersection volume is 1.0 cubic units and the bounding box’s volume is 4.0 cubic units, then the blending weight of the inner probe will be 1.0 / 4.0 = 0.25. This value is then subtracted from 1.0 to get the weight for the outer probe which in this case will be 0.75.
 
 When one probe involved in the blend has a higher Importance value than another, the more important probe overrides the other in the usual way. 
