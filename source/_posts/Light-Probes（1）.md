@@ -5,16 +5,14 @@ date: 2019-05-11 17:44:14
 categories: Unity
 tags: 官方文档
 ---
-Light Probes provide a way to capture and use information about light that is passing through the empty space in your scene
-.
+Light Probes provide a way to capture and use information about light that is passing through the empty space in your scene.
 
 <!--more-->
 
-Similar to lightmaps
-, light probes store “baked” information about lighting in your scene. The difference is that while lightmaps store lighting information about light hitting the surfaces in your scene, light probes store information about light passing through empty space in your scene.
+Similar to lightmaps, light probes store “baked” information about lighting in your scene. The difference is that while lightmaps store lighting information about light hitting the surfaces in your scene, light probes store information about light passing through empty space in your scene.
 
-An extremely simple scene showing light probes placed around two cubes
-An extremely simple scene showing light probes placed around two cubes
+> An extremely simple scene showing light probes placed around two cubes
+
 Light Probes have two main uses:
 
 The primary use of light probes is to provide high quality lighting (including indirect bounced light) on moving objects in your scene.
