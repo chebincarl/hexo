@@ -14,7 +14,7 @@ Lightmapping adds greatly to the realism（真实感） of a scene by capturing 
 
 <!--more-->
 
-<span style="color:red;">While realtime and mixed mode lights can cast direct light on moving objects, moving objects do not receive bounced light from your static environment unless you use light probes.（尽管实时和混合模式的灯光可以投射光线给移动物体，但移动物体不会从静态物体那主动接收间接光照） </span>Light probes store information about how light is bouncing around in your scene.Therefore as objects move through the spaces in your game environment, they can use the information stored in your light probes to show an approximation（近似） of the bounced light at their current position.
+<span style="color:red;">While realtime and mixed mode lights can cast direct light on moving objects, moving objects do not receive bounced light from your static environment unless you use light probes.（尽管实时和混合模式的灯光可以投射光线给移动物体，但移动物体不会从静态物体那接收间接光照，除非使用光照探针） </span>Light probes store information about how light is bouncing around in your scene.Therefore as objects move through the spaces in your game environment, they can use the information stored in your light probes to show an approximation（近似） of the bounced light at their current position.
 
 > A simple scene showing bounced light from static scenery.
 
@@ -22,7 +22,7 @@ Lightmapping adds greatly to the realism（真实感） of a scene by capturing 
 
 In the above scene, as the directional light hits the red and green buildings, which are static scenery, bounced light is cast into the scene. The bounced light is visible（可见） as a red and green tint on the ground directly in front of each building. Because all these models are static, all this lighting is stored in lightmaps.
 
-<span style="color:red;">When you introduce（采用） moving objects into your scene, they do not automatically receive bounced light. </span>In the below image, you can see the ambulance (a dynamic moving object) is not affected by the bounced red light coming off（从...反射出来） the building. Instead, its side is a flat grey color. This is because the ambulance is a dynamic object which can move around in the game, and therefore cannot use lightmaps, because they are static by nature. The scene needs Light Probes so that the moving ambulance can receive bounced light.
+<span style="color:red;">When you introduce（引入） moving objects into your scene, they do not automatically receive bounced light. </span>In the below image, you can see the ambulance (a dynamic moving object) is not affected by the bounced red light coming off（从...反射出来） the building. Instead, its side is a flat grey color. This is because the ambulance is a dynamic object which can move around in the game, and therefore cannot use lightmaps, because they are static by nature. The scene needs Light Probes so that the moving ambulance can receive bounced light.
 
 > The side of the ambulance is a flat grey color, even though it should be receiving some bounced red light from the front of the building.
 
@@ -30,9 +30,9 @@ In the above scene, as the directional light hits the red and green buildings, w
 
 To use the light probe feature to cast bounced light onto dynamic moving objects, you must position light probes throughout（到处，各处） your scene, so that they cover the areas of space that moving objects in your game might pass through.
 
-The probes you place in your scene define a 3D volume. The lighting at any position within this volume is then approximated on moving objects by interpolating between the information baked into the nearest probes.然后，通过在烘焙到最近探针的信息之间进行插值，在该体积内的任何位置处的移动物体上的照明近似于存储的光照信息。
+The probes you place in your scene define a 3D volume. The lighting at any position within this volume is then approximated on moving objects by interpolating between the information baked into the nearest probes.然后，通过在烘焙到最近探针的信息之间进行插值，在该体积内的任何位置处的移动物体上的照明近似于实际的光照信息。
 
-> Light probes placed around the static scenery in a simple scene. The light probes are shown as yellow dots. They are shown connected by magenta（品红色） lines, to visualise the volume that they define.
+> Light probes placed around（周围） the static scenery in a simple scene. The light probes are shown as yellow dots. They are shown connected by magenta（品红色） lines, to visualise the volume that they define.
 
 {% asset_img LightProbes-MovingObjects-3.png %}
 

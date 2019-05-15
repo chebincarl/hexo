@@ -10,7 +10,7 @@ tags: 官方文档
 
 <!--more-->
 
-To place Light Probes in your Scene, you must use a GameObject with a Light Probe Group component attached. You can add a Light Probe Group component from the menu: Component > Rendering > Light Probe Group.
+To place Light Probes in your Scene, you must use a GameObject with a Light Probe Group component attached. You can add a Light Probe Group component from the menu: Component > Rendering > Light Probe Group.其实GameObject->LightProbeGroup创建一个对象是创建一个名为LightProbeGroup的空对象自带了Light Probe Group组件，和给对象添加组件是一回事。
 
 You can add the Light Probe Group component to any GameObject in the Scene. However, it’s good practice to create a new empty GameObject (menu: GameObject > Create Empty) and add it to that, to decrease the possibility of accidentally removing it from the Project.
 
@@ -19,7 +19,7 @@ You can add the Light Probe Group component to any GameObject in the Scene. Howe
 {% asset_img LightProbeGroup.png %}
 
 | Property  | Function  |
-| :------------ | :------------ |
+| :- | :- |
 | Edit Light Probes  | To make changes to a Light Probe Group, click the Edit Light Probes button to enable editing. This changes Unity so that you can only move and edit Light Probes, so you must remember to disable it when you are finished. You cannot move or edit GameObjects or other element in Unity while Edit Light Probes is enabled.  |
 | Show Wireframe  | When this property is enabled, Unity displays the wireframe of the Light Probe Group in the Scene view. When it is disabled, Unity only displays the Light Probe points, and not the wireframe connecting them.  |
 | Remove Ringing  | When this property is enabled, Unity automatically removes Light Probe ringing from the Scene. For more information, see Ringing, later in this section.  |

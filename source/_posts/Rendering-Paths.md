@@ -5,14 +5,14 @@ date: 2019-05-04 15:15:33
 categories: Unity
 tags: 官方文档
 ---
-Unity supports different Rendering Paths. You should choose which one you use depending on your game content and target platform / hardware.Different rendering paths have different performance characteristics（特点） that mostly affect Lights and Shadows. See render pipeline for technical details.
-
-<!--more-->
-
 思考并回答以下问题：
 1.渲染路径是干嘛用的？
 2.有哪些渲染路径？ 
 3.区别是什么？
+
+<!--more-->
+
+Unity supports different Rendering Paths. You should choose which one you use depending on your game content and target platform / hardware.Different rendering paths have different performance characteristics（特点） that mostly affect Lights and Shadows. See render pipeline for technical details.
 
 The rendering path used by your project is chosen on the Graphics window. Additionally, you can override it for each Camera.
 
