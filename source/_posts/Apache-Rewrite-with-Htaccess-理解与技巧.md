@@ -41,7 +41,7 @@ rewrite_module (shared)
 
 接着就可以开始在Site Config里面撰写所需的RewriteRule了。
 
-在理解Rewrite的过程中，常常会出现与之搭配的.htaccess文件，.htaccess称作「Hypertext Access」，以一個文件夹为单位改变Apache设定的配置（Override Config），简单来说就是可以根据每个文件夹Override原本Site Config，可以针对一个文件夹改写网址，所以 RewriteRule并非就只能写在.htaccess当中哦！
+在理解Rewrite的过程中，常常会出现与之搭配的.htaccess文件。.htaccess称作「Hypertext Access」，以一个文件夹为单位改变Apache设定的配置（Override Config），简单来说就是可以根据每个文件夹Override原本Site Config，可以针对一个文件夹改写网址，所以 RewriteRule并非就只能写在.htaccess当中哦！
 
 但本篇文章还是会以使用.htaccess作为范例，若要打开Override的功能，只要修改Site Config，加入AllowOverride All就可以了（例如/usr/local/apache/conf/vhost/example.conf）
 ```Apache
@@ -81,16 +81,18 @@ if (uri.match("match.html")
 [L]：Last，代表成功执行这个Rule后就会停止，不继续往下执行。
 [NC]：Non Case-sensitive，代表match_uri不比对大小写差异。
 [QSA]：Query String Append，代表保留网址尾端带的GET参数，没使用flag的默认是会把参数去掉的。
-[QSD]：Query String Discard，与QSA相反的作用，apache v2.4才有。
+[QSD]：Query String Discard（丢弃），与QSA相反的作用，apache v2.4才有。
 [R]: Redirect，代表用转址的方式转到新的网址，默认是302 Status Code，如：[R=301]，也可以回传400、200、404等的Status Code，通常会跟[L]一起代表结束，也是排错常用的Flag
-[DPI]: 不要再接續的 Rule 中結尾中加上 PathInfo，會在「五、一些小特性」的段落說明。
-[F]: Forbdien 就是不给看啦！
+[DPI]: 不要再接续的Rule中结尾中加上 PathInfo，会在「五、一些小特性」的段落说明。
+[F]: Forbidden 就是不给看啦！
 ※ more flags: http://httpd.apache.org/docs/2.4/rewrite/flags.html
 ```
 
+
+
 ** 范例 **
 
-接著來舉例多個 Rules 加上 Flag 的功用，假設網站資料夾結構如下：
+接着来举例多个Rules加上Flag的功用，假设网站文件夹结构如下：
 ```
 root/
  ├ match.html
@@ -99,19 +101,24 @@ root/
  └ secret/
     └ database_password.json
 ```
-而範例的 .htaccess 的內容為：
-```
-# 前面有井字號是註解
-### 開啟 Rewrite
+而范例的.htaccess的內容为：
+```Apache
+# 前面有井字号是注释
+### 开启Rewrite
 RewriteEngine On
-### 設定 Rewrite 前面會加上的 path，預設會是 DocumentRoot (如：/var/www/html）
+
+### 设定Rewrite前面会加上的path，默认会是DocumentRoot(如：/var/www/html）
 RewriteBase /
+
 # Rules 將會由上往下依序執行
 # 直到最後一行或遇到有符合且有 L flag 的 Rule 就會停止
 ### Rule 1. 輸入 domain.com/match.html 將會顯示 rewrite.html 的內容RewriteRule ^match\.html$ rewrite.html [NC,L]
+
 ### Rule 2. 輸入 domain.com/redirect.html 將會被導至 domain.com/rewrite.html
 RewriteRule ^redirect\.html$ rewrite.html [NC,R=302,L]
+
 ### Rule 3. 如果輸入 domain.com/secret/… 這樣格式的網址，則去掉 secret/ 後，轉回 root 並加上 .html
+
 ### $1 是正規表達式的 group capture，就是 $1=(.*) 取得括號內的值
 RewriteRule ^secret/(.*)$ $1.html [NC,L]
 ```
@@ -207,109 +214,127 @@ RewriteRule ^secret/$ / [R=302,NC,L]
 
 # 三、RewriteCond
 
-RewriteRule 僅僅只能判斷 Request URI 是否匹配而改寫 URI，但有很多需求是希望根據一些 Request Header（Host、User-agent) 與 Apache 的環境變數做改寫，先滿足某些條件後，再次 Rewrite URI，因此有了 RewriteCond 的出現，它的寫法結構如下：
+RewriteRule仅仅只能判断Request URI是否匹配而改写URI，但有很多需求是希望根据一些Request Header（Host、User-agent）与Apache的环境变量做改写，先满足某些条件后，再次Rewrite URI，因此有了RewriteCond的出现，它的写法结构如下：
 ```
 RewriteCond [test_string] [match_string] [flags]
 RewriteRule …
 ```
-test_string：要比對的條件
-match_string：符合的條件
-以上這兩個都可以使用正規表達式撰寫，而且 RewriteCond 結束一定會接著一個 RewriteRule ，真正的範例會長這樣：
+test_string：要比对的条件
+match_string：符合的条件
+
+以上这两个都可以使用正则表达式撰写，而且RewriteCond结束一定会接着一个RewriteRule，真正的范例会长这样：
 ```
 RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit)
 RewriteRule ^blog/(.*)$ fb-bot.html?path=$1&type=%1 [L]
 ```
-以上意義等同於以下 Pseudo Code：
+以上意义等同于以下Pseudo Code：
 ```
-if ($HTTP_USER_AGENT == ‘facebookexternalhit’) {
- if (url.match(‘^blog/(.*)$’)) {
- url = ‘fb-bot.html?path=$1&type=facebookexternalhit’;
- }
+if ($HTTP_USER_AGENT == 'facebookexternalhit') 
+{
+    if (url.match('^blog/(.*)$')) 
+    {
+        url = 'fb-bot.html?path=$1&type=facebookexternalhit';
+    }
 }
 ```
-※ 前面說到 $1是 Group Capture 的用法，而 RewriteCond 則是用 %1表示
+※ 前面说到$1是Group Capture的用法，而RewriteCond则是用%1表示
 
-RewriteCond 可使用的變數
-${HTTP_USER_AGENT}是 RewriteCond 可使用的變數，有以下常見的變數：
+** RewriteCond可使用的变量 **
+
+${HTTP_USER_AGENT}是RewriteCond可使用的变量，有以下常见的变量：
 ```
-%{REQUEST_URI}：Domain 後面完整的 URI Path，Rule 其實會拿到不完整的 URI，詳情可以參考「五、一些小特性」段落
-%{QUERY_STRING}：後面 GET 帶的參數
-%{HTTP_HOST}：Domain
+%{REQUEST_URI}：Domain后面完整的URI Path，Rule 其实会拿到不完整的URI，详情可以参考「五、一些小特性」段落
+%{QUERY_STRING}：后面GET带的参数
+%{HTTP_HOST}：Domain 例：163.com
 %{HTTP_COOKIE}：Cookie
-%{HTTPS}：判斷是否用 https 或 http，如果是 https 就等於「on」，否則為"off"
+%{HTTPS}：判断是否用https或http，如果是https就等于「on」，否则为“off”
 %{HTTP_USER_AGENT}：User Agent
-%{REQUEST_FILENAME}：訪問的檔案名稱
+%{REQUEST_FILENAME}：访问的文件名称
+
 ※ more variables：https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritecond
-※ 其實變數也可以放在 RewriteRule 的 rewrite url 當中
+
+※ 其实变量也可以放在RewriteRule的rewrite url当中
 ```
-以及判斷檔案時，很常見搭配這兩個 match 用法：
+以及判断文件時，很常见搭配这两个match用法：
 ```
--d：directory. 代表如果有這個資料夾
--f：regular file. 代表如果有這個檔案
+-d：directory. 代表如果有这个文件夹
+-f：regular file. 代表如果有这个文件
 ```
-搭配起來寫法就像以下範例，代表著如果沒有這個檔案就轉到首頁：
+搭配起来写法就像以下范例，代表着如果没有这个文件就转到首页：
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.html
 ```
-其實還有不同的 match 寫法，可以參考 Apache 官網的 RewriteCond 。
+其实还有不同的match写法，可以参考Apache官网的 RewriteCond 。
 
 ** RewriteCond 的 Flag 用法 **
+
 ```
 NC：Non case-sensitive
-OR：就是 OR 條件，下面會說明
+OR：就是OR条件，下面会说明
 ```
-RewriteCond 也有 OR 跟 AND 的條件，先前提到 RewriteCond 後面一定會接一個 RewriteRule，有個特性是它只吃接續的第一個 rule ，來看下面的範例：
+RewriteCond也有OR跟AND的条件，先前提到RewriteCond后面一定会接一个RewriteRule，有个特性是它只吃接续的第一个rule ，来看下面的范例：
 ```
-### 範例 A
+### 范例 A
 RewriteCond 1
 RewriteRule 1
 RewriteRule 2
-// 等同於
-if (Cond1) {
- Rule1
+// 等同于
+if (Cond1) 
+{
+    Rule1
 }
 Rule 2
-### 範例 B
+
+### 范例 B
 RewriteCond 1
 RewriteCond 2
 RewriteRule 1
-// 等同於
-if (Cond1 && Cond2) {
- Rule1
+// 等同于
+if (Cond1 && Cond2) 
+{
+    Rule1
 }
-### 範例 C
+
+### 范例 C
 RewriteCond 1 [OR]
 RewriteCond 2
 RewriteRule 1
-// 等同於
-if (Cond1 || Cond2) {
- Rule1
+// 等同于
+if (Cond1 || Cond2) 
+{
+    Rule1
 }
 ```
-瞭解 RewriteCond 跟 RewriteRule 的用法與每一行執行下來的邏輯，就可以更輕易的改寫網路上別人寫好的規則囉～
+了解RewriteCond跟RewriteRule的用法与每一行执行下来的逻辑，就可以更轻易的改写网络上別人写好的规则。
 
-# 四、如何偵錯
-先前在 RewriteRule 的段落有稍微簡單展示 Debug 的流程，這裡僅使用文字講解一些小秘訣。
+# 四、如何排错
+
+先前在RewriteRule的段落有稍微簡單展示Debug的流程，這裡僅使用文字講解一些小秘訣。
 
 ** 1.該使用甚麼Debug工具 **
+
 使用 POSTMAN、cURL 等的工具，瀏覽器除了有 Cache 外，也會幫忙轉址，此時就沒辦法觀察第一次轉址的網址內容，譬如：最常見就是瀏覽器直接顯示轉址太多次的錯誤，但使用工具的話，就可以看到 Response 回傳的轉址結果。
 
 ** 2.如何知道撰寫的 Regular Expression 是否正確？ **
+
 把 RewriteRule 的 Flag 加上 [R=302]，302 Status Code 代表 Moved Temporarily，瀏覽器並不會 Cache 302 的轉址結果，但 301 會，可以確定 Rule 無誤後再拿掉或改為原本 301 就好，像這樣觀察轉址的結果：
 ```
 RewriteRule ^(.*)$ =$1 [L,R=302]
 ```
 
 ** 3.非得要修改正在運行中的網站怎麼辦？ **
+
 可以用一些識別的 Header，加上 RewriteCond 來測試撰寫的 RewriteRule，譬如自定義一個 User-agent，每次 Reuqest 都用這個 User-agent 即可。
 
 ** 4.瀏覽器有 Cache **
 
 前面提到瀏覽器 cache 的問題，若認為寫的沒問題，但訪問網站仍是舊有結果的話，就開啟私密瀏覽訪問看看，最後仍沒辦法只好重開 Apache 看看囉。
 
-五、關於一些小特性
-1. RewriteRule 在巢狀 .htaccess 當中不會取得完整 URI Path
+# 五、关于一些小特性
+
+1.RewriteRule 在巢狀 .htaccess 當中不會取得完整 URI Path
+
 直接看範例，假設資料夾結構如下：
 
 root/
@@ -319,47 +344,54 @@ root/
  ├ c.html
  └ .htaccess
 ### 兩個 .htaccess 都只有這一行內容
+```Apache
 RewriteRule ^(.*)$ $1 [L]
-1. Request： c.html
+```
+1.Request： c.html
 
 使用 root/.htaccess
 Rule 結果： c.html
-2. Request： a/b.html
+
+2.Request： a/b.html
 
 使用 root/a/.htaccess
 Rule 結果： b.html
 沒錯，發生了不會拿到 a/ 的路徑的情況。
 ※ Apache 會自動選擇最接近的 .htaccess 檔案（詳情會在下一段落說明）
 
-3. 如果拿掉 root/a/.htaccess檔案，重新 Request： a/b.html
+3.如果拿掉 root/a/.htaccess檔案，重新 Request： a/b.html
 
 使用 root/.htaccess
 Rule 結果：a/b.html
 這樣的結果又正常了，如果真的想確保拿到完整的 URI Path，可以使用 %{REQUEST_URL}變數來取得 URI 囉！
-
+```Apache
 RewriteCond %{REQUEST_URI} ^(.*)$
 RewriteRule ^ %1 [L]
-2. RewriteRule 自動附加在結尾的 PATH_INFO
-有時候會希望遇到 Rule1 改寫之後，再傳遞至下一個 Rule2 判斷與改寫，可是會遇到後面莫名多了先前的 URI，來看一個簡單的示範例子：
+```
 
+2.RewriteRule自動附加在結尾的 PATH_INFO
+有時候會希望遇到 Rule1 改寫之後，再傳遞至下一個 Rule2 判斷與改寫，可是會遇到後面莫名多了先前的 URI，來看一個簡單的示範例子：
+```Apache
 RewriteRule ^(.*)$ web/$1 [NC]
 RewriteRule ^(.*)$ sec======$1====== [NC,R=301]
 Request： a/b/c.html
-
+```
 經過第一個 Rule 變成： web/a/b/c.html
 最後到第二個 Rule 變成： sec======web/a/b/c.html/b/c.html======
 發現它在 Rule1 的結果末端多了一個不需要的 /b/c.html ，這是因為 PATH_INFO的緣故，若不需要後面 Path 的話，可以在 Rule 1 加上 DPI Flag 移除它，由於一些 php 的 CMS 或是 Framework 會使用到 PATH_INFO 的功能，所以是否關掉 PATH_INFO 的作用還是要注意一下囉！
 
-3. 重新尋找 .htaccess 檔案
+3.重新尋找.htaccess檔案
 有時候要的 Rule 很純，就只是將所有 Request 都轉到 web/ 資料夾下：
-
+```Apache
 RewriteBase /
 RewriteRule ^(.*)$ web/$1 [QSA,L]
+```
 但在 Apache 2.4 後就會遇到出現 Redirect Loop 的錯誤，原因是第一次Request URI 被改寫後成 web/xxxx，它會根據新 URI 找對應最近的 .htaccess 並再重跑一次 RewriteRule
 
 此時有兩種解法，第一種是在 web/ 資料夾下放一個空的 .htaccess ，第二種是可以參考下一點停止 Redirect Loop 的寫法，放在 RewriteRule 前面。
 
-4. 停止 Redirect Loop 的情況
+4.停止 Redirect Loop 的情況
+
 有時候會遇到無窮 Loop 的問題：
 
 Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
@@ -371,10 +403,11 @@ RewriteRule ^ - [L]
 
 Ref：https://stackoverflow.com/a/20930010
 
-六、使用 Htaccess 的缺點
+# 六、使用Htaccess的缺点
+
 使用 Override 很方便，只要將 .htaccess放到資料夾下面就有效果，但官方其實不推薦開啟 Override 的功能，它會降低效能，主要是有以下缺點：
 
-1. 每次 Request 的巢狀搜尋
+1.每次 Request 的巢狀搜尋
 每一次 Request 都會使得 Apache 透過巢狀遞迴的方式搜尋 .htaccess檔案，導致 Apache 緩慢，譬如送出這個 Request：
 
 Request： /example/sub/index.html
@@ -385,7 +418,7 @@ Apache 則會根據路徑尋找以下 .htaccess檔案
 /var/www/example/sub/.htaccess
 最後 Apache 選擇離檔案最近的 /var/www/example/sub/.htaccess
 
-2. 重複 Compile RewirteRule
+2.重複Compile RewirteRule
 由於每次 Request 都會巢狀搜尋 .htaccess，所以再遇到 RewriteRule 都會重新 Compile 一次，不像 Site Config 只會 Compile 一次後做 cache，所以 RewriteRule 非常多的話，也會導致 apache 緩慢。
 
 筆者使用 Apache Benchmark 做了一個小型的壓力測試，連續訪問 10000 次，同時 1000 個連線，取其三次執行 ab指令的平均值，分別比較是否有打開 Override 功能，和 Rewrite 數量多寡是否有影響，Rewrite 的狀況都是以跑到倒數第三行結束為主，且每行 RewriteRule 跟 RewriteCond 不重複。
@@ -400,13 +433,14 @@ Apache 則會根據路徑尋找以下 .htaccess檔案
 
 在 Site Config 中預先指定 .htaccess檔案路徑
 把 Override 功能關掉，並使用 Include 指定引入的 .htaccess ，如下寫法：
-
+```Apache
 DocumentRoot /var/www/
 <Directory /var/www/>
  AllowOverride None
  Include /var/www/.htaccess
  …
 </Directory>
+```
 但這方法也是有個小缺點：每次更新 .htaccess都必須重新啟動 Apache 重新讀取設定。
 
 如果主機流量不大的話，效能問題並沒這麼嚴重，最後還是得依據主機上的網站與情況，衡量哪種做法比較好哦！
