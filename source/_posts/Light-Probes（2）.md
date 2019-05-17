@@ -7,14 +7,16 @@ tags: 官方文档
 ---
 思考并回答以下问题：
 1.光照探针是干嘛用的？不使用会怎么样？
+2.整个场景都需要加光照探针吗？
 
 <!--more-->
 
 Lightmapping adds greatly to the realism（真实感） of a scene by capturing realistic（逼真的） bounced light as textures which are “baked” onto the surface of static objects. However, due to the nature（性质） of lightmapping, it can only be applied to non-moving objects marked as Lightmap Static.
-
-<!--more-->
+lightmapping不是烘焙模式才用， 实时也可以用，因为没必要计算阴影，反正都是静态的，不计算可以加快游戏速度，所以lightmapping不是偶尔使用，是必须使用，不管光照模式是什么。静态物体的直接光照和间接光照信息都储存在了lightmapping中。
 
 <span style="color:red;">While realtime and mixed mode lights can cast direct light on moving objects, moving objects do not receive bounced light from your static environment unless you use light probes.（尽管实时和混合模式的灯光可以投射光线给移动物体，但移动物体不会从静态物体那接收间接光照，除非使用光照探针） </span>Light probes store information about how light is bouncing around in your scene.Therefore as objects move through the spaces in your game environment, they can use the information stored in your light probes to show an approximation（近似） of the bounced light at their current position.
+实时和混合模式下，移动物体可以接受直射光，但接收不了间接光。烘焙模式下移动物体什么光都接收不了。所以光照探针也是必须的。静态物体在三种光照模式下都使用lightmapping，光模式对他们没影响。
+
 
 > A simple scene showing bounced light from static scenery.
 
