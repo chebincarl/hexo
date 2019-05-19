@@ -88,8 +88,6 @@ if (uri.match("match.html")
 ※ more flags: http://httpd.apache.org/docs/2.4/rewrite/flags.html
 ```
 
-
-
 ** 范例 **
 
 接着来举例多个Rules加上Flag的功用，假设网站文件夹结构如下：
@@ -166,11 +164,12 @@ $ curl 'http://localhost/redirect.html'
 前面兩個 Rule 僅是一個基本的示範，平常應用當然會難上許多，來繼續看第三個 Rule 吧
 
 ```
-### Rule 3. 如果輸入 domain.com/secret/… 這樣格式的網址，則去掉 secret/ 後，轉回 root 並加上 .html
-### $1 是正規表達式的 group capture，就是取得那個滿足括號內的值
+### Rule 3. 如果输入domain.com/secret/…这样格式的网址，则去掉 secret/后，转回root并加上.html
+
+### $1是正则表达式的group capture，就是取得那个满足括号内的值
 RewriteRule ^secret/(.*)$ $1.html [NC,L]
 ```
-第三個 Rule 是禁止使用者訪問敏感的 secret資料夾，來試著訪問 database_password.json看能不能得到結果：
+第三個Rule是禁止使用者訪問敏感的 secret資料夾，來試著訪問 database_password.json看能不能得到結果：
 
 ```
 $ curl 'http://localhost/secret/database_password.json'
