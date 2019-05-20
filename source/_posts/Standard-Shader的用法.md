@@ -40,7 +40,7 @@ Shader的参数中有一个“metallic”属性，用来设置材质的金属度
 
 {% asset_img 2.gif %}<center>metallic参数从0-1的变化</center>
 
-# Standard(Specular setup)
+# Standard(Specular高光 setup)
 
 这个Shader适合很多传统的美术工作流程。高光颜色用于控制材质中镜面反射的颜色和强度。这样就能设置与漫反射不同颜色的镜面反射颜色。
 
