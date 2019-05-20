@@ -6,7 +6,7 @@ categories: Unity
 tags: 官方文档
 ---
 思考并回答以下问题：
-
+1.GI cache是干嘛用的？怎么设置？
 
 <!--more-->
 
