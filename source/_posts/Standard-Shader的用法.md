@@ -6,7 +6,8 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考题:
-动手创建3个材质，分别使用Standard Shader的三种，看看有什么异同。
+1.动手创建3个材质，分别使用Standard Shader的三种，看看有什么异同。
+2.PBS是什么？如何发挥作用？
 
 <!--more-->
 

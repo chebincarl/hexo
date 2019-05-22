@@ -63,5 +63,8 @@ tags: Unity
 | Clockwise  | 顺时针  |   
 | intersect  | 相交，交集  |  
 | bias  | 偏差  |
-  
-Algorithm
+| Algorithm  | 算法  |
+| aspect  | 屏幕纵横比  |
+| cluster  | 集群，簇  |
+| shade  | 着色  |
+| aspect  | 屏幕纵横比  |
