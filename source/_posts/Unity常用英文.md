@@ -52,7 +52,7 @@ tags: Unity
 | Obstacle  | 障碍  |   
 | Agent  | 代理  |   
 | mute  | 静音  |   
-| embedded  | 嵌入的，内含的  |   
+| embed  | 嵌入的，内含的  |   
 | cascade  | 级联  |  
 | Volume  | 体积，音量  |   
 | Visualization  | 可视化  |  
@@ -67,4 +67,5 @@ tags: Unity
 | aspect  | 屏幕纵横比  |
 | cluster  | 集群，簇  |
 | shade  | 着色  |
-| aspect  | 屏幕纵横比  |
+| dopesheet  | 关键帧清单，简报  |
+| Curves  | 曲线  |
