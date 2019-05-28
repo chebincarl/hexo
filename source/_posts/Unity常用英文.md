@@ -69,3 +69,4 @@ tags: Unity
 | shade  | 着色  |
 | dopesheet  | 关键帧清单，简报  |
 | Curves  | 曲线  |
+| Elastic  | 弹性  |
