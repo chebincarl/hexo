@@ -11,7 +11,7 @@ tags: 大话Unity2018
 3.空游戏对象有哪些使用场景？
 4.Preset是干嘛用的？
 5.unitypackage是什么？优点是什么？
-
+6.Unity项目下哪几个文件夹需要加入版本控制？
 
 <!--more-->
 
@@ -24,23 +24,26 @@ tags: 大话Unity2018
 
 TextMesh Pro（用于渲染字体）、ProBuilder（可以在Unity编辑三维模型）、Cinemachine（强大的相机插件）
 
+Standard Assets 内置标准资源：安装此组件后，可以使用Unity官方自带的资源如地形资源，角色控制器等。如果没安装，可以在Asset Store中找到。
 
-思考并回答以下问题：
-1.一篇文章你有看10遍吗？
-2.Unity项目下哪几个文件夹需要加入版本控制？
+如果少安装了组件也无须担心，下次再次打开vs_community.exe安装文件，可以添加安装新的内容
 
 # Template 模板
+
+{% asset_img 2.png %}
 
 | <center>** 模板 ** </center>  | <center>** 描述 ** </center>  |
 | :-| :- |
 | 2D  | 使用Unity内置渲染管道的2D项目。默认使用2D的项目设置，包括图像导入参数，Sprite打包器，场景视图，照明和正交相机。  |
 | 3D  | 使用Unity内置渲染管道的3D项目。默认使用3D的项目设置，包括2018的新功能线性颜色空间和渐进式光照贴图。  |
-| 3D with Extras(Preview)  | 与3D模板类似，但包含了后处理，预设和示例内容。  |
-| High End(Preview)  | 适用于支持Shader Model 5.0（DX11及以上版本）的平台上的高端图形。该模板使用HD RP，一种现代渲染流水线，其中包括高级材质类型和可配置的混合Tile/Cluster延迟/前向照明架构。  |
-| Lightweight(Preview)  | 关注主要使用烘焙照明解决方案的项目。该模板使用LW RP，这是一个单pass前向渲染器，每个对象都有光照剔除。使用LW RP将减少项目的绘图调用次数，使其成为低端硬件的理想解决方案。所有灯都以单通道着色，而不是每个像素灯一个pass。  |
-| Lightweight VR(Preview)  | 开发主要使用烘焙照明解决方案的VR项目，重点关注性能。该模板使用LW RP并需要VR设备来运行。  |
+| 3D with Extras  | 与3D模板类似，但包含了后处理，预设和示例内容。  |
+| High-Definition RP(Preview)  | 适用于支持Shader Model 5.0（DX11及以上版本）的平台上的高端图形。该模板使用HD RP，一种现代渲染流水线，其中包括高级材质类型和可配置的混合Tile/Cluster延迟/前向照明架构。  |
+| Lightweight RP  | 关注主要使用烘焙照明解决方案的项目。该模板使用LW RP，这是一个单pass前向渲染器，每个对象都有光照剔除。使用LW RP将减少项目的绘图调用次数，使其成为低端硬件的理想解决方案。所有灯都以单通道着色，而不是每个像素灯一个pass。  |
+| Lightweight VR RP(Preview)  | 开发主要使用烘焙照明解决方案的VR项目，重点关注性能。该模板使用LW RP并需要VR设备来运行。  |
 
 如果选错了，可以后续在菜单栏Edit->Project Settings->Editor中的Default Behavior Mode中修改。
+
+{% asset_img 3.png %}
 
 # 查看工程目录结构
 
@@ -53,7 +56,7 @@ TextMesh Pro（用于渲染字体）、ProBuilder（可以在Unity编辑三维�
 | :-| :- |
 | Assets  | 工程中所有资源的存放目录  |
 | Library  | Unity自动生成的中间文件目录  |
-| Packages  | Unity的包管理器相关文件存放目录，后续会详细讲解  |
+| Packages  | Unity的包管理器相关文件存放目录  |
 | ProjectSettings  | 工程的相关设置  |
 | Temp  | 只有Unity打开这个工程的时候，Temp目录才会出现存放一些临时文件，关闭Unity会该目录会自动消失  |
 | sln文件和csproj文件  | Unity自动生成的Visual Studio工程文件，用于代码编写和调试  |
