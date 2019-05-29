@@ -15,19 +15,6 @@ tags: 大话Unity2018
 
 <!--more-->
 
-人们总是对未知的事物有莫名的恐惧。克服恐惧的过程就是你成长的过程。
-
-就拿Unity来说，英文、编程、每隔几个月的新版本新功能的变化都可能让你恐惧和焦虑。
-
-书读百遍，其义自见。剩下1%看不懂的内容，你见的多了，自然就懂了。
-
-
-TextMesh Pro（用于渲染字体）、ProBuilder（可以在Unity编辑三维模型）、Cinemachine（强大的相机插件）
-
-Standard Assets 内置标准资源：安装此组件后，可以使用Unity官方自带的资源如地形资源，角色控制器等。如果没安装，可以在Asset Store中找到。
-
-如果少安装了组件也无须担心，下次再次打开vs_community.exe安装文件，可以添加安装新的内容
-
 # Template 模板
 
 {% asset_img 2.png %}
@@ -65,3 +52,24 @@ Standard Assets 内置标准资源：安装此组件后，可以使用Unity官�
 
 这些文件中，Assets、Packages、ProjectSettings三个文件夹是必须的，也不能删除，其他文件都可以由Unity自动生成。在存档、拷贝工程源文件时，可以只压缩Assets、Packages、ProjectSettings这三个文件夹，可以减小压缩包的体积。
 
+# 资源文件的位置
+
+如果你需要直接访问下载下来的资源文件，你可以在下方路径找到：
+
+Windows: C:\Users\‹accountName›\AppData\Roaming\Unity\Asset Store
+
+下载下来的资源会以发布者的名称作为文件夹，你可以在对应的发布者名称的文件夹下找到对应的资源。
+
+# 其他
+人们总是对未知的事物有莫名的恐惧。克服恐惧的过程就是你成长的过程。
+
+就拿Unity来说，英文、编程、每隔几个月的新版本新功能的变化都可能让你恐惧和焦虑。
+
+书读百遍，其义自见。剩下1%看不懂的内容，你见的多了，自然就懂了。
+
+
+TextMesh Pro（用于渲染字体）、ProBuilder（可以在Unity编辑三维模型）、Cinemachine（强大的相机插件）
+
+Standard Assets 内置标准资源：安装此组件后，可以使用Unity官方自带的资源如地形资源，角色控制器等。如果没安装，可以在Asset Store中找到。
+
+如果少安装了组件也无须担心，下次再次打开vs_community.exe安装文件，可以添加安装新的内容

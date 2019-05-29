@@ -70,3 +70,5 @@ tags: Unity
 | dopesheet  | 关键帧清单，简报  |
 | Curves  | 曲线  |
 | Elastic  | 弹性  |
+| weld  | 合并  |
+ 
