@@ -4,13 +4,13 @@ title: Elasticsearch
 date: 2019-04-02 10:15:01
 tags: 工具
 ---
-公司之前的全文检索引擎是Coreseek+中文分词，下面把转换成Elasticsearch的过程记录下来，包括学习与执行的整个过程。
+ES的配置
 
 <!--more-->
 
-参考和感谢写在前头：阮一峰、官方文档。
+# 简介
 
-使用的Elasticsearch版本是7.0。
+使用的Elasticsearch版本是7.0.1。
 
 全文搜索属于最常见的需求，开源的Elasticsearch是目前全文搜索引擎的首选。它可以快速地储存、搜索和分析海量数据。维基百科、Stack Overflow、Github都采用它。
 

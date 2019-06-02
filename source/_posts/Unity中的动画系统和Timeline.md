@@ -6,15 +6,19 @@ categories: Unity
 tags: Siki
 ---
 
-# 普通动画
-新建项目AnimationProject，在Project视图下新建Scenes、Scripts、Prefabs、Animations文件夹。保存场景为01-Normal Animation，在场景中创建一个Cube。可以给任意类型的游戏物体施加动画，每个组件基本上都是可以控制的。
-选中Cube，选择Window里面的Animation，出来一个专门创建动画的窗口，如下图所示。
-
 <!--more-->
+
+可以给任意原始类型的游戏物体施加动画，每个组件基本上都是可以控制的。
+
+# 普通动画
+
+新建项目AnimationProject，在Project视图下新建Scenes、Scripts、Prefabs、Animations文件夹。保存场景为01-Normal Animation，在场景中创建一个Cube。
+
+选中Cube，再选择Window里面的Animation，出来一个专门创建动画的窗口，如下图所示。
 
 {% asset_img 1.png %}
 
-Animation Clip就是一个动画的文件。点击Create，动画要干什么就取相应的名字，取名为CubeMove，后缀为anim，保存到Animations文件夹中。此时Cube多了一个Animator组件，如下图所示。
+Animation Clip就是一个动画的文件。点击Create，动画有什么功能就取相应的名字，取名为CubeMove，后缀为anim，保存到Animations文件夹中。此时Cube多了一个Animator组件，如下图所示。
 
 {% asset_img 2.png %}
 
