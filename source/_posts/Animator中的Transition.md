@@ -21,7 +21,7 @@ Transition代表状态之间的切换条件，一般会有一个或多个条件�
 在一个State上右键，在弹出菜单中选择Make Transition，可以创建一个到其他State的Transition。
 
 {% asset_img 2.gif %}
-<center>增加Transition</center>
+<center><font color="gray">增加Transition</font></center>
 
 点击代表Transition的箭头，可以在Inspector上看到这条Transition的具体情况。选中Transition的源State（从哪个State出发），也可以在State的Inspector中看到这条Transition的具体信息。
 
@@ -32,7 +32,7 @@ Transitions 显示当前选中的Transition。后面有两个复选框包括Solo
 Solo 如果两个State之间有多条Transition，勾选这个选项后，只有选中Solo的Transition生效。其他Transition会被禁用。
 
 {% asset_img 4.png %}
-<center>比如Transition1设置为Solo，则从源State到目的State的3个Transition中只有1会生效</center>
+<center><font color="gray">比如Transition1设置为Solo，则从源State到目的State的3个Transition中只有1会生效</font></center>
 
 比如Transition1设置为Solo，则从源State到目的State的3个Transition中只有1会生效
 
@@ -61,7 +61,7 @@ Transition Duration transition的过渡时间。两个状态在转换时，一�
 Transition Offset 目标状态开始播放的时间偏移。比如设置为0.5，则转换到下一个State时，会从50%的位置开始播放。
 
 {% asset_img 7.png %}
-<center>如图设置为0.5时，下一个State会从50%开始转换</center>
+<center><font color="gray">如图设置为0.5时，下一个State会从50%开始转换</font></center>
 
 Interruption Source和Ordered Interruption 这两个参数可以用来控制transition的打断。下面会进行详解。
 
@@ -93,7 +93,7 @@ Interruption Source和Ordered Interruption 这两个参数可以用来控制tran
 
 一个transition至少要有一个条件（Has Exit Time可以作为一个条件），否则transition会被忽略。
 
-#【选读】Transition Interruption
+# 【选读】Transition Interruption
 
 之前我们提到了Interruption Source和Ordered Interruption 这两个参数可以用来控制transition的打断。那么究竟什么是transition打断呢？
 
@@ -149,6 +149,5 @@ B上的Transition的顺序也有影响。但是这时候Ordered Interruption属�
 
 # 总结
 
-今天讲了Animator Controller中的Transition，希望你能记住一下几点：
 * Transition代表状态之间的切换条件，一般会有一个或多个条件，用于从一个状态切换到另一个状态。
 * 一个transition至少要有一个条件（Has Exit Time可以作为一个条件），否则transition会被忽略。
