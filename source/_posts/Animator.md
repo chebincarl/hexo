@@ -12,7 +12,8 @@ tags: 大话Unity2018
 
 {% asset_img 1.png %}
 
-前两天我们主要学习了Animation Clip，是整个动画系统的基本元素。
+Animation Clip，是整个动画系统的基本元素。
+
 如果把Animation Clip比作是一段视频的话，那么Animator就是一个视频播放器，用来控制多段视频的播放、切换等等。
 
 # Animator组件
@@ -48,7 +49,7 @@ Animator中有一个很重要的属性是<span style="color:blue;">Controller</s
 Animator Controller是Animator组件必须的资源，这种资源以文件的形式存储在工程中，文件内存储了动画的各种状态以及状态之间的切换规则。
 
 {% asset_img 3.png %}
-<center>图中有两个Animator Controller文件</center>
+<center><font color="gray">图中有两个Animator Controller文件</font></center>
 
 通常一个物体上有不止一段动画，使用Animator Controller可以很容易地管理各段动画以及动画之间的切换。比如角色身上有走、跑、跳、蹲的动画，使用Animator Controller可以很容易管理它们。不过，即使只有一段动画，仍然需要给动画物体添加Animator组件才能播放动画。
 
@@ -68,14 +69,12 @@ Animator Controller中使用了一种叫State Machine（状态机）的技术来
 
 创建Animator Controller资源有如下几种方式：
 
-在Unity中创建Animation Clip时，如果选中的GameObject上没有Animator组件，会自动添加Animator组件并在工程中创建一个Animator Controller文件（和Animation Clip文件同目录）。
-
-将任意Animation Clip拖到一个物体上时，如果拖到的物体上没有Animator组件，会自动添加Animator组件并在工程中创建一个Animator Controller文件（和Animation Clip文件同目录）。
-
-可以在Project窗口中手动创建Animator Controller文件，如下图所示：
+* 在Unity中创建Animation Clip时，如果选中的GameObject上没有Animator组件，会自动添加Animator组件并在工程中创建一个Animator Controller文件（和Animation Clip文件同目录）。
+* 将任意Animation Clip拖到一个物体上时，如果拖到的物体上没有Animator组件，会自动添加Animator组件并在工程中创建一个Animator Controller文件（和Animation Clip文件同目录）。
+* 可以在Project窗口中手动创建Animator Controller文件，如下图所示：
 
 {% asset_img 6.png %}
-<center>创建Animator Controller文件</center>
+<center><font color="gray">创建Animator Controller文件</font></center>
 
 # 编辑Animator Controller
 
@@ -155,6 +154,5 @@ Animator Controller的参数可以通过代码进行控制，进而控制整个A
 
 # 总结
 
-记住以下几点：
 * 如果把Animation Clip比作是一段视频的话，那么Animator就是一个视频播放器，用来控制多段视频的播放、切换等等。
 * Animator Controller就是一个剧本，用来指导视频播放器如何播放多段视频。
