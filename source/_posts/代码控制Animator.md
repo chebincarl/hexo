@@ -7,6 +7,10 @@ tags: 大话Unity2018
 ---
 今日思考题
 1.实现人物的站立、走、跑的状态切换
+2.bool参数和Trigger参数的区别是什么？
+3.parameter的id是什么？
+4.SetFloat的那个damp是怎么用的？
+5.两种控制人物移动的方式分别是什么？
 
 <!--more-->
 
@@ -21,13 +25,11 @@ tags: 大话Unity2018
 
 {% asset_img 2.png %}
 
-这个网站还有一个强大的功能是自动绑定骨骼，如果你有一个角色想在游戏中使用，但是如果连骨骼都没有绑定的话，是没办法用骨骼动画的，也没办法将其他动画重定向到这个模型上。
-
-点右上角的UploadCharacter就可以上传自己的模型，自动绑定骨骼。
+这个网站还有一个强大的功能是自动绑定骨骼，如果你有一个角色想在游戏中使用，但是如果连骨骼都没有绑定的话，是没办法用骨骼动画的，也没办法将其他动画重定向到这个模型上。点右上角的UploadCharacter就可以上传自己的模型，自动绑定骨骼。
 
 # 代码控制Animator
 
-之前在学Transition的时候，只用到了按播放时间切换动画，但是更强大的功能是按参数切换动画。
+之前在学Transition的时候，只用到了按播放时间切换动画（一个播完播另一个），但是更强大的功能是按参数切换动画。
 
 把Animator类比为一个视频播放器，视频播放器在点击下一个的时候当然要能切换到下一个视频了。
 
@@ -45,11 +47,11 @@ Animator左上角有一个Parameters，可以添加一个参数，比如人物�
 {% asset_img 5.gif %}
 <center><font color="gray">调整Animator参数</font></center>
 
-但是现在感觉不太流畅，问题在哪呢?
+但是现在感觉不太流畅，人物过了一会才移动，问题在哪呢?
 
-1、这个Transition除了speed大于0这个条件，还有一个条件是Has Exit Time，就是播放完idle的动画并且speed>0才会切换到下一个动画，这个Has Exit Time得去掉。
+* 1、这个Transition除了speed大于0这个条件，还有一个条件是Has Exit Time，就是播放完idle的动画并且speed>0才会切换到下一个动画，这个Has Exit Time得去掉。
 
-2、这两个动画都应该是循环播放。
+* 2、这两个动画都应该是循环播放。
 
 怎么用代码控制呢，比如按键盘上WASD的时候控制人物移动。
 
@@ -105,7 +107,7 @@ bool参数和trigger参数很像，都是代表布尔值，但是trigger参数�
 
 2.parameter的id是什么？
 
-在设置parameter的时候设置的是一个字符串的名称，但是在Unity内部是有一个数字id跟它对应的，使用Animator.StringToHash这个API可以将字符串的参数名转为数字id。使用数字id的代码运行效率会稍微高一些。
+在设置parameter的时候设置的是一个字符串的名称，但是在Unity内部是有一个数字id跟它对应的，使用<span style="color:red;">Animator.StringToHash</span>这个API可以将字符串的参数名转为数字id。使用数字id的代码运行效率会稍微高一些。
 
 3.SetFloat的那个damp是怎么用的？
 
