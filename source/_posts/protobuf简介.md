@@ -58,7 +58,7 @@ protocol buffers正是google开发来解决上面提到的这些问题的。prot
 protobuf有两个版本，分别是proto2和proto3，<span style="color:red;">后面我们学习的时候使用的都是新版的proto3</span>，如果你后续在查找资料时发现不相同的地方，一定要确认下是哪个版本。
 
 ** <span style="color:red;">1. 定义.proto文件</span> **
-首先你入要在<span style="color:red;">.ptoto</span>文件中定义你想要传输的数据结构。.proto文件很简单：使用message来定义每一个需要序列化的数据结构，每个message里面可以定义类型和名称。
+首先你要在<span style="color:red;">.ptoto</span>文件中定义你想要传输的数据结构。.proto文件很简单：使用message来定义每一个需要序列化的数据结构，每个message里面可以定义类型和名称。
 
 ** <span style="color:red;">2. 编译.proto文件</span> ** 
 使用protobuf提供的编译工具，将.proto文件编译为对应开发语言的数据结构代码。

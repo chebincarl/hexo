@@ -10,7 +10,7 @@ tags: 大话Unity2018
 
 <!--more-->
 
-之前我们简要了解了了protobuf的工作流，第一步就是要定义.proto文件，今天我们来看看这个.proto的语法具体是什么。
+之前我们简要了解了protobuf的工作流，第一步就是要定义.proto文件，今天我们来看看这个.proto的语法具体是什么。
 
 # <span style="color:#039BE5;">.proto语法</span>
 
