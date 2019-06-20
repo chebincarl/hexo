@@ -4,16 +4,16 @@
 
 # Site
 title: 车斌的博客
-subtitle: 文章看10遍，自然就会了
-description: 回家抄作业
-keywords:
+subtitle: 文章看10遍，动手做10遍，自然就会了
+description: 记录自己的学习过程
+keywords: Unity
 author: Chebin 
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://chebincarl.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
