@@ -6,7 +6,8 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考并回答以下问题：
-1.让角色在场景中寻路的步骤是什么？代码怎么写？
+1.让角色在场景中寻路的步骤是什么？
+2.GetComponent<NavMeshAgent>().destination是什么意思？
 
 <!--more-->
 
@@ -14,7 +15,7 @@ NavMesh烘焙好了，接下来学习NavMeshAgent组件，让角色动起来，�
 
 {% asset_img 1.png %}
 
-# NavMeshAgent组件
+# <span style="color:#039BE5;">NavMeshAgent组件</span>
 
 场景的NavMesh烘焙好之后，就可以让角色在场景中寻路。一般的步骤如下：
 
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 ```
 通过设置NavMeshAgent组件中的destination属性，可以设置角色的运动目的地。
 
-# NavMeshAgent组件属性
+## <span style="color:#00ACC1;">NavMeshAgent组件属性</span>
 
 NavMeshAgent组件主要有以下作用：
 1、通过NavMesh的数据进行寻路，移动到目标位置
@@ -83,7 +84,7 @@ Auto Braking 选中时，agent在即将到达目标位置时会减速。但是�
 
 <span style="color:blue;">Area Mask</span> NavMesh中可以给不同的位置进行分类。这个属性可以定义agent可以在哪些区域寻路。比如你可以将楼梯设置为特殊的区域类型，从而禁止一些agent使用楼梯。
 
-# Navigation Area
+## <span style="color:#00ACC1;">Navigation Area</span>
 可以给NavMesh定义多个Area（区域），每个区域也可以设置一个Cost用来指示在这个区域行走的代价。Cost越高代表这个区域越不好走，agent在寻路时会倾向寻找代价更低的路线。
 
 比如：
@@ -101,7 +102,7 @@ Auto Braking 选中时，agent在即将到达目标位置时会减速。但是�
 2、在Navigation窗口的Object中设置选中物体的Navigation Area
 
 
-# 疑难解答
+# <span style="color:#039BE5;">疑难解答</span>
 
 Navigation系统中涉及到Agent Size的地方有三个：
 
@@ -123,6 +124,6 @@ NavMeshAgent组件中Obstacle Avoidance中的Size设置。
 
 这个设置只会影响NavMeshAgent和其他Agent以及动态障碍物碰撞的计算。
 
-# 总结
+# <span style="color:#039BE5;">总结</span>
 
 导航系统本身是个很复杂的系统，Unity为了简化这个流程已经做了很多工作了

@@ -18,9 +18,9 @@ tags: 大话Unity2018
 
 Protocol Buffers (通常简称为protobuf) 是Google开发的一种格式，这种格式与开发语言无关、与运行平台无关，用于序列化结构数据，并且很容易扩展。这种格式可以用于通信协议、数据存储等等。你可以想一下之前学过的xml或json，和他们有些类似，但是protobuf更小、更快、更简单。
 
-protobuf是开源的，地址如下：[https://github.com/protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf)
+protobuf是开源的，地址如下：[https://github.com/protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf) 这个是编译器的源码，用C++写的。
 
-使用protobuf时，你只需要按照protobuf的格式要求将数据结构定义在.proto文件中一次，就可以通过protobuf的编译工具生成不同开发语言的数据结构代码（就像我们在C#中序列化/反序列化xml或json时需要定义的class类），生成的代码中还封装了数据结构的读写和序列化。
+使用protobuf时，你只需要按照protobuf的格式要求将数据结构定义在.proto文件中一次，就可以通过protobuf的编译工具生成不同开发语言的数据结构<span color="red">代码</span>（就像我们在C#中序列化/反序列化xml或json时需要定义的class类），生成的代码中还封装了数据结构的读写和序列化。
 
 # <span style="color:#039BE5;">为什么要用protobuf呢？</span>
 
@@ -34,7 +34,7 @@ protobuf是开源的，地址如下：[https://github.com/protocolbuffers/protob
 
 3、第三种，使用自定义的数据格式，比如上次我们学习到的格式。这种方式简单、快速，但是不方便的就是如果在多种语言之间传输，每种语言都要写解码、编码的代码。
 
-protocol buffers正是google开发来解决上面提到的这些问题的。protobuf拥有灵活性、高效率、自动化的特性。使用protobuf时，你只需要写一个<span style="color:red;">.proto</span>的数据结构描述文件，protobuf提供的编译器就可以自动将.proto文件编译成你想要的编程语言的代码，这些自动生成的代码里实现了编码、解码、读写这些格式数据的功能。更重要的是，protobuf格式支持后续扩展，扩展后的格式仍然可以兼容旧格式。
+protocol buffers正是google开发来解决上面提到的这些问题的。protobuf拥有灵活性、高效率、自动化的特性。使用protobuf时，你只需要写一个<span style="color:red;">.proto</span>的数据结构描述文件，protobuf提供的编译器就可以自动将.proto文件编译成你想要的编程语言的代码，<span style="color:red;">这些自动生成的代码里实现了编码、解码、读写这些格式数据的功能</span>。更重要的是，protobuf格式支持后续扩展，扩展后的格式仍然可以兼容旧格式。
 
 # <span style="color:#039BE5;">详细对比XML/JSON</span>
 
@@ -64,4 +64,4 @@ protobuf有两个版本，分别是proto2和proto3，<span style="color:red;">�
 使用protobuf提供的编译工具，将.proto文件编译为对应开发语言的数据结构代码。
 
 ** <span style="color:red;">3. 在代码中序列化和解析</span> **
-在代码中将数据结构序列化成字节数组发送出去，或者将接收到的字节数组反序列化成内存中的数据。
+在代码中将数据结构序列化成字节数组<span style="color:red;">发送</span>出去，或者将<span style="color:red;">接收</span>到的字节数组反序列化成内存中的数据。
