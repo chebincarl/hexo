@@ -9,6 +9,8 @@ tags: 大话Unity2018
 1.luaenv.DoString("CS.UnityEngine.Debug.Log('hello world')");是什么意思？
 2.luaenv.DoString("require 'byfile'");是什么意思？
 3.以下划线(\_)开头，后面紧随多个大写字母（\_VERSION）的变量有什么含义？
+4.C#中使用哪个命名空间？
+5.建议的加载Lua脚本方式是？
 
 <!--more-->
 
@@ -88,7 +90,7 @@ namespace Tutorial
     }
 }
 ```
-lua中的require有些像C#中的using。实际上是调一个个的加载器loader，来加载一个一个模块/代码文件。与using不同的是，require加载进来后会将代码执行一次。
+lua中的require有些像C#中的using。实际上是调一个个的加载器loader，来加载一个一个模块/代码文件。<span style="color:red">与using不同的是，require加载进来后会将代码执行一次</span>。
 
 xlua除了lua原生的loader外，还添加了从Resource加载的loader，所以上面的代码可以加载Resources目录下的byfile.lua.txt文件并执行。
 
@@ -99,7 +101,7 @@ xlua除了lua原生的loader外，还添加了从Resource加载的loader，所�
 此外很多时候热更新肯定是需要从服务器上下载lua代码执行，这个后面再说。
 
 
-> 下面开始学习lua的语法。后面学习中，如果没有特殊说明，代码会写在上面的byfile.lua.txt文件中，并使用XLua\Tutorial\LoadLuaScript\ByFile场景运行测试。”
+> 下面开始学习lua的语法。后面学习中，如果没有特殊说明，代码会写在上面的byfile.lua.txt文件中，并使用XLua\Tutorial\LoadLuaScript\ByFile场景运行测试。
 
 # <span style="color:#039BE5;">Lua编程</span>
 Lua是一门非常简洁的语言，也没有过多复杂的语法，学习起来很容易上手。

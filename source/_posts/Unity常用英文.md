@@ -71,4 +71,4 @@ tags: Unity
 | Curves  | 曲线  |
 | Elastic  | 弹性  |
 | weld  | 合并  |
- 
+| Dispose  | 释放  | 

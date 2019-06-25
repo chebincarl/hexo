@@ -6,7 +6,9 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考并回答以下问题：
-1.如何创建一个空表？
+1.如何创建一个模块？
+2.私有函数如何声明？
+3.return module是什么作用？
 
 <!--more-->
 
