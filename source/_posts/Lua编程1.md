@@ -6,11 +6,14 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考并回答以下问题：
-1.luaenv.DoString("CS.UnityEngine.Debug.Log('hello world')");是什么意思？
-2.luaenv.DoString("require 'byfile'");是什么意思？
-3.以下划线(\_)开头，后面紧随多个大写字母（\_VERSION）的变量有什么含义？
-4.C#中使用哪个命名空间？
-5.建议的加载Lua脚本方式是？
+1.LuaEnv luaenv = new LuaEnv();是什么意思？
+2.luaenv.DoString("CS.UnityEngine.Debug.Log('hello world')");是什么意思？
+3.luaenv.DoString("require 'byfile'");是什么意思？
+4.luaenv.dispose是什么意思？
+5.以下划线(\_)开头，后面紧随多个大写字母（\_VERSION）的变量有什么含义？
+6.C#中使用哪个命名空间？
+7.建议的加载Lua脚本方式是？
+8.直接访问未初始化的全局变量会报错吗？
 
 <!--more-->
 
@@ -92,7 +95,7 @@ namespace Tutorial
 ```
 lua中的require有些像C#中的using。实际上是调一个个的加载器loader，来加载一个一个模块/代码文件。<span style="color:red">与using不同的是，require加载进来后会将代码执行一次</span>。
 
-xlua除了lua原生的loader外，还添加了从Resource加载的loader，所以上面的代码可以加载Resources目录下的byfile.lua.txt文件并执行。
+<span style="color:red">xlua除了lua原生的loader外，还添加了从Resource加载的loader</span>，所以上面的代码可以加载Resources目录下的byfile.lua.txt文件并执行。
 
 需要注意的是因为<span style="color:red">Resource只支持有限的后缀</span>，放Resources下的lua文件得加上txt后缀。
 

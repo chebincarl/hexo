@@ -6,14 +6,17 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考并回答以下问题：
-1.如何创建一个空表？
+1.如何初始化表并指定值？
+2.a和b指向同一个table1，a设置为nil，b还可以访问table1的元素吗？
+3.table.concat、table.insert、table.remove、table.sort的含义分别是什么？
+4.#为什么得不到正确的table长度？
 
 <!--more-->
 
-Lua中有一个非常重要的数据结构，就是Table，几乎我们所有高级语法的实现都离不开Table，就像C#中的类一样重要。”
+Lua中有一个非常重要的数据结构，就是Table，几乎所有高级语法的实现都离不开Table，就像C#中的类一样重要。
 
 # <span style="color:#039BE5;">Lua table(表)</span>
-table 是 Lua 的一种数据结构用来帮助我们创建不同的数据类型，如：数组、字典等。
+table 是 Lua 的一种数据结构，用来创建不同的数据类型，如：数组、字典等。
 
 Lua table 使用关联型数组，你可以用任意类型的值来作数组的索引，但这个值不能是 nil。
 
@@ -214,6 +217,6 @@ end
 ```
 # <span style="color:#039BE5;">总结</span>
 
-table的花式用法有很多，基于table可以实现各种各样的结构和功能，
+table的花式用法有很多，基于table可以实现各种各样的结构和功能。
 
 

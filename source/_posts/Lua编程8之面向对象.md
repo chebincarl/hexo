@@ -10,24 +10,24 @@ tags: 大话Unity2018
 
 <!--more-->
 
-之前学习了table，Lua中table很重要的一个功能就是实现面向对象的架构。因为lua本身并不是面向对象的预研，但是通过通过table可以实现。
+之前学习了table，Lua中table很重要的一个功能就是实现面向对象的架构。因为lua本身并不是面向对象的语言，但是通过table可以实现。
 
-# Lua 面向对象
+# <span style="color:#039BE5;">Lua 面向对象</span>
 
 面向对象编程（Object Oriented Programming，OOP）是一种非常流行的计算机编程架构。
 
 以下几种编程语言都支持面向对象编程：C# C++ Java Objective-C Ruby
 
-## 面向对象特征
-1）封装：指能够把一个实体的信息、功能、响应都装入一个单独的对象中的特性。
+## <span style="color:#EF7060;">面向对象特征</span>
+1）** <span style="color:red">封装</span> ** ：指能够把一个实体的信息、功能、响应都装入一个单独的对象中的特性。
 
-2）继承：继承的方法允许在不改动原程序的基础上对其进行扩充，这样使得原功能得以保存，而新功能也得以扩展。这有利于减少重复编码，提高软件的开发效率。
+2）** <span style="color:red">继承</span> ** ：继承的方法允许在不改动原程序的基础上对其进行扩充，这样使得原功能得以保存，而新功能也得以扩展。这有利于减少重复编码，提高软件的开发效率。
 
-3）多态：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向基类的指针，来调用实现派生类中的方法。
+3）** <span style="color:red">多态</span> ** ：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向基类的指针，来调用实现派生类中的方法。
 
-4）抽象：抽象(Abstraction)是简化复杂的现实问题的途径，它可以为具体问题找到最恰当的类定义，并且可以在最恰当的继承级别解释问题。
+4）** <span style="color:red">抽象</span> ** ：抽象(Abstraction)是简化复杂的现实问题的途径，它可以为具体问题找到最恰当的类定义，并且可以在最恰当的继承级别解释问题。
 
-## Lua 中面向对象
+## <span style="color:#EF7060;">Lua 中面向对象</span>
 我们知道，对象由属性和方法组成。LUA中最基本的结构是table，所以需要用table来描述对象的属性。
 
 lua中的function可以用来表示方法。那么LUA中的类可以通过table + function模拟出来。
@@ -74,18 +74,18 @@ Rectangle = {area = 0, length = 0, breadth = 0}
 
 -- 派生类的方法 new
 function Rectangle:new (o,length,breadth)
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  self.length = length or 0
-  self.breadth = breadth or 0
-  self.area = length*breadth;
-  return o
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    self.length = length or 0
+    self.breadth = breadth or 0
+    self.area = length*breadth;
+    return o
 end
 
 -- 派生类的方法 printArea
 function Rectangle:printArea ()
-  print("矩形面积为 ",self.area)
+    print("矩形面积为 ",self.area)
 end
 ```
 ** 创建对象 **
@@ -114,17 +114,17 @@ Shape = {area = 0}
 
 -- 基础类方法 new
 function Shape:new (o,side)
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  side = side or 0
-  self.area = side*side;
-  return o
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    side = side or 0
+    self.area = side*side;
+    return o
 end
 
 -- 基础类方法 printArea
 function Shape:printArea ()
-  print("面积为 ",self.area)
+    print("面积为 ",self.area)
 end
 
 -- 创建对象
@@ -146,17 +146,17 @@ Shape = {area = 0}
 
 -- 基础类方法 new
 function Shape:new (o,side)
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  side = side or 0
-  self.area = side*side;
-  return o
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    side = side or 0
+    self.area = side*side;
+    return o
 end
 
 -- 基础类方法 printArea
 function Shape:printArea ()
-  print("面积为 ",self.area)
+    print("面积为 ",self.area)
 end
 ```
 接下来的实例，Square 对象继承了 Shape 类:
@@ -165,10 +165,10 @@ Square = Shape:new()
 
 -- 派生类的new方法
 function Square:new (o,side)
-  o = o or Shape:new(o,side)
-  setmetatable(o, self)
-  self.__index = self
-  return o
+    o = o or Shape:new(o,side)
+    setmetatable(o, self)
+    self.__index = self
+    return o
 end
 ```
 ** 完整实例 **
@@ -179,17 +179,17 @@ Shape = {area = 0}
 
 -- 基础类方法 new
 function Shape:new (o,side)
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  side = side or 0
-  self.area = side*side;
-  return o
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    side = side or 0
+    self.area = side*side;
+    return o
 end
 
 -- 基础类方法 printArea
 function Shape:printArea ()
-  print("面积为 ",self.area)
+    print("面积为 ",self.area)
 end
 
 -- 创建对象
@@ -200,15 +200,15 @@ Square = Shape:new()
 
 -- 派生类方法 new
 function Square:new (o,side)
-  o = o or Shape:new(o,side)
-  setmetatable(o, self)
-  self.__index = self
-  return o
+    o = o or Shape:new(o,side)
+    setmetatable(o, self)
+    self.__index = self
+    return o
 end
 
 -- 派生类方法 printArea
 function Square:printArea ()
-  print("正方形面积为 ",self.area)
+    print("正方形面积为 ",self.area)
 end
 
 -- 创建对象
@@ -218,16 +218,16 @@ mysquare:printArea()
 Rectangle = Shape:new()
 -- 派生类方法 new
 function Rectangle:new (o,length,breadth)
-  o = o or Shape:new(o)
-  setmetatable(o, self)
-  self.__index = self
-  self.area = length * breadth
-  return o
+    o = o or Shape:new(o)
+    setmetatable(o, self)
+    self.__index = self
+    self.area = length * breadth
+    return o
 end
 
 -- 派生类方法 printArea
 function Rectangle:printArea ()
-  print("矩形面积为 ",self.area)
+    print("矩形面积为 ",self.area)
 end
 
 -- 创建对象
