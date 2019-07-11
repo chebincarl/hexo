@@ -79,7 +79,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://chebincarl:qq1770712134@github.com/chebincarl/chebincarl.github.io.git
+  repo: https://chebincarl:tljdwl123@github.com/chebincarl/chebincarl.github.io.git
   branch: master
 
 search:
