@@ -5,16 +5,18 @@ date: 2019-05-27 18:17:32
 categories: Unity
 tags: 大话Unity2018
 ---
-今日思考题
-1.实现人物的站立、走、跑的状态切换
-2.bool参数和Trigger参数的区别是什么？
-3.parameter的id是什么？
-4.SetFloat的那个damp是怎么用的？
-5.两种控制人物移动的方式分别是什么？
+思考并回答以下问题：
+* 从Mixamo下载模型和动画并导入Unity
+* 两种控制人物移动的方式分别是什么？
+* bool参数和Trigger参数的区别是什么？
+* Has Exit Time是干什么用的？
+* parameter的id是什么？如何使用？
+* SetFloat()函数的那个damp参数是怎么用的？
+* 实现人物的站立、走、跑的状态切换
 
 <!--more-->
 
-# 动画资源神器
+# <span style="color:#039BE5;">动画资源神器</span>
 
 [https://www.mixamo.com](https://www.mixamo.com)，使用Adobe账户登陆。
 
@@ -25,13 +27,17 @@ tags: 大话Unity2018
 
 {% asset_img 2.png %}
 
-这个网站还有一个强大的功能是自动绑定骨骼，如果你有一个角色想在游戏中使用，但是如果连骨骼都没有绑定的话，是没办法用骨骼动画的，也没办法将其他动画重定向到这个模型上。点右上角的UploadCharacter就可以上传自己的模型，自动绑定骨骼。
+这个网站还有一个强大的功能是**自动绑定骨骼**，如果你有一个角色想在游戏中使用，但是如果连骨骼都没有绑定的话，是没办法用骨骼动画的，也没办法将其他动画重定向到这个模型上。点右上角的UploadCharacter就可以上传自己的模型，自动绑定骨骼。
 
-# 代码控制Animator
+# <span style="color:#039BE5;">代码控制Animator</span>
 
-之前在学Transition的时候，只用到了按播放时间切换动画（一个播完播另一个），但是更强大的功能是按参数切换动画。
+## <span style="color:#00ACC1;">Parameters</span>
+
+之前在学Transition的时候，只用到了按播放时间切换动画（一个播完播另一个），但是更强大的功能是按**参数**切换动画。
 
 把Animator类比为一个视频播放器，视频播放器在点击下一个的时候当然要能切换到下一个视频了。
+
+<span style="color:red">**Animator是视频播放器，Animation是视频。**</span>
 
 Animator左上角有一个Parameters，可以添加一个参数，比如人物的速度。
 
@@ -41,17 +47,17 @@ Animator左上角有一个Parameters，可以添加一个参数，比如人物�
 
 {% asset_img 4.png %}
 
-
 运行场景，手动改speed的值，就能看到效果。
 
 {% asset_img 5.gif %}
 <center><font color="gray">调整Animator参数</font></center>
 
-但是现在感觉不太流畅，人物过了一会才移动，问题在哪呢?
+现在人物过了一会才移动，然后又不动了。
 
-* 1、这个Transition除了speed大于0这个条件，还有一个条件是Has Exit Time，就是播放完idle的动画并且speed>0才会切换到下一个动画，这个Has Exit Time得去掉。
-
+* 1、这个Transition除了speed大于0这个条件，还有一个条件是Has Exit Time，就是speed>0满足条件后，还需要播放完idle的动画才会切换到下一个动画，这个Has Exit Time得去掉。
 * 2、这两个动画都应该是循环播放。
+
+## <span style="color:#00ACC1;">控制移动</span>
 
 怎么用代码控制呢，比如按键盘上WASD的时候控制人物移动。
 
@@ -68,6 +74,7 @@ Animator左上角有一个Parameters，可以添加一个参数，比如人物�
 ** 使用动画中的位移 **
 
 这种方式需要先设置两个地方：
+
 1、物体上Animator组件的Apply Root Motion需要勾选，相当于就是把动画中的位置修改应用到物体上；
 2、人物的动画类型需要设置为Humanoid。
 
@@ -97,7 +104,7 @@ public void SetFloat(int id, float value, float dampTime, float deltaTime);
 <span style="color:blue;">deltaTime</span> 时间增量。
 
 
-# 难点详解
+# <span style="color:#039BE5;">难点详解</span>
 
 1.bool参数和Trigger参数的区别是什么？
 
@@ -115,7 +122,7 @@ damp翻译过来一般是阻尼的意思，你可以理解为缓行。这样Floa
 
 {% asset_img 6.png %}
 
-# 总结
+# <span style="color:#039BE5;">总结</span>
 
 * Animator中可以设置参数，用来控制Transition的变化
 * Has Exit Time也是transition切换的一个条件，只有transition的所有条件都满足时才会进行切换
