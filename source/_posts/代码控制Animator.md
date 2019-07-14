@@ -6,7 +6,6 @@ categories: Unity
 tags: 大话Unity2018
 ---
 思考并回答以下问题：
-* 从Mixamo下载模型和动画并导入Unity
 * 两种控制人物移动的方式分别是什么？
 * bool参数和Trigger参数的区别是什么？
 * Has Exit Time是干什么用的？
@@ -15,19 +14,6 @@ tags: 大话Unity2018
 * 实现人物的站立、走、跑的状态切换
 
 <!--more-->
-
-# <span style="color:#039BE5;">动画资源神器</span>
-
-[https://www.mixamo.com](https://www.mixamo.com)，使用Adobe账户登陆。
-
-{% asset_img 1.png %}
-<center><font color="gray">人物模型选择</font></center>
-
-选好一个人物模型，再切换到Animation，会有很多动作。
-
-{% asset_img 2.png %}
-
-这个网站还有一个强大的功能是**自动绑定骨骼**，如果你有一个角色想在游戏中使用，但是如果连骨骼都没有绑定的话，是没办法用骨骼动画的，也没办法将其他动画重定向到这个模型上。点右上角的UploadCharacter就可以上传自己的模型，自动绑定骨骼。
 
 # <span style="color:#039BE5;">代码控制Animator</span>
 
